@@ -60,3 +60,21 @@ appointments = users.each_with_index.map do |user, i|
 end
 
 puts "Dados seed inseridos com sucesso!"
+
+# Criar um compromisso específico
+user = User.find_by(id: 6)
+gym = Gym.find_by(id: 7)
+
+if user && gym
+  Appointment.create!(
+    user: user,
+    gym: gym,
+    checkin_date: Date.today,
+    checkin_hour: Time.current,
+    checkout_date: Date.today,
+    checkout_hour: Time.current + 2.hours,
+    active: [true, false].sample
+  )
+else
+  puts "Usuário com ID 6 ou Academia com ID 7 não encontrado."
+end

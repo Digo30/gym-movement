@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Academias</h1>
+
+  <% @gyms.each do |gym| %>
+    <div class="card mb-3 rounded-4" style="max-width: 400px;">
+      <div class="row g-0 align-items-center">
+        <div class="col-md-4 w-auto">
+          <%= image_tag "growth-logo-or.png", class: "card-img" %>
+        </div>
+        <div class="col-md-8 w-auto">
+          <div class="card-body">
+            <h5 class="card-title"><%= gym.name %></h5>
+            <p class="card-text mb-1">Score: <%= gym.rating %></p>
+            <p class="card-text mb-1"><small class="text-body-secondary">Fluxo: <%= @fluxos[gym.id] %></small></p>
+            <p class="card-text mb-1"><small class="text-body-secondary">Capacidade: <%= gym.capacity %></small></p>
+            <div class="d-flex gap-3">
+              <p class="card-text mb-1"><small class="text-body-secondary">Mulheres: <%= @gender[gym.id]["Female"] %></small></p>
+              <p class="card-text mb-1"><small class="text-body-secondary">Homens: <%= @gender[gym.id]["Male"] %></small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
