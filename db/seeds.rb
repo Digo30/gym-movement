@@ -1,15 +1,21 @@
 # Limpar dados antigos
-User.destroy_all
+Appointment.destroy_all
 Profile.destroy_all
 Gym.destroy_all
-Appointment.destroy_all
+User.destroy_all
 
 # Criar usuários
 users = 5.times.map do |i|
   User.create!(
     email: "user#{i}@example.com",
-    password: "password#{i}",    # Adicionar senha válida
-    password_confirmation: "password#{i}" # Confirmar a senha
+    password: "password#{i}",
+    password_confirmation: "password#{i}",
+    first_name: "FirstName#{i}",
+    last_name: "LastName#{i}",
+    birthday: Date.new(1990 + i, 1, 1),
+    gender: ["Male", "Female"].sample,
+    phone: "555-000#{i}",
+    user_image: "https://example.com/user#{i}.jpg"
   )
 end
 
