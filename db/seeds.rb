@@ -60,3 +60,13 @@ appointments = users.each_with_index.map do |user, i|
 end
 
 puts "Dados seed inseridos com sucesso!"
+
+Appointment.create!(
+  user: User.find(6),
+  gym: Gym.find(7),
+  checkin_date: Date.today,
+  checkin_hour: Time.current,
+  checkout_date: Date.today,
+  checkout_hour: Time.current + 2.hours,
+  active: [true, false].sample
+)
