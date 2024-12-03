@@ -44,3 +44,10 @@ footer {
 .perfil-img {
   border-radius: 50%;
 }
+
+.container-new-form {
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+  padding-bottom: 10px;
+  overflow-x: hidden;
+}
