@@ -1,0 +1,37 @@
+    <footer>
+        <div class="footer-content">
+                <%= link_to link_to "#", class: "footer-link" do %>
+                  <%= image_tag "home.svg", alt: "Entrar", class: "footer-icon" %>
+
+                <% end %>
+
+            <!-- Ícone para "Meus pedidos" -->
+            <%= link_to "#", class: "footer-link" do %>
+                <%= image_tag "map.svg", alt: "Pedidos", class: "footer-icon" %>
+                <span>Mapa</span>
+            <% end %>
+
+
+            <% if user_signed_in? %>
+              <%= link_to "#", class:"footer-link" do %>
+                <%= image_tag "anuncio.svg", alt: "Anunciar", class: "footer-icon" %>
+                <span>Meus Anúncios</span>
+              <% end %>
+            <% end %>
+
+            <% if user_signed_in? %>
+            <!-- Ícone para "Minha Conta" -->
+            <%= link_to "#", class: "footer-link" do %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", alt: "Minha Conta", class: "footer-icon perfil-img" %>
+              <span>Perfil</span>
+            <% end %>
+          <% else %>
+            <!-- Ícone para "Login" -->
+            <%= link_to new_user_session_path, class: "footer-link" do %>
+              <%= image_tag "user.svg", alt: "Entrar", class: "footer-icon" %>
+              <span>Login</span>
+            <% end %>
+          <% end %>
+
+        </div>
+      </footer>
