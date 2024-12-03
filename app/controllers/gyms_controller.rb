@@ -55,6 +55,8 @@ class GymsController < ApplicationController
     .group("users.gender")
     .count("users.gender")
     @fluxo_medio = (@fluxo["Male"].to_i + @fluxo["Female"].to_i) * 100  / @gym.capacity
+
+    @amenities = @gym.amenities.split(',')
   end
 
   private

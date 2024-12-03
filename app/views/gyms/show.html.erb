@@ -20,8 +20,33 @@
     <%= f.hidden_field :checkin_hour, value: Time.current %>
     <%= f.submit "Check-in", class: "btn btn-danger text-light rounded-4 w-100" %>
   <% end %>
-  <div class="d-flex justify-content-center mt-4">
-    <%= image_tag(@gym.images, class: "img-gym rounded-4") %>
+  <div id="carouselExample" class="carousel slide mt-4">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag(@gym.images, class: "img-gym rounded-4") %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag(@gym.images, class: "img-gym rounded-4") %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag(@gym.images, class: "img-gym rounded-4") %>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-
+  <div class="mt-4 p-4 rounded-4 comodidades">
+    <h6 class="fw-bold">O local oferece:</h6>
+    <ul class="p-1 row">
+      <% @amenities.each do |amenitie| %>
+        <li class="col-6 d-flex gap-2 align-items-center"><i class="fa-regular fa-circle-check"></i><%= amenitie %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
