@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_03_165634) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_03_195031) do
+# ActiveRecord::Schema[7.1].define(version: 2024_12_03_165634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_165634) do
 
   create_table "appointments", force: :cascade do |t|
     t.date "checkin_date"
-    t.time "checkin_hour"
+    t.datetime "checkin_hour", precision: nil
     t.date "checkout_date"
     t.time "checkout_hour"
     t.boolean "active"
@@ -52,6 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_165634) do
     t.bigint "gym_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.time "appointment_time"
     t.index ["gym_id"], name: "index_appointments_on_gym_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
