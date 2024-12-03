@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :gyms
+  resources :gyms do
+    resources :appointments, only: [:new, :create, :show]
+  end
 end

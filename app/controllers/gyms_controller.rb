@@ -24,6 +24,11 @@ class GymsController < ApplicationController
     @images = @gym.appointments.joins(:user)
         .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
         .pluck('users.user_image') .sample(3)
+    @fluxo = @gym.appointments.joins(:user)
+    .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
+    .group("users.gender")
+    .count("users.gender")
+    @fluxo_medio = (@fluxo["Male"].to_i + @fluxo["Female"].to_i) * 100  / @gym.capacity
   end
 
   private
