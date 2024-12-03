@@ -12,9 +12,14 @@
     <%= f.input :last_name, label: "Sobrenome",
                 required: true,
                 input_html: { autocomplete: "family-name" } %>
-    <%= f.input :birthday, label: "Data de nascimento",
+    <%= f.input :birthday,
+                label: "Data de nascimento",
                 as: :date,
-                required: true %>
+                required: true,
+                start_year: 1930,
+                end_year: Date.today.year,
+                prompt: { day: 'Dia', month: 'Mês', year: 'Ano' } %>
+
     <%= f.input :gender, label: "Gênero",
                 as: :select,
                 collection: [['Male', 'male'], ['Female', 'female'], ['Other', 'other']],
@@ -22,10 +27,9 @@
     <%= f.input :phone, label: "Celular",
                 required: false,
                 input_html: { autocomplete: "tel" } %>
-    <%= f.input :user_image, label: "Foto de perfil",
+    <%= f.input :profile_picture, label: "Foto de perfil",
                 as: :file,
                 required: false %>
-
 
     <%= f.input :email,
                 required: true,

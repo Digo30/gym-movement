@@ -1,0 +1,38 @@
+.minha-conta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+
+  .info-usuario {
+    text-align: center;
+
+    .perfil-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+  }
+
+  .opcoes-conta {
+    margin-top: 20px;
+
+
+    .botao-editar,
+    .botao-desempenho {
+      display: block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}
