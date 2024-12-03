@@ -37,7 +37,7 @@ end
 
 # Criar academias
 # Selecionar 3 comodidades aleatórias para cada academia
-  amenities_list = ["Piscina", "Sauna", "Ar condicionado", "Armários", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario", "Estacionamento"]
+  amenities_list = ["Piscina", "Sauna", "Ar-condicionado", "Armarios", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario", "Estacionamento"]
 
   gyms = 5.times.map do |i|
     Gym.create!(
