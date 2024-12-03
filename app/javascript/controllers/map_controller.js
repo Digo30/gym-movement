@@ -14,18 +14,9 @@ export default class extends Controller {
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v10"
     })
+    this.#addMarkersToMap()
+    this.#fitMapToMarkers()
   }
-}
-// Connects to data-controller="map"
-export default class extends Controller {
-  connect() {
-  }
-}
-
-connect() {
-  // [...]
-  this.#addMarkersToMap()
-  this.#fitMapToMarkers()
 }
 
 #addMarkersToMap() {
