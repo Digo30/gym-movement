@@ -4,7 +4,7 @@
   overflow: hidden;
   font-family: Arial, sans-serif;
   position: relative;
-  height: 92vh;
+  height: 83.5vh;
 }
 
 .home-page .video-background {
@@ -61,6 +61,12 @@
   opacity: 0.5;
 }
 
+.banner-container:hover {
+  opacity: 0.8;
+  transition: opacity 0.5s, box-shadow 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .home-page .banner {
   display: inline-block;
   padding: 10px;
@@ -83,8 +89,13 @@
 .home-page .banner img {
   max-width: 50%;
   height: auto;
+  border-radius: 20px;
+  transition: transform 0.3s;
 }
 
+.home-page .banner a:hover img {
+  transform: scale(1.05);
+}
 
 @media (max-width: 768px) {
   .home-page h1 {
@@ -93,8 +104,8 @@
 }
 
 @media (max-width: 480px) {
-  .home-page{
-    height: 82vh;
+  .home-page {
+    height: 82.5vh;
   }
   .home-page h1 {
     font-size: 1.5rem;
