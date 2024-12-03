@@ -15,14 +15,14 @@
             <% if user_signed_in? %>
               <%= link_to "#", class:"footer-link" do %>
                 <%= image_tag "anuncio.svg", alt: "Anunciar", class: "footer-icon" %>
-                <span>Meus Anúncios</span>
+                <span>Minha conta</span>
               <% end %>
             <% end %>
 
             <% if user_signed_in? %>
             <!-- Ícone para "Minha Conta" -->
-            <%= link_to "#", class: "footer-link" do %>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", alt: "Minha Conta", class: "footer-icon perfil-img" %>
+            <%= link_to my_account_path(current_user), class: "footer-link" do %>
+              <%= image_tag current_user.profile_picture, alt: "Minha Conta", class: "footer-icon perfil-img" %>
               <span>Perfil</span>
             <% end %>
           <% else %>
