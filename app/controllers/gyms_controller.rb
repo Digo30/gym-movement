@@ -1,9 +1,8 @@
 class GymsController < ApplicationController
-
   before_action :set_gym, only: [:show]
   before_action :set_date_hour, only: [:index, :show]
 
-  def index
+def index
     @gyms = Gym.all
       respond_to do |format|
         format.html  # Responde com a visualização padrão
@@ -36,16 +35,32 @@ class GymsController < ApplicationController
       [gym.id, gym.appointments.where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now).count]
     end.to_h
 
-    @gender = @gyms.map do |gym|
-      gender_count = gym.appointments.joins(:user)
-                      .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
-                      .group("users.gender")
-                      .count("users.gender")
-      gender_count.default = 0
-      [gym.id, gender_count]
-    end.to_h
-  end
+    @markers = @gyms.geocoded.map do |gym|
+      {
+        lat: gym.latitude,
+        lng: gym.longitude
+      }
+    end
 
+    @gender = @gyms.map do |gym|
+    gender_count = gym.appointments.joins(:user)
+                    .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
+                    .group("users.gender")
+                    .count("users.gender")
+    gender_count.default = 0
+    [gym.id, gender_count]
+    end.to_h
+end
+
+def map
+  @gyms = Gym.all
+    @markers = @gyms.geocoded.map do |gym|
+      {
+        lat: gym.latitude,
+        lng: gym.longitude
+      }
+    end
+end
   def show
     @images = @gym.appointments.joins(:user)
         .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
@@ -55,17 +70,25 @@ class GymsController < ApplicationController
     .group("users.gender")
     .count("users.gender")
     @fluxo_medio = (@fluxo["Male"].to_i + @fluxo["Female"].to_i) * 100  / @gym.capacity
+
+    @amenities = @gym.amenities.split(',')
   end
 
-  private
+def show
+  @images = @gym.appointments.joins(:user)
+      .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
+      .pluck('users.user_image') .sample(3)
+end
 
-  def set_gym
-    @gym = Gym.find(params[:id])
-  end
+private
 
-  def set_date_hour
-    @time_now = Time.current
-    @one_hour_ago = 1.hour.ago
-  end
+def set_gym
+  @gym = Gym.find(params[:id])
+end
+
+def set_date_hour
+  @time_now = Time.current
+  @one_hour_ago = 1.hour.ago
+end
 
 end
