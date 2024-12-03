@@ -4,12 +4,18 @@ Profile.destroy_all
 Gym.destroy_all
 User.destroy_all
 
+# Array de comodidades possíveis
+amenities_list = [
+  "Piscina", "Sauna", "Ar condicionado", "Armários", "Lanchonete",
+  "Wi-fi", "Chuveiro", "Bicicletario", "Estacionamento"
+]
+
 # Criar usuários
 users = 5.times.map do |i|
   User.create!(
     email: "user#{i}@example.com",
-    password: "password#{i}",
-    password_confirmation: "password#{i}",
+    password: "123456",
+    password_confirmation: "123456",
     first_name: "FirstName#{i}",
     last_name: "LastName#{i}",
     birthday: Date.new(1990 + i, 1, 1),
@@ -30,21 +36,24 @@ profiles = users.map.with_index do |user, i|
 end
 
 # Criar academias
-gyms = 5.times.map do |i|
-  Gym.create!(
-    name: "Gym #{i}",
-    address: "Street #{i}, City #{i}",
-    latitude: -20.0 + i,
-    longitude: -40.0 + i,
-    phone: "555-1234#{i}",
-    email: "contact#{i}@gym.com",
-    rating: (4 + i % 2),
-    info_shift: "Open 24/7",
-    amenities: "Pool, Sauna, Free weights",
-    capacity: 100 + i * 10,
-    photos: "https://example.com/gym#{i}.jpg"
-  )
-end
+# Selecionar 3 comodidades aleatórias para cada academia
+  amenities_list = ["Piscina", "Sauna", "Ar condicionado", "Armários", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario", "Estacionamento"]
+
+  gyms = 5.times.map do |i|
+    Gym.create!(
+      name: "Academia #{i}",
+      address: "Rua #{i}, Cidade #{i}",
+      latitude: -20.0 + i,
+      longitude: -40.0 + i,
+      phone: "555-1234#{i}",
+      email: "contato#{i}@academia.com",
+      rating: (4 + i % 2),
+      info_shift: "Aberto 24/7",
+      amenities: amenities_list.sample(3),  # Seleciona 3 comodidades aleatórias
+      capacity: 100 + i * 10,
+      photos: "https://example.com/academia#{i}.jpg"
+    )
+  end
 
 # Criar compromissos
 appointments = users.each_with_index.map do |user, i|
