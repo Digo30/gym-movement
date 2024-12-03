@@ -6,13 +6,14 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
-
+  
   #Funções para página my_account
   resources :users, only: [:edit, :update]
   resources :users do
     get 'my_account', on: :member
   end
 
-
-  resources :gyms
+  resources :gyms do
+    resources :appointments, only: [:new, :create, :show]
+  end
 end
