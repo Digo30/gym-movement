@@ -1,0 +1,14 @@
+<div class="minha-conta">
+  <div class="info-usuario">
+  <%= image_tag current_user.profile_picture, alt: "Imagem de Perfil", class: "footer-icon perfil-img" %>
+    <h2>Nome: <%= current_user.first_name %> <%= current_user.last_name %></h2>
+    <p>Peso: <%#= current_user.weight %> kg</p>
+    <p>Altura: <%#= current_user.height %> cm</p>
+  </div>
+
+  <div class="opcoes-conta">
+    <a href="<%= edit_user_path(current_user) %>" class="botao-editar">Editar Perfil</a>
+    <a href="#" class="botao-desempenho">Meu Desempenho</a>
+    <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-danger text-light rounded-4" %>
+  </div>
+</div>

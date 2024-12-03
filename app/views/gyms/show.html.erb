@@ -1,4 +1,27 @@
 <div class="container">
-  <h1><%= @gym.name %></h1>
-  <h2><%= @images %></h2>
+  <div class="text-center">
+    <h1 class="mb-4 fs-4 fw-bold"><%= @gym.name %></h1>
+    <ul class="p-0">
+      <% @images.take(4).each do |image| %>
+        <li><%= image_tag(image, class: "img-checkin") %></li>
+      <% end %>
+    </ul>
+    <p class="mt-3 fw-bold">Alunos onGym</p>
+    <div class="d-flex justify-content-center gap-3">
+      <p class="mt-3 fw-bold">Homens: <%= @fluxo["Male"].to_i %></p>
+      <p class="mt-3 fw-bold">Mulheres: <%= @fluxo["Female"].to_i %></p>
+      <p class="mt-3 fw-bold">Fluxo: <%= @fluxo_medio %>%</p>
+    </div>
+  </div>
+  <%= simple_form_for [@gym, Appointment.new] do |f| %>
+    <%= f.hidden_field :gym_id, value: @gym.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :checkin_date, value: Date.today %>
+    <%= f.hidden_field :checkin_hour, value: Time.current %>
+    <%= f.submit "Check-in", class: "btn btn-danger text-light rounded-4 w-100" %>
+  <% end %>
+  <div class="d-flex justify-content-center mt-4">
+    <%= image_tag(@gym.images, class: "img-gym rounded-4") %>
+  </div>
+
 </div>

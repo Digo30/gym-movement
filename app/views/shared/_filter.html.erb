@@ -1,0 +1,70 @@
+<aside class="filters bg-light p-3 rounded" id="filterSection" style="display: none;">
+  <h5>Filtros</h5>
+  <%= form_with url: gyms_path, method: :get, local: true do %>
+
+
+    <h6>Comodidades</h6>
+    <div class="mb-3 d-flex flex-wrap gap-2">
+      <% ["Estacionamento", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
+        <%= check_box_tag "amenities[]", amenity, params[:amenities]&.include?(amenity), id: "amenities_#{amenity}", class: "d-none amenity-checkbox" %>
+        <%= label_tag "amenities_#{amenity}", amenity, class: "btn btn-outline-success amenity-label" %>
+      <% end %>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <%= submit_tag "Filtrar", class: "btn btn-success" %>
+      <%= link_to "Limpar", gyms_path, class: "btn btn-outline-secondary" %>
+    </div>
+  <% end %>
+</aside>
+
+<!-- Botão para alternar a visibilidade do filtro -->
+<button id="toggleFilterBtn" class="btn btn-primary mt-3">Mostrar Filtros</button>
+
+<script>
+  // Adicionando JS para Atualização Dinâmica
+  document.addEventListener("DOMContentLoaded", () => {
+    const distanceSlider = document.querySelector("#distance");
+    const distanceValue = document.querySelector("#distance_value");
+    const capacitySlider = document.querySelector("#capacity");
+    const capacityValue = document.querySelector("#capacity_value");
+
+    if (distanceSlider && distanceValue) {
+      distanceSlider.addEventListener("input", () => {
+        distanceValue.textContent = distanceSlider.value;
+      });
+    }
+
+    if (capacitySlider && capacityValue) {
+      capacitySlider.addEventListener("input", () => {
+        capacityValue.textContent = capacitySlider.value;
+      });
+    }
+  });
+
+  // JavaScript para mostrar/ocultar os filtros ao clicar no botão
+  document.getElementById('toggleFilterBtn').addEventListener('click', function() {
+    var filterSection = document.getElementById('filterSection');
+    if (filterSection.style.display === 'none' || filterSection.style.display === '') {
+      filterSection.style.display = 'block';
+      this.innerText = 'Ocultar Filtros';
+    } else {
+      filterSection.style.display = 'none';
+      this.innerText = 'Mostrar Filtros';
+    }
+  });
+
+  // Adiciona a classe 'btn-success' ao label quando o checkbox é marcado
+  document.querySelectorAll('.amenity-checkbox').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      var label = document.querySelector(`label[for='${checkbox.id}']`);
+      if (checkbox.checked) {
+        label.classList.add('btn-success');
+        label.classList.remove('btn-outline-success');
+      } else {
+        label.classList.remove('btn-success');
+        label.classList.add('btn-outline-success');
+      }
+    });
+  });
+</script>
