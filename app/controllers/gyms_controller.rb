@@ -4,7 +4,11 @@ class GymsController < ApplicationController
   before_action :set_date_hour, only: [:index, :show]
 
   def index
-    @gyms = Gym.all
+    if params[:query].present?
+      @gyms = Gym.where("name ILIKE ?", "%#{params[:query]}%") # Filtra academias pelo nome
+    else
+      @gyms = Gym.all
+    end
 
     @fluxos = @gyms.map do |gym|
       [gym.id, gym.appointments.where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now).count]
