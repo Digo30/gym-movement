@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
+  get 'map', to: 'gyms#map', as: :map
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :gyms

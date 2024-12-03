@@ -26,6 +26,16 @@ def index
     end.to_h
 end
 
+def map
+  @gyms = Gym.all
+    @markers = @gyms.geocoded.map do |gym|
+      {
+        lat: gym.latitude,
+        lng: gym.longitude
+      }
+    end
+end
+
 def show
   @images = @gym.appointments.joins(:user)
       .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
