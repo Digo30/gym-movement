@@ -4,10 +4,32 @@ class GymsController < ApplicationController
   before_action :set_date_hour, only: [:index, :show]
 
   def index
+    @gyms = Gym.all
+      respond_to do |format|
+        format.html  # Responde com a visualização padrão
+        format.js    # Responde com JavaScript (para atualizações dinâmicas)
+      end
+
+    # Busca por nome
     if params[:query].present?
-      @gyms = Gym.where("name ILIKE ?", "%#{params[:query]}%") # Filtra academias pelo nome
-    else
-      @gyms = Gym.all
+      @gyms = @gyms.where("name ILIKE ?", "%#{params[:query]}%")
+    end
+
+    # Filtro por distância (exemplo com coordenadas)
+    # if params[:distance].present?
+    #   user_latitude = params[:latitude] || 0 # Substituir pela localização real do usuário
+    #   user_longitude = params[:longitude] || 0
+    #   @gyms = @gyms.near([user_latitude, user_longitude], params[:distance].to_f)
+    # end
+
+    # # Filtro por lotação
+    # if params[:capacity].present?
+    #   @gyms = @gyms.where("capacity <= ?", params[:capacity].to_i)
+    # end
+
+    # Filtro por comodidades
+    if params[:amenities].present?
+      @gyms = @gyms.where("amenities @> ARRAY[?]::varchar[]", params[:amenities])
     end
 
     @fluxos = @gyms.map do |gym|
