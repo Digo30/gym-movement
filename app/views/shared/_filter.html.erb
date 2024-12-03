@@ -5,7 +5,7 @@
 
     <h6>Comodidades</h6>
     <div class="mb-3 d-flex flex-wrap gap-2">
-      <% ["Estacionamento", "Ar condicionado", "Armários", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletário"].each do |amenity| %>
+      <% ["Estacionamento", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
         <%= check_box_tag "amenities[]", amenity, params[:amenities]&.include?(amenity), id: "amenities_#{amenity}", class: "d-none amenity-checkbox" %>
         <%= label_tag "amenities_#{amenity}", amenity, class: "btn btn-outline-success amenity-label" %>
       <% end %>

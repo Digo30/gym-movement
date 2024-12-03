@@ -6,7 +6,7 @@ User.destroy_all
 
 # Array de comodidades possíveis
 amenities_list = [
-  "Piscina", "Sauna", "Ar condicionado", "Armários", "Lanchonete",
+  "Piscina", "Sauna", "Ar-condicionado", "Armarios", "Lanchonete",
   "Wi-fi", "Chuveiro", "Bicicletario", "Estacionamento"
 ]
 
