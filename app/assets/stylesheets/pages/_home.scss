@@ -1,7 +1,6 @@
 .home-page {
   margin: 0;
   padding: 0;
-  height: 100vh;
   overflow: hidden;
   font-family: Arial, sans-serif;
 }
@@ -48,6 +47,10 @@
   line-height: 1.5;
   margin: 0;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+footer {
+  z-index: 10;
 }
 
 @media (max-width: 768px) {

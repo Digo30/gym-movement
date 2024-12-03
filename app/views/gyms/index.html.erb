@@ -5,11 +5,13 @@
     <div class="card mb-3 rounded-4" style="max-width: 400px;">
       <div class="row g-0 align-items-center">
         <div class="col-md-4 w-auto">
-          <%= image_tag "growth-logo-or.png", class: "card-img" %>
+          <%= link_to gym_path(gym), class: "card-title text-decoration-none" do %>
+            <%= image_tag "growth-logo-or.png", class: "card-img" %>
+          <% end %>
         </div>
         <div class="col-md-8 w-auto">
           <div class="card-body">
-            <h5 class="card-title"><%= gym.name %></h5>
+          <%= link_to gym.name ,gym_path(gym), class: "card-title text-decoration-none" %>
             <p class="card-text mb-1">Score: <%= gym.rating %></p>
             <p class="card-text mb-1"><small class="text-body-secondary">Fluxo: <%= @fluxos[gym.id] %></small></p>
             <p class="card-text mb-1"><small class="text-body-secondary">Capacidade: <%= gym.capacity %></small></p>
