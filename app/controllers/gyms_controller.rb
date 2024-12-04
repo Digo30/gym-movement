@@ -74,11 +74,6 @@ end
     @amenities = @gym.amenities.split(',')
   end
 
-def show
-  @images = @gym.appointments.joins(:user)
-      .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
-      .pluck('users.user_image') .sample(3)
-end
 
 private
 
