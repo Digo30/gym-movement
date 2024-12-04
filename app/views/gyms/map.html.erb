@@ -1,5 +1,11 @@
-<div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+<div class="container">
+  <%= render "shared/filter" %>
+
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-capacity-value="<%= params[:capacity] || 0 %>"
+    data-amenities-value="<%= params[:amenities].to_json if params[:amenities].present? %>">
+  </div>
 </div>

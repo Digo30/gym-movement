@@ -4,16 +4,6 @@
 
   <div class="text-center mt-4">
     <h1 class="mb-4 fs-4 fw-bold"><%= @gym.name %></h1>
-<<<<<<< HEAD
-
-    <!-- Exibição das imagens de check-in -->
-    <ul class="p-0 d-flex justify-content-center gap-3">
-      <% if @images.any? %>
-        <% @images.each do |image| %>
-          <li><%= image_tag(image, class: "img-checkin") %></li>
-        <% end %>
-      <% end %>
-=======
     <ul class="p-0 d-flex justify-content-center gap-1">
     <% if @images.any? %>
       <% @images.each do |image| %>
@@ -23,7 +13,6 @@
       <% end %>
       <li><p class="qtd-alunos d-flex align-items-center justify-content-center d-none">+ <%= @qtd_alunos %></p></li>
     <% end %>
->>>>>>> master
     </ul>
 
     <!-- Exibição do fluxo de alunos -->
@@ -76,8 +65,5 @@
       <% end %>
     </ul>
   </div>
-<<<<<<< HEAD
-=======
 
 </div>
->>>>>>> master
