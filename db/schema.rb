@@ -66,7 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_195031) do
     t.string "email"
     t.integer "rating"
     t.text "info_shift"
-    t.string "amenities", default: [], array: true
+    t.string "amenities"
     t.integer "capacity"
     t.text "photos"
     t.datetime "created_at", null: false
