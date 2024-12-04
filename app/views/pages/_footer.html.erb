@@ -1,41 +1,34 @@
     <footer>
         <div class="footer-content">
-                <%= link_to link_to "#", class: "footer-link" do %>
-                  <%= image_tag "home.svg", alt: "Entrar", class: "footer-icon" %>
+            <%= link_to root_path, class: "footer-link" do %>
+              <%= image_tag "home.svg", alt: "Entrar", class: "footer-icon" %>
+              <span>Home</span>
+            <% end %>
 
-                <% end %>
-
-            <!-- Ícone para "Meus pedidos" -->
-            <%= link_to "#", class: "footer-link" do %>
+            <%= link_to map_path, class: "footer-link" do %>
                 <%= image_tag "map.svg", alt: "Pedidos", class: "footer-icon" %>
                 <span>Mapa</span>
             <% end %>
 
+            <%= link_to gyms_path, class: "footer-link" do %>
+                <%= image_tag "academias.svg", alt: "Pedidos", class: "footer-icon" %>
+                <span>Academias</span>
+            <% end %>
 
             <% if user_signed_in? %>
-              <%= link_to "#", class:"footer-link" do %>
-                <%= image_tag "anuncio.svg", alt: "Anunciar", class: "footer-icon" %>
-                <span>Minha conta</span>
+              <%= link_to my_account_path(current_user), class: "footer-link" do %>
+                <% if current_user.profile_picture.nil? %>
+                  <%= image_tag current_user.profile_picture, alt: "Minha Conta", class: "footer-icon perfil-img" %>
+                <% else %>
+                  <%= image_tag "user.svg", alt: "Profile user", class: "footer-icon" %>
+                  <span>Perfil</span>
+                <% end %>
               <% end %>
-            <% end %>
-
-            <% if user_signed_in? %>
-            <!-- Ícone para "Minha Conta" -->
-            <%= link_to my_account_path(current_user), class: "footer-link" do %>
-            <% if current_user.profile_picture.nil? %>
-              <%= image_tag current_user.profile_picture, alt: "Minha Conta", class: "footer-icon perfil-img" %>
             <% else %>
-              <%= image_tag "user.svg", alt: "Profile user", class: "footer-icon" %>
-            <% end %>
-              <span>Perfil</span>
-            <% end %>
-          <% else %>
-            <!-- Ícone para "Login" -->
-            <%= link_to new_user_session_path, class: "footer-link" do %>
-              <%= image_tag "user.svg", alt: "Entrar", class: "footer-icon" %>
-              <span>Login</span>
-            <% end %>
+              <%= link_to new_user_session_path, class: "footer-link" do %>
+                <%= image_tag "user.svg", alt: "Entrar", class: "footer-icon" %>
+                <span>Login</span>
+              <% end %>
           <% end %>
-
         </div>
       </footer>
