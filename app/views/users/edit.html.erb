@@ -1,0 +1,19 @@
+<h1>Editar Perfil</h1>
+
+<%= form_with model: current_user, url: user_path(current_user), method: :patch, local: true, html: { multipart: true } do |form| %>
+  <div>
+    <%= form.label :profile_picture, "Foto de Perfil" %>
+    <%= form.file_field :profile_picture %>
+  </div>
+
+  <% if current_user.profile_picture.attached? %>
+    <div>
+      <p>Foto Atual:</p>
+      <%= image_tag current_user.profile_picture, width: 150, height: 150 %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit "Atualizar Perfil" %>
+  </div>
+<% end %>
