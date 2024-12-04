@@ -5,21 +5,21 @@ class GymsController < ApplicationController
   def index
     @gyms = Gym.all
 
-    # Filtro por capacidade
+    # Filtro por nome
+    if params[:query].present?
+      @gyms = @gyms.where("name ILIKE ?", "%#{params[:query]}%")
+    end
+
+    # Filtro por lotação
     if params[:capacity].present?
-      @gyms = @gyms.where("capacity <= ?", params[:capacity].to_i)
+      @gyms = @gyms.where("capacity >= ?", params[:capacity].to_i)
     end
 
     # Filtro por comodidades
     if params[:amenities].present?
-      amenities_filter = params[:amenities].map { |amenity| "%#{amenity}%" }
+      amenities_filter = params[:amenities].map(&:strip) # Remover espaços antes e depois
+      # Filtro pelo operador @> para arrays
       @gyms = @gyms.where("amenities @> ARRAY[:amenities]::text[]", amenities: amenities_filter)
-    end
-
-    # Resposta JSON para atualização do mapa
-    respond_to do |format|
-      format.html
-      format.json { render json: { markers: @gyms.map(&:location_data) } } # Exemplo de como passar os dados para o mapa
     end
 
     @gyms = @gyms.order(:name)
