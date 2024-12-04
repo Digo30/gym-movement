@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   if current_user.update(user_params)
     Rails.logger.info "Imagem anexada? #{current_user.profile_picture.attached?}"
-    redirect_to profile_path, notice: 'Perfil atualizado com sucesso!'
+    redirect_to my_account_path, notice: 'Perfil atualizado com sucesso!'
   else
     render :edit, alert: 'Erro ao atualizar o perfil.'
   end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:profile_picture)
+    params.require(:user).permit(:first_name, :last_name, :profile_picture)
   end
 
 end

@@ -4,6 +4,7 @@
       <%= image_tag current_user.profile_picture, alt: "Imagem de Perfil", class: "footer-icon perfil-img" %>
   <% end %>
     <h2>Nome: <%= current_user.first_name %> <%= current_user.last_name %></h2>
+    <p><strong>Idade:</strong> <%= current_user.age ? "#{current_user.age} anos" : "Data de nascimento não informada" %></p>
     <p>Peso: <%#= current_user.weight %> </p>
     <p>Altura: <%#= current_user.height %> </p>
   </div>
