@@ -2,10 +2,15 @@
   <h5>Filtros</h5>
   <%= form_with url: gyms_path, method: :get, local: true do %>
 
+   <h6>Lotação</h6>
+    <div class="mb-3">
+      <%= range_field_tag :capacity, params[:capacity] || 0, in: 0..100, step: 1, class: "form-range", id: "capacity_slider" %>
+      <p class="small">até <span id="capacity_value"><%= params[:capacity] || 0 %></span>%</p>
+    </div>
 
     <h6>Comodidades</h6>
     <div class="mb-3 d-flex flex-wrap gap-2">
-      <% ["Estacionamento", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
+      <% ["Estacionamento","Piscina", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
         <%= check_box_tag "amenities[]", amenity, params[:amenities]&.include?(amenity), id: "amenities_#{amenity}", class: "d-none amenity-checkbox" %>
         <%= label_tag "amenities_#{amenity}", amenity, class: "btn btn-outline-success amenity-label" %>
       <% end %>
@@ -24,16 +29,8 @@
 <script>
   // Adicionando JS para Atualização Dinâmica
   document.addEventListener("DOMContentLoaded", () => {
-    const distanceSlider = document.querySelector("#distance");
-    const distanceValue = document.querySelector("#distance_value");
-    const capacitySlider = document.querySelector("#capacity");
+    const capacitySlider = document.querySelector("#capacity_slider");
     const capacityValue = document.querySelector("#capacity_value");
-
-    if (distanceSlider && distanceValue) {
-      distanceSlider.addEventListener("input", () => {
-        distanceValue.textContent = distanceSlider.value;
-      });
-    }
 
     if (capacitySlider && capacityValue) {
       capacitySlider.addEventListener("input", () => {

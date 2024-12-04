@@ -1,14 +1,17 @@
 <div class="container container-new-form">
   <div class="text-center mt-4">
     <h1 class="mb-4 fs-4 fw-bold"><%= @gym.name %></h1>
-    <ul class="p-0 d-flex justify-content-center gap-3">
-    <% if @images.any? %>
 
-      <% @images.each do |image| %>
-        <li><%= image_tag(image, class: "img-checkin") %></li>
+    <!-- Exibição das imagens de check-in -->
+    <ul class="p-0 d-flex justify-content-center gap-3">
+      <% if @images.any? %>
+        <% @images.each do |image| %>
+          <li><%= image_tag(image, class: "img-checkin") %></li>
+        <% end %>
       <% end %>
-    <% end %>
     </ul>
+
+    <!-- Exibição do fluxo de alunos -->
     <p class="mt-3 fw-bold">Alunos onGym</p>
     <div class="d-flex justify-content-center gap-3">
       <p class="mt-3 fw-bold">Homens: <%= @fluxo["Male"].to_i %></p>
@@ -16,6 +19,8 @@
       <p class="mt-3 fw-bold">Fluxo: <%= @fluxo_medio %>%</p>
     </div>
   </div>
+
+  <!-- Formulário de Check-in -->
   <%= simple_form_for [@gym, Appointment.new] do |f| %>
     <%= f.hidden_field :gym_id, value: @gym.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
@@ -23,18 +28,16 @@
     <%= f.hidden_field :checkin_hour, value: Time.current %>
     <%= f.submit "Check-in", class: "btn btn-danger text-light rounded-4 w-100" %>
   <% end %>
+
+  <!-- Exibição do Carrossel de Imagens -->
   <% if @gym.images.present? %>
     <div id="carouselExample" class="carousel slide mt-4">
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <%= image_tag(@gym.images, class: "img-gym rounded-4") %>
-        </div>
-        <div class="carousel-item">
-          <%= image_tag(@gym.images, class: "img-gym rounded-4") %>
-        </div>
-        <div class="carousel-item">
-          <%= image_tag(@gym.images, class: "img-gym rounded-4") %>
-        </div>
+        <% @gym.images.each_with_index do |image, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= image_tag(image, class: "img-gym rounded-4") %>
+          </div>
+        <% end %>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -46,12 +49,15 @@
       </button>
     </div>
   <% end %>
+
+  <!-- Exibição das comodidades -->
   <div class="mt-4 p-4 rounded-4 comodidades">
     <h6 class="fw-bold">O local oferece:</h6>
     <ul class="p-1 row">
-      <% @amenities.each do |amenitie| %>
-        <li class="col-6 d-flex gap-2 align-items-center"><i class="fa-regular fa-circle-check"></i><%= amenitie %></li>
+      <% @amenities.each do |amenity| %>
+        <li class="col-6 d-flex gap-2 align-items-center">
+          <i class="fa-regular fa-circle-check"></i><%= amenity %>
+        </li>
       <% end %>
     </ul>
   </div>
-</div>
