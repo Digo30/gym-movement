@@ -1,57 +1,179 @@
+/* Estilos do Footer */
 footer {
+  background-color: rgba(18, 18, 18, 0.8);  /* Fundo escuro com 80% de opacidade */
+  padding: 15px 0;
+  color: #fff;  /* Texto branco */
+  position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
-  background-color: #000000;
-  color: white;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  padding: 10px 0;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 100;
 }
 
-
+/* Conteúdo do footer */
 .footer-content {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  justify-content: space-between; /* Distribuir os itens igualmente */
   align-items: center;
+  width: 100%;
+  padding: 0 20px; /* Adiciona espaçamento lateral */
 }
 
+/* Links e ícones */
 .footer-link {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  text-align: center;
   text-decoration: none;
-  color: white;
+  color: #fff;
+  font-size: 0.9rem;
   padding: 10px;
-
-  & span {
-    font-size: 0.75rem;
-  }
+  transition: transform 0.3s ease, color 0.3s ease;
+  flex: 1;
+  text-align: center;
 }
 
+/* Ícones do footer */
 .footer-icon {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
   margin-bottom: 5px;
 }
 
-.profile {
-  display: flex;
-  align-items: center;
-}
-
+/* Imagem de perfil */
 .perfil-img {
   border-radius: 50%;
+  width: 50px !important;
+  height: 50px !important;
 }
 
-.container-new-form {
-  height: calc(100vh - 150px);
-  overflow-y: auto;
-  padding-bottom: 10px;
-  overflow-x: hidden;
+/* Hover nos links */
+.footer-link:hover {
+  transform: translateY(-4px);
+  color: #f44336;  /* Cor vermelha */
 }
+
+.footer-link:hover .footer-icon {
+  filter: brightness(0) saturate(100%) invert(30%) sepia(40%) saturate(100%) hue-rotate(0deg) brightness(103%) contrast(103%);
+}
+
+/* Responsividade Mobile */
+@media (max-width: 767px) {
+  footer {
+    padding: 10px 0;
+  }
+
+  .footer-content {
+    flex-direction: row;  /* Alinhamento horizontal para pequenas telas */
+    justify-content: space-between; /* Espaço entre os itens */
+  }
+
+  .footer-link {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+
+  .footer-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Responsividade para telas médias */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .footer-content {
+    flex-direction: row;
+  }
+
+  .footer-link {
+    font-size: 1.1rem;
+  }
+
+  .footer-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// footer {
+//   bottom: 0;
+//   width: 100%;
+//   background-color: #000000;
+//   color: white;
+//   justify-content: space-around;
+//   align-items: center;
+//   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+//   position: relative;
+//   z-index: 10;
+//   text-align: center;
+//   padding: 10px 0;
+// }
+
+
+// .footer-content {
+//   display: flex;
+//   width: 100%;
+//   justify-content: space-around;
+//   align-items: center;
+// }
+
+// .footer-link {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   text-align: center;
+//   text-decoration: none;
+//   color: white;
+//   padding: 10px;
+
+//   & span {
+//     font-size: 0.75rem;
+//   }
+// }
+
+// .footer-icon {
+//   width: 24px;
+//   height: 24px;
+//   margin-bottom: 5px;
+// }
+
+// .profile {
+//   display: flex;
+//   align-items: center;
+// }
+
+// .perfil-img {
+//   border-radius: 50%;
+// }
+
+// .container-new-form {
+//   height: calc(100vh - 150px);
+//   overflow-y: auto;
+//   padding-bottom: 10px;
+//   overflow-x: hidden;
+// }

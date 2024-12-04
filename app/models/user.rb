@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true, length: { minimum: 2 }
   validates :birthday, presence: true
+  validates :profile_picture, presence: true
 
 
   devise :database_authenticatable, :registerable,
