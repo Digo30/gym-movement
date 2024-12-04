@@ -71,7 +71,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_184453) do
     t.text "photos"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.jsonb "images", default: []
   end
 
   create_table "profiles", force: :cascade do |t|

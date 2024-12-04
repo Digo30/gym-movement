@@ -38,29 +38,45 @@ class GymsController < ApplicationController
 
     @gender = @gyms.map do |gym|
       gender_count = gym.appointments.joins(:user)
-                        .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
-                        .group("users.gender")
-                        .count("users.gender")
+                      .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
+                      .group("users.gender")
+                      .count("users.gender")
       gender_count.default = 0
       [gym.id, gender_count]
-    end.to_h
-  end
+      end.to_h
+    end
 
-  
   def map
     @gyms = Gym.all
-    @markers = @gyms.geocoded.map do |gym|
-      {
-        lat: gym.latitude,
-        lng: gym.longitude
-      }
-    end
+      @markers = @gyms.geocoded.map do |gym|
+        {
+          lat: gym.latitude,
+          lng: gym.longitude
+        }
+      end
   end
 
   def show
+    # Pegar as imagens de perfil de quem esta na academia
     @images = @gym.appointments.joins(:user)
       .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
-      .pluck('users.user_image').sample(3)
+      .pluck('users.user_image')
+      .first(3)
+
+
+    # Pegar a quantidade de homens e mulheres na academia
+    @fluxo = @gym.appointments.joins(:user)
+      .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
+      .group("users.gender")
+      .count("users.gender")
+
+    # Pegar a quantidade de alunos na academia fora os 3 com a imagem na pagina
+
+    check_alunos = (@fluxo["Male"].to_i + @fluxo["Female"].to_i) - 3
+    @qtd_alunos = check_alunos > 3 ? check_alunos : nil
+
+
+    @fluxo_medio = (check_alunos + 3) * 100  / @gym.capacity
 
     @fluxo = @gym.appointments.joins(:user)
       .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
