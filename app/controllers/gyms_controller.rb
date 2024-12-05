@@ -10,11 +10,6 @@ class GymsController < ApplicationController
       @gyms = @gyms.where("name ILIKE ?", "%#{params[:query]}%")
     end
 
-    # Filtro por lotação
-    if params[:capacity].present?
-      @gyms = @gyms.where("capacity >= ?", params[:capacity].to_i)
-    end
-
     # Filtro por comodidades
     if params[:amenities].present?
       amenities_filter = params[:amenities].map(&:strip) # Remover espaços antes e depois
@@ -24,20 +19,29 @@ class GymsController < ApplicationController
 
     @gyms = @gyms.order(:name)
 
+    # Filtro por lotação
+    if params[:max_lotacao].present?
+      max_lotacao = params[:max_lotacao].to_i
+      @gyms = @gyms.to_a.select do |gym|
+        fluxo = gym.appointments.where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now).count
+        (fluxo.to_f / gym.capacity.to_f) * 100 <= max_lotacao
+      end
+    end
+
     @fluxos = @gyms.map do |gym|
       [gym.id, gym.appointments.where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now).count]
     end.to_h
 
-    @markers = @gyms.geocoded.map do |gym|
-      {
-        lat: gym.latitude,
-        lng: gym.longitude,
-        name: gym.name,
-        capacity: gym.capacity,
-        amenities: gym.amenities,
-        info_window_html: render_to_string(partial: "info_window", locals: { gym: gym })
-      }
-    end
+    # @markers = @gyms.geocoded.map do |gym|
+    #   {
+    #     lat: gym.latitude,
+    #     lng: gym.longitude,
+    #     name: gym.name,
+    #     capacity: gym.capacity,
+    #     amenities: gym.amenities,
+    #     info_window_html: render_to_string(partial: "info_window", locals: { gym: gym })
+    #   }
+    # end
 
     @gender = @gyms.map do |gym|
       gender_count = gym.appointments.joins(:user)
