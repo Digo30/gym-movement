@@ -9,9 +9,16 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
 
+
+  get 'users', to: 'users#edit', as: :user_edit
+
+
+
+  resources :profiles, only: [:index, :create]
+  resources :profile, only: [:index, :create]
+
   #Funções para página my_account
   resources :users, only: [:edit, :update]
-  get '/profile', to: 'users#edit', as: 'profile'
   resources :users do
     get 'my_account', on: :member
   end

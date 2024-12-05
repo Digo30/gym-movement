@@ -1,0 +1,16 @@
+<h1>Meu Desempenho</h1>
+
+<%= simple_form_for(@profile) do |form| %>
+    <%= form.input :weight, step: 0.1 %>
+    <%= form.input :height, step: 0.01 %>
+    <%= form.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= form.submit "Salvar Alterações", class: "btn btn-primary" %>
+<% end %>
+
+<% @profiles.each do |profile| %>
+  <p><strong>Peso:</strong> <%= profile.weight %> kg</p>
+  <p><strong>Data:</strong> <%= profile.created_at %> kg</p>
+  <% profile.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+<% end %>

@@ -1,18 +1,19 @@
 <div class="minha-conta">
   <div class="info-usuario">
     <% if current_user.profile_picture %>
-    
+
       <%= image_tag current_user.profile_picture, alt: "Imagem de Perfil", width: 150, height: 150 %>
     <% end %>
     <h2>Nome: <%= current_user.first_name %> <%= current_user.last_name %></h2>
     <p><strong>Idade:</strong> <%= current_user.age ? "#{current_user.age} anos" : "Data de nascimento não informada" %></p>
-    <p>Peso: <%#= current_user.weight %> </p>
-    <p>Altura: <%#= current_user.height %> </p>
+
   </div>
 
+
+
   <div class="opcoes-conta">
-    <a href="<%= profile_path %>" class="botao-editar">Editar Perfil</a>
-    <a href="#" class="botao-desempenho">Meu Desempenho</a>
+    <a href="<%= user_edit_path %>" class="botao-editar">Editar Perfil</a>
+    <a href="<%= profiles_path %>" class="botao-desempenho">Meu Desempenho</a>
     <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-danger text-light rounded-4" %>
   </div>
 </div>
