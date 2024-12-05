@@ -2,10 +2,10 @@
   <h5>Filtros</h5>
   <%= form_with url: gyms_path, method: :get, local: true do %>
 
-   <h6>Lotação</h6>
+    <h6>Lotação</h6>
     <div class="mb-3">
-      <%= range_field_tag :capacity, params[:capacity] || 0, in: 0..100, step: 1, class: "form-range", id: "capacity_slider" %>
-      <p class="small">até <span id="capacity_value"><%= params[:capacity] || 0 %></span>%</p>
+      <%= range_field_tag :max_lotacao, params[:max_lotacao] || 0, in: 0..100, step: 1, class: "form-range", id: "max_lotacao_slider" %>
+      <p class="small">até <span id="max_lotacao_value"><%= params[:max_lotacao] || 0 %></span>%</p>
     </div>
 
     <h6>Comodidades</h6>
@@ -29,14 +29,33 @@
 <script>
   // Adicionando JS para Atualização Dinâmica
   document.addEventListener("DOMContentLoaded", () => {
-    const capacitySlider = document.querySelector("#capacity_slider");
-    const capacityValue = document.querySelector("#capacity_value");
+    const maxLotacaoSlider = document.querySelector("#max_lotacao_slider");
+    const maxLotacaoValue = document.querySelector("#max_lotacao_value");
 
-    if (capacitySlider && capacityValue) {
-      capacitySlider.addEventListener("input", () => {
-        capacityValue.textContent = capacitySlider.value;
+    if (maxLotacaoSlider && maxLotacaoValue) {
+      maxLotacaoSlider.addEventListener("input", () => {
+        maxLotacaoValue.textContent = maxLotacaoSlider.value;
       });
     }
+
+    const fluxos = <%= raw @fluxos.to_json %>;
+    const capacities = <%= raw @gyms.map { |gym| { id: gym.id, capacity: gym.capacity } }.to_json %>;
+    console.log("Fluxos:", fluxos);
+    console.log("Capacities:", capacities);
+
+    function updateFluxos() {
+      capacities.forEach(gym => {
+        const fluxoElement = document.getElementById(`fluxo-${gym.id}`);
+        if (fluxoElement) {
+          let newFluxo = Math.floor(Math.random() * gym.capacity); // Gera um novo valor aleatório
+          fluxos[gym.id] = newFluxo; // Atualiza o valor no objeto fluxos
+          fluxoElement.textContent = newFluxo; // Atualiza o valor no DOM
+        }
+      });
+    }
+
+    // Atualiza os valores de fluxo a cada 10 segundos
+    setInterval(updateFluxos, 10000);
   });
 
   // JavaScript para mostrar/ocultar os filtros ao clicar no botão
