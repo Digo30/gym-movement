@@ -17,7 +17,8 @@
   margin-bottom: 10px;
 }
 
-#botoes-index button, #botoes-index a {
+#botoes-index button,
+#botoes-index a {
   border-radius: 5px;
   padding-inline: 20px;
   flex: 1 1 auto;
@@ -26,8 +27,8 @@
 #botao-index-map a {
   padding-inline: 30px;
   border-radius: 5px;
-  background-color: #e93803;
-  border-color: #e93803;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
 }
 
 #botao-index-map a:hover {
@@ -60,7 +61,8 @@
 }
 
 @media (max-width: 402px) {
-  .search-bar-index, #botoes-index {
+  .search-bar-index,
+  #botoes-index {
     width: 100%;
     height: 15px;
   }
@@ -90,7 +92,8 @@
     align-items: stretch;
   }
 
-  #botoes-index button, #botoes-index a {
+  #botoes-index button,
+  #botoes-index a {
     width: 100%;
     margin-bottom: 10px;
   }
@@ -101,7 +104,8 @@
     align-items: center;
   }
 
-  #botao-index-map button, #botao-index-map a {
+  #botao-index-map button,
+  #botao-index-map a {
     flex: 1 1 auto;
     margin-bottom: 0;
     width: 140px;
