@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.1].define(version: 2024_12_05_181517) do
-=======
-ActiveRecord::Schema[7.1].define(version: 2024_12_05_144255) do
->>>>>>> master
+ActiveRecord::Schema[7.1].define(version: 2024_12_05_204609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,11 +66,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_05_144255) do
     t.string "email"
     t.integer "rating"
     t.text "info_shift"
-    t.string "amenities"
+    t.text "amenities", default: [], array: true
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "photos"
+    t.text "logo"
   end
 
   create_table "profiles", force: :cascade do |t|

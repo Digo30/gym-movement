@@ -90,8 +90,9 @@ class GymsController < ApplicationController
     # Pegar as imagens de perfil de quem esta na academia
     @images = @gym.appointments.joins(:user)
       .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
-      .pluck('users.user_image')
-      .first(3)
+      .limit(3)
+      .map { |appointment| url_for(appointment.user.profile_picture) if appointment.user.profile_picture.attached? }
+      .compact
 
     # Pegar a quantidade de homens e mulheres na academia
     @fluxo = @gym.appointments.joins(:user)
