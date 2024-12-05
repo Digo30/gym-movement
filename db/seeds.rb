@@ -53,7 +53,7 @@ amenities_list = [
 ]
 
 # Criando 5 academias com comodidades, coordenadas e endereço
-gyms = 5.times.map do |i|
+gyms = 8.times.map do |i|
   latitude, longitude = generate_coordinates
   address = generate_address(latitude, longitude)
 

@@ -12,6 +12,10 @@
     <input type="range" id="occupancy" name="occupancy" value="<%= params[:occupancy] || 0 %>" min="0" max="100">
     <span id="occupancy-value"><%= params[:occupancy] || 0 %></span>
 
+    <label for="distance">Distância Máxima (km):</label>
+    <input type="range" id="distance" name="distance" value="<%= params[:distance] || 10 %>" min="1" max="50" step="1">
+    <span id="distance-value"><%= params[:distance] || 10 %></span> km
+
     <h6>Comodidades</h6>
     <div class="mb-3 d-flex flex-wrap gap-2">
       <% ["Estacionamento", "Piscina", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
@@ -20,18 +24,19 @@
       <% end %>
     </div>
 
-    <button id="apply-filters">Aplicar Filtros</button>
-    <button id="clear-filters">Limpar Filtros</button>
-  </aside>
+  <button id="apply-filters">Aplicar Filtros</button>
+  <button id="clear-filters">Limpar Filtros</button>
+</aside>
 
   <div style="width: 100%; height: 600px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-    data-occupancy-value="<%= params[:occupancy] || 0 %>"
-    data-amenities-value="<%= params[:amenities].to_json if params[:amenities].present? %>">
+    data-map-user-location-value="<%= @user_location.to_json %>"
+    data-map-distance-value="<%= params[:distance] || 10 %>">
   </div>
 </div>
+
 
 <script>
   document.getElementById('toggle-filters').addEventListener('click', function() {
@@ -50,9 +55,11 @@
   document.getElementById('apply-filters').addEventListener('click', function() {
     const occupancy = document.getElementById('occupancy').value;
     const amenities = Array.from(document.querySelectorAll('.amenity-checkbox:checked')).map(checkbox => checkbox.value);
+    const distance = document.getElementById('distance').value; // Captura o valor da distância
     const url = new URL(window.location);
     url.searchParams.set('occupancy', occupancy);
     url.searchParams.set('amenities', amenities);
+    url.searchParams.set('distance', distance); // Adiciona a distância à URL
     window.location = url;
   });
 

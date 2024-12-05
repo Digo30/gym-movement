@@ -56,7 +56,7 @@ class GymsController < ApplicationController
   def map
     @gyms = Gym.all
 
-   # Filtro por nome
+    # Filtro por nome
     if params[:query].present?
       @gyms = @gyms.where("name ILIKE ?", "%#{params[:query]}%")
     end
@@ -68,11 +68,11 @@ class GymsController < ApplicationController
 
     # Filtro por comodidades
     if params[:amenities].present?
-      amenities_filter = params[:amenities].split(',').map(&:strip) # Garante que amenities seja um array
+      amenities_filter = params[:amenities].split(',').map(&:strip)
       @gyms = @gyms.where("amenities @> ARRAY[:amenities]::text[]", amenities: amenities_filter)
     end
 
-    # Criando os marcadores com base nos filtros
+    # Criando os marcadores
     @markers = @gyms.geocoded.map do |gym|
       {
         lat: gym.latitude,
@@ -83,6 +83,9 @@ class GymsController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: { gym: gym })
       }
     end
+
+    # Localização do usuário
+    @user_location = { lat: request.env["HTTP_X_FORWARDED_FOR"], lng: request.remote_ip } # Para demonstração, você pode obter a localização real com JavaScript
   end
 
 
