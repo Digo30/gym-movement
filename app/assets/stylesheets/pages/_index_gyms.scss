@@ -3,25 +3,36 @@
   max-width: 500px;
 }
 
+.search-bar-index input {
+  border-radius: 5px;
+}
+
+#query {
+  background-color: white;
+}
+
 #botoes-index {
   width: 100%;
   max-width: 300px;
+  margin-bottom: 10px;
 }
-#botoes-index button{
+
+#botoes-index button, #botoes-index a {
   border-radius: 5px;
-  padding-inline: 50px;
+  padding-inline: 20px;
+  flex: 1 1 auto;
 }
-#botao-index-map a{
+
+#botao-index-map a {
   padding-inline: 30px;
   border-radius: 5px;
   background-color: #e93803;
   border-color: #e93803;
 }
 
-#botao-index-map a:hover{
+#botao-index-map a:hover {
   background-color: #0056b3;
   border-color: #0056b3;
-
 }
 
 .search-container {
@@ -40,6 +51,14 @@
   justify-content: center;
 }
 
+.filters {
+  position: relative;
+  z-index: 1000;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 402px) {
   .search-bar-index, #botoes-index {
     width: 100%;
@@ -49,11 +68,43 @@
   .search-container {
     flex-direction: column;
     align-items: stretch;
-    height: 130px;
+    height: 120px;
+    margin-inline: 20px;
   }
 
   .gyms-container {
     flex-direction: column;
     align-items: center;
+  }
+
+  #query {
+    margin-left: 10px;
+  }
+
+  .filters {
+    width: 100%;
+  }
+
+  #botoes-index {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #botoes-index button, #botoes-index a {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #botao-index-map {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #botao-index-map button, #botao-index-map a {
+    flex: 1 1 auto;
+    margin-bottom: 0;
+    width: 140px;
+    height: 40px;
   }
 }

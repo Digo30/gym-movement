@@ -1,4 +1,4 @@
-<aside class="filters bg-light p-3 rounded" id="filterSection" style="display: none;">
+<aside class="filters bg-light p-3 rounded" id="filterSection" style="display: none; position: relative; z-index: 1000;">
   <h5>Filtros</h5>
   <%= form_with url: gyms_path, method: :get, local: true do %>
 
@@ -24,7 +24,7 @@
 </aside>
 
 <!-- Botão para alternar a visibilidade do filtro -->
-<button id="toggleFilterBtn" class="btn btn-primary mt-3 mb-3">Filtros</button>
+<%# <button id="toggleFilterBtn" class="btn btn-primary mt-3 mb-3">Filtros</button> %>
 
 <script>
   // Adicionando JS para Atualização Dinâmica

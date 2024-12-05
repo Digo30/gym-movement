@@ -109,12 +109,14 @@
   }
 
   .search-bar input {
-    width: 100%;
+    width: 220px;
     margin-bottom: 10px;
+    border-radius: 5px;
   }
 
   .search-bar button#search-button {
-    display: none;
+  //  display: none;
+    width: 100px;
   }
 
   .search-bar button, .search-bar .view-list-button {
@@ -134,4 +136,6 @@
     width: 150px;
     margin-left: 0;
   }
+
+
 }
