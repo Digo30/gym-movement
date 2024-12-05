@@ -1,0 +1,137 @@
+.search-bar {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-bar input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  width: 500px;
+  margin-bottom: 5px;
+}
+
+.search-bar button, .search-bar .view-list-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e93803;
+  color: white;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.search-bar button:hover, .search-bar .view-list-button:hover {
+  background-color: #0056b3;
+}
+
+.filters-map {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  z-index: 1000;
+  width: 500px;
+}
+
+.filters-map label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.filters-map input, .filters-map select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filters-map button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.filters-map button:hover {
+  background-color: #0056b3;
+}
+
+#toggle-filters {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+#toggle-filters:hover {
+  background-color: #0056b3;
+}
+
+.btn-success {
+  background-color: #28a745; /* Verde escuro */
+  color: white;
+}
+
+.btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.btn-outline-success.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+@media (max-width: 402px) {
+  .search-bar {
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .search-bar input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-bar button#search-button {
+    display: none;
+  }
+
+  .search-bar button, .search-bar .view-list-button {
+    width: 150px;
+    margin-left: 0;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .filters-map {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  #toggle-filters {
+    width: 150px;
+    margin-left: 0;
+  }
+}
