@@ -1,4 +1,18 @@
 <div class="container">
-  <h1>Checkin-relizado!</h1>
-  <%= link_to "Back to gym", gym_path(@gym) %>
+  <h1 class="mt-4 mb-4 text-center">Parabéns</h1>
+  <h2 class="mt-4 mb-4 text-center">Checkin-relizado!</h1>
+  <div class='d-flex justify-content-center pt-5 pb-5'>
+    <i class="fa-solid fa-circle-check icone-check text-center"></i>
+  </div>
+
+  <div class="text-center fs-2 d-flex align-items-center gap-2 justify-content-center mt-4 mb-4">
+    <span class="braco mb-1"><%= image_tag "braco1.svg" %></span>
+    <p class="m-0 fw-bold"> Bom treino! </p>
+    <span class="braco mb-1"><%= image_tag "braco2.svg" %></span>
+  </div>
+
+  <h6 class="text-center fw-bold pb-4">Academia <%= @gym.name %></h6>
+  <div class='d-flex justify-content-center pt-5'>
+    <%= link_to "Back to gym", gym_path(@gym), class: "d-block btn btn-success rounded-4" %>
+  </div>
 </div>

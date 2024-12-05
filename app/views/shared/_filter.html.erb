@@ -1,11 +1,16 @@
-<aside class="filters bg-light p-3 rounded" id="filterSection" style="display: none;">
+<aside class="filters bg-light p-3 rounded" id="filterSection" style="display: none; position: relative; z-index: 1000;">
   <h5>Filtros</h5>
   <%= form_with url: gyms_path, method: :get, local: true do %>
 
+    <h6>Lotação</h6>
+    <div class="mb-3">
+      <%= range_field_tag :max_lotacao, params[:max_lotacao] || 0, in: 0..100, step: 1, class: "form-range", id: "max_lotacao_slider" %>
+      <p class="small">até <span id="max_lotacao_value"><%= params[:max_lotacao] || 0 %></span>%</p>
+    </div>
 
     <h6>Comodidades</h6>
     <div class="mb-3 d-flex flex-wrap gap-2">
-      <% ["Estacionamento", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
+      <% ["Estacionamento","Piscina", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
         <%= check_box_tag "amenities[]", amenity, params[:amenities]&.include?(amenity), id: "amenities_#{amenity}", class: "d-none amenity-checkbox" %>
         <%= label_tag "amenities_#{amenity}", amenity, class: "btn btn-outline-success amenity-label" %>
       <% end %>
@@ -19,27 +24,38 @@
 </aside>
 
 <!-- Botão para alternar a visibilidade do filtro -->
-<button id="toggleFilterBtn" class="btn btn-primary mt-3">Mostrar Filtros</button>
+<%# <button id="toggleFilterBtn" class="btn btn-primary mt-3 mb-3">Filtros</button> %>
 
 <script>
   // Adicionando JS para Atualização Dinâmica
   document.addEventListener("DOMContentLoaded", () => {
-    const distanceSlider = document.querySelector("#distance");
-    const distanceValue = document.querySelector("#distance_value");
-    const capacitySlider = document.querySelector("#capacity");
-    const capacityValue = document.querySelector("#capacity_value");
+    const maxLotacaoSlider = document.querySelector("#max_lotacao_slider");
+    const maxLotacaoValue = document.querySelector("#max_lotacao_value");
 
-    if (distanceSlider && distanceValue) {
-      distanceSlider.addEventListener("input", () => {
-        distanceValue.textContent = distanceSlider.value;
+    if (maxLotacaoSlider && maxLotacaoValue) {
+      maxLotacaoSlider.addEventListener("input", () => {
+        maxLotacaoValue.textContent = maxLotacaoSlider.value;
       });
     }
 
-    if (capacitySlider && capacityValue) {
-      capacitySlider.addEventListener("input", () => {
-        capacityValue.textContent = capacitySlider.value;
+    const fluxos = <%= raw @fluxos.to_json %>;
+    const capacities = <%= raw @gyms.map { |gym| { id: gym.id, capacity: gym.capacity } }.to_json %>;
+    console.log("Fluxos:", fluxos);
+    console.log("Capacities:", capacities);
+
+    function updateFluxos() {
+      capacities.forEach(gym => {
+        const fluxoElement = document.getElementById(`fluxo-${gym.id}`);
+        if (fluxoElement) {
+          let newFluxo = Math.floor(Math.random() * gym.capacity); // Gera um novo valor aleatório
+          fluxos[gym.id] = newFluxo; // Atualiza o valor no objeto fluxos
+          fluxoElement.textContent = newFluxo; // Atualiza o valor no DOM
+        }
       });
     }
+
+    // Atualiza os valores de fluxo a cada 10 segundos
+    setInterval(updateFluxos, 10000);
   });
 
   // JavaScript para mostrar/ocultar os filtros ao clicar no botão
@@ -47,10 +63,10 @@
     var filterSection = document.getElementById('filterSection');
     if (filterSection.style.display === 'none' || filterSection.style.display === '') {
       filterSection.style.display = 'block';
-      this.innerText = 'Ocultar Filtros';
+      this.innerText = 'Filtros';
     } else {
       filterSection.style.display = 'none';
-      this.innerText = 'Mostrar Filtros';
+      this.innerText = 'Filtros';
     }
   });
 

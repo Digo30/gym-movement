@@ -1,14 +1,12 @@
+require 'faker'
+
 # Limpar dados antigos
 Appointment.destroy_all
 Profile.destroy_all
 Gym.destroy_all
 User.destroy_all
 
-# Array de comodidades possíveis
-amenities_list = [
-  "Piscina", "Sauna", "Ar-condicionado", "Armarios", "Lanchonete",
-  "Wi-fi", "Chuveiro", "Bicicletario", "Estacionamento"
-]
+puts "Dados antigos limpados"
 
 # Criar usuários
 users = 5.times.map do |i|
@@ -35,31 +33,50 @@ profiles = users.map.with_index do |user, i|
   )
 end
 
-# Criar academias
-# Selecionar 3 comodidades aleatórias para cada academia
-  amenities_list = ["Piscina", "Sauna", "Ar condicionado", "Armários", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario", "Estacionamento"]
+# Método para gerar coordenadas dentro da região central de São Paulo
+def generate_coordinates
+  latitude = rand(-23.5500..-23.5400)  # Ajustando para um intervalo mais estreito
+  longitude = rand(-46.6350..-46.6200)  # Ajustando para um intervalo mais estreito
+  [latitude, longitude]
+end
 
-  gyms = 5.times.map do |i|
-    Gym.create!(
-      name: "Academia #{i}",
-      address: "Rua #{i}, Cidade #{i}",
-      latitude: -20.0 + i,
-      longitude: -40.0 + i,
-      phone: "555-1234#{i}",
-      email: "contato#{i}@academia.com",
-      rating: (4 + i % 2),
-      info_shift: "Aberto 24/7",
-      amenities: amenities_list.sample(3),  # Seleciona 3 comodidades aleatórias
-      capacity: 100 + i * 10,
-      photos: "https://example.com/academia#{i}.jpg"
-    )
-  end
+
+# Método para gerar um endereço a partir da latitude e longitude (simulação)
+def generate_address(latitude, longitude)
+  "Rua #{rand(1..100)}, Bairro #{['Centro', 'Vila', 'Jardim', 'Parque'].sample}, Cidade São Paulo, #{latitude.round(4)}, #{longitude.round(4)}"
+end
+
+# Array de comodidades possíveis
+amenities_list = [
+  "Piscina", "Sauna", "Ar-condicionado", "Armarios", "Lanchonete",
+  "Wi-fi", "Chuveiro", "Bicicletario", "Estacionamento"
+]
+
+# Criando 5 academias com comodidades, coordenadas e endereço
+gyms = 5.times.map do |i|
+  latitude, longitude = generate_coordinates
+  address = generate_address(latitude, longitude)
+
+  Gym.create!(
+    name: "Academia #{i + 1}",
+    address: address,  # Agora com o endereço gerado
+    latitude: latitude,
+    longitude: longitude,
+    phone: Faker::PhoneNumber.phone_number,
+    email: Faker::Internet.email(name: "academia#{i + 1}"),
+    rating: rand(3..5), # Geração de notas entre 3 e 5
+    info_shift: "Aberto 24/7",
+    amenities: amenities_list.sample(3), # Seleciona 3 amenidades aleatórias
+    capacity: 100 + i * 10, # Capacidade incremental
+    photos: "https://example.com/academia#{i + 1}.jpg"
+  )
+end
 
 # Criar compromissos
 appointments = users.each_with_index.map do |user, i|
   Appointment.create!(
     user: user,
-    gym: gyms[i % gyms.size],
+    gym: gyms[i % gyms.size], # Garantir que o compromisso seja para uma das academias
     checkin_date: Date.today + i,
     checkin_hour: Time.now,
     checkout_date: Date.today + i,
@@ -67,8 +84,6 @@ appointments = users.each_with_index.map do |user, i|
     active: [true, false].sample
   )
 end
-
-puts "Dados seed inseridos com sucesso!"
 
 # Criar um compromisso específico
 user = User.find_by(id: 6)
@@ -87,3 +102,5 @@ if user && gym
 else
   puts "Usuário com ID 6 ou Academia com ID 7 não encontrado."
 end
+
+puts "Dados seed inseridos com sucesso!"
