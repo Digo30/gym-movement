@@ -18,8 +18,7 @@ users = 5.times.map do |i|
     last_name: "LastName#{i}",
     birthday: Date.new(1990 + i, 1, 1),
     gender: ["Male", "Female"].sample,
-    phone: "555-000#{i}",
-    user_image: "https://example.com/user#{i}.jpg"
+    phone: "555-000#{i}"
   )
 end
 
@@ -28,8 +27,7 @@ profiles = users.map.with_index do |user, i|
   Profile.create!(
     user: user,
     weight: (60 + i * 2).to_f,
-    height: (170 + i * 2).to_f,
-    photo: "https://example.com/photo#{i}.jpg"
+    height: (170 + i * 2).to_f
   )
 end
 
@@ -67,8 +65,7 @@ gyms = 5.times.map do |i|
     rating: rand(3..5), # Geração de notas entre 3 e 5
     info_shift: "Aberto 24/7",
     amenities: amenities_list.sample(3), # Seleciona 3 amenidades aleatórias
-    capacity: 100 + i * 10, # Capacidade incremental
-    photos: "https://example.com/academia#{i + 1}.jpg"
+    capacity: 100 + i * 10 # Capacidade incremental
   )
 end
 
