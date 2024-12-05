@@ -1,0 +1,118 @@
+/* Estilo global */
+body {
+  background-color: #121212;  /* Fundo escuro */
+  color: #fff;
+}
+
+/* Seção de minha conta */
+.minha-conta {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #1f1f1f;  /* Fundo escuro */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para a área de informações do usuário */
+.info-usuario {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Centralização da imagem de perfil */
+.info-usuario img {
+  border-radius: 50%;
+  border: 3px solid #f44336;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+/* Nome do usuário */
+.info-usuario h2 {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* Informações sobre a idade, peso e altura */
+.info-usuario p {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  margin: 8px 0;
+}
+
+.info-usuario p strong {
+  color: #f44336;  /* Vermelho para os títulos */
+}
+
+/* Estilo das opções de conta */
+.opcoes-conta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Botões de navegação */
+.botao-editar, .botao-desempenho, .btn-danger {
+  padding: 12px 25px;
+  background-color: #f44336;  /* Vermelho */
+  color: #fff;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;  /* Remove underline de links */
+}
+
+.botao-editar:hover, .botao-desempenho:hover, .btn-danger:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);  /* Efeito de movimento ao passar o mouse */
+}
+
+/* Estilo específico para o botão de "Sair" */
+.btn-danger {
+  background-color: #f44336;  /* Vermelho */
+  color: #fff;
+  font-size: 1rem;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .minha-conta {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .info-usuario h2 {
+    font-size: 1.5rem;
+  }
+
+  .info-usuario p {
+    font-size: 1rem;
+  }
+
+  .opcoes-conta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .botao-editar, .botao-desempenho, .btn-danger {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+  }
+}

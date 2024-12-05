@@ -1,0 +1,51 @@
+.progress-pictures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+
+  .picture {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  label {
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  input[type="number"], input[type="file"] {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #121212;
+    color: #fff;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+      background-color: #d32f2f;
+    }
+  }
+}
