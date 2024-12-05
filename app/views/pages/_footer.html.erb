@@ -17,11 +17,16 @@
 
             <% if user_signed_in? %>
               <%= link_to my_account_path(current_user), class: "footer-link" do %>
+
                 <% if current_user.profile_picture.nil? %>
-                  <%= image_tag current_user.profile_picture, alt: "Minha Conta", class: "footer-icon perfil-img" %>
+
+                <%= image_tag "user.svg", alt: "Profile user", class: "footer-icon" %>
+
                 <% else %>
-                  <%= image_tag "user.svg", alt: "Profile user", class: "footer-icon" %>
-                  <span>Perfil</span>
+
+                   <%= image_tag current_user.profile_picture, alt: "Minha Conta", class: "footer-icon perfil-img" %>
+
+                 
                 <% end %>
               <% end %>
             <% else %>
