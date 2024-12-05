@@ -1,5 +1,5 @@
-<div class="container">
-  <h1>Academias</h1>
+<div class="container mt-1">
+  <h3>Lista Academias</h3>
 
   <div class="search-container">
     <%# Busca da academia %>
@@ -7,13 +7,15 @@
       <%= render "shared/search" %>
     </div>
 
-    <div id="botoes-index" class="d-flex justify-content-between align-items-center mb-3">
-      <%= render "shared/filter" %>
-      <div id="botao-index-map"class="button-group d-flex gap-2">
+    <div id="botoes-index" class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+      <div id="botao-index-map" class="button-group d-flex flex-wrap gap-2">
+        <button id="toggleFilterBtn" class="btn btn-primary mt-3 mb-3">Filtros</button>
         <%= link_to 'Ver mapa', map_path, class: 'btn btn-primary view-map-button' %>
       </div>
     </div>
   </div>
+
+  <%= render "shared/filter" %>
 
   <div class="gyms-container">
     <% @gyms.each do |gym| %>
