@@ -1,10 +1,108 @@
-<div class="container">
+<div class="container mt-3">
+  <div class="search-bar">
+    <input type="text" id="search" name="search" placeholder="Escreva o nome da academia" value="<%= params[:query] %>">
+    <button id="search-button" class="btn btn-danger">Busca</button>
+    <button id="toggle-filters">Filtros</button>
+    <%= link_to 'Ver lista', gyms_path, class: 'view-list-button' %>
+  </div>
+
+  <aside id="filters" class="filters-map" style="display: none;">
+    <label for="occupancy">Lotação Mínima:</label>
+    <input type="range" id="occupancy" name="occupancy" value="<%= params[:occupancy] || 0 %>" min="0" max="100">
+    <span id="occupancy-value"><%= params[:occupancy] || 0 %></span>
+
+    <h6>Comodidades</h6>
+    <div class="mb-3 d-flex flex-wrap gap-2">
+      <% ["Estacionamento", "Piscina", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
+        <%= check_box_tag "amenities[]", amenity, params[:amenities]&.include?(amenity), id: "amenities_#{amenity}", class: "d-none amenity-checkbox" %>
+        <%= label_tag "amenities_#{amenity}", amenity, class: "btn btn-outline-success amenity-label" %>
+      <% end %>
+    </div>
+
+    <button id="apply-filters">Aplicar Filtros</button>
+    <button id="clear-filters">Limpar Filtros</button>
+  </aside>
 
   <div style="width: 100%; height: 600px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-    data-capacity-value="<%= params[:capacity] || 0 %>"
+    data-occupancy-value="<%= params[:occupancy] || 0 %>"
     data-amenities-value="<%= params[:amenities].to_json if params[:amenities].present? %>">
   </div>
 </div>
+
+<script>
+  document.getElementById('toggle-filters').addEventListener('click', function() {
+    const filters = document.getElementById('filters');
+    if (filters.style.display === 'none' || filters.style.display === '') {
+      filters.style.display = 'block';
+    } else {
+      filters.style.display = 'none';
+    }
+  });
+
+  document.getElementById('occupancy').addEventListener('input', function() {
+    document.getElementById('occupancy-value').textContent = this.value;
+  });
+
+  document.getElementById('apply-filters').addEventListener('click', function() {
+    const occupancy = document.getElementById('occupancy').value;
+    const amenities = Array.from(document.querySelectorAll('.amenity-checkbox:checked')).map(checkbox => checkbox.value);
+    const url = new URL(window.location);
+    url.searchParams.set('occupancy', occupancy);
+    url.searchParams.set('amenities', amenities);
+    window.location = url;
+  });
+
+  document.getElementById('clear-filters').addEventListener('click', function() {
+    document.getElementById('occupancy').value = 0;
+    document.getElementById('occupancy-value').textContent = 0;
+    document.querySelectorAll('.amenity-checkbox').forEach(checkbox => checkbox.checked = false);
+    document.getElementById('search').value = '';
+    const url = new URL(window.location);
+    url.searchParams.delete('occupancy');
+    url.searchParams.delete('amenities');
+    url.searchParams.delete('query');
+    window.location = url;
+  });
+
+  document.getElementById('search-button').addEventListener('click', function() {
+    const query = document.getElementById('search').value;
+    const url = new URL(window.location);
+    url.searchParams.set('query', query);
+    window.location = url;
+  });
+
+  // Debounce function
+  function debounce(func, delay) {
+    let debounceTimer;
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+  }
+
+  // Apply debounce to the search input event
+  document.getElementById('search').addEventListener('input', debounce(function() {
+    const query = this.value;
+    const url = new URL(window.location);
+    url.searchParams.set('query', query);
+    window.location = url;
+  }, 2000)); // 2s de delay
+
+  document.querySelectorAll('.amenity-checkbox').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      var label = document.querySelector(`label[for='${checkbox.id}']`);
+      if (checkbox.checked) {
+        label.classList.add('btn-success');
+        label.classList.remove('btn-outline-success');
+      } else {
+        label.classList.remove('btn-success');
+        label.classList.add('btn-outline-success');
+      }
+    });
+  });
+</script>

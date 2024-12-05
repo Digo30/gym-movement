@@ -24,7 +24,7 @@
 </aside>
 
 <!-- Botão para alternar a visibilidade do filtro -->
-<button id="toggleFilterBtn" class="btn btn-primary mt-3">Mostrar Filtros</button>
+<button id="toggleFilterBtn" class="btn btn-primary mt-3 mb-3">Filtros</button>
 
 <script>
   // Adicionando JS para Atualização Dinâmica
@@ -44,10 +44,10 @@
     var filterSection = document.getElementById('filterSection');
     if (filterSection.style.display === 'none' || filterSection.style.display === '') {
       filterSection.style.display = 'block';
-      this.innerText = 'Ocultar Filtros';
+      this.innerText = 'Filtros';
     } else {
       filterSection.style.display = 'none';
-      this.innerText = 'Mostrar Filtros';
+      this.innerText = 'Filtros';
     }
   });
 

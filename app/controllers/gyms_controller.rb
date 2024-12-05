@@ -31,7 +31,11 @@ class GymsController < ApplicationController
     @markers = @gyms.geocoded.map do |gym|
       {
         lat: gym.latitude,
-        lng: gym.longitude
+        lng: gym.longitude,
+        name: gym.name,
+        capacity: gym.capacity,
+        amenities: gym.amenities,
+        info_window_html: render_to_string(partial: "info_window", locals: { gym: gym })
       }
     end
 
@@ -48,6 +52,11 @@ class GymsController < ApplicationController
   def map
     @gyms = Gym.all
 
+   # Filtro por nome
+    if params[:query].present?
+      @gyms = @gyms.where("name ILIKE ?", "%#{params[:query]}%")
+    end
+
     # Filtro por lotação
     if params[:capacity].present?
       @gyms = @gyms.where("capacity >= ?", params[:capacity].to_i)
@@ -55,7 +64,7 @@ class GymsController < ApplicationController
 
     # Filtro por comodidades
     if params[:amenities].present?
-      amenities_filter = params[:amenities].map(&:strip)
+      amenities_filter = params[:amenities].split(',').map(&:strip) # Garante que amenities seja um array
       @gyms = @gyms.where("amenities @> ARRAY[:amenities]::text[]", amenities: amenities_filter)
     end
 
@@ -63,10 +72,15 @@ class GymsController < ApplicationController
     @markers = @gyms.geocoded.map do |gym|
       {
         lat: gym.latitude,
-        lng: gym.longitude
+        lng: gym.longitude,
+        name: gym.name,
+        capacity: gym.capacity,
+        amenities: gym.amenities,
+        info_window_html: render_to_string(partial: "info_window", locals: { gym: gym })
       }
     end
   end
+
 
   def show
     # Pegar as imagens de perfil de quem esta na academia
