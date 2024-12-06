@@ -1,8 +1,10 @@
 <%= form_with url: gyms_path, method: :get, class: "d-flex search-form mb-4" do %>
-  <%= text_field_tag :query,
-        params[:query],
-        class: "form-control me-2",
-        placeholder: "Escreva o nome da academia"
-  %>
-  <%= submit_tag "Buscar", name: "", class: "btn btn-danger text-light " %>
+  <div class='d-flex'>
+    <%= text_field_tag :query,
+          params[:query],
+          class: "form-control me-2 input-search",
+          placeholder: "Escreva o nome da academia"
+    %>
+    <%= submit_tag "Buscar", name: "", class: "btn btn-danger text-light btn-search " %>
+  </div>
 <% end %>

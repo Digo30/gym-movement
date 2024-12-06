@@ -1,15 +1,11 @@
 /* Estilo global */
-body {
-  background-color: #121212;  /* Fundo escuro */
-  color: #fff;
-}
 
 /* Contêiner do formulário */
 .edit-profile-form {
   max-width: 600px;
   margin: 0 auto;
   padding: 30px;
-  background-color: #1f1f1f;  /* Fundo do formulário escuro */
+  background-color: #1f1f1f; /* Fundo do formulário escuro */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -18,7 +14,7 @@ body {
 .edit-profile-form h1 {
   text-align: center;
   font-size: 2.2rem;
-  color: #f44336;  /* Cor vermelha para destaque */
+  color: #f44336; /* Cor vermelha para destaque */
   margin-bottom: 30px;
 }
 
@@ -31,7 +27,7 @@ body {
   font-weight: bold;
   display: block;
   margin-bottom: 8px;
-  color: #e0e0e0;  /* Cor de texto mais clara para contraste */
+  color: #e0e0e0; /* Cor de texto mais clara para contraste */
 }
 
 /* Campo de texto */
@@ -47,7 +43,7 @@ body {
 }
 
 .edit-profile-form input[type="text"]:focus {
-  border-color: #f44336;  /* Borda vermelha ao focar */
+  border-color: #f44336; /* Borda vermelha ao focar */
   outline: none;
 }
 
@@ -55,7 +51,7 @@ body {
 .edit-profile-form input[type="submit"] {
   width: 100%;
   padding: 14px;
-  background-color: #f44336;  /* Cor vermelha */
+  background-color: #f44336; /* Cor vermelha */
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -65,19 +61,19 @@ body {
 }
 
 .edit-profile-form input[type="submit"]:hover {
-  background-color: #d32f2f;  /* Tom de vermelho mais escuro no hover */
-  transform: translateY(-2px);  /* Efeito de movimento ao passar o mouse */
+  background-color: #d32f2f; /* Tom de vermelho mais escuro no hover */
+  transform: translateY(-2px); /* Efeito de movimento ao passar o mouse */
 }
 
 /* Estilo para o botão de upload de imagem */
 .edit-profile-form input[type="file"] {
-  display: none;  /* Ocultar o botão de upload padrão */
+  display: none; /* Ocultar o botão de upload padrão */
 }
 
 .edit-profile-form .upload-btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #f44336;  /* Cor vermelha */
+  background-color: #f44336; /* Cor vermelha */
   color: #fff;
   font-size: 1rem;
   border-radius: 8px;
@@ -108,7 +104,7 @@ body {
 /* Texto da Foto Atual */
 .edit-profile-form p {
   font-size: 1rem;
-  color: #f44336;  /* Cor vermelha para o texto */
+  color: #f44336; /* Cor vermelha para o texto */
   margin-top: 10px;
   text-align: center; /* Centralizar o texto */
 }

@@ -27,36 +27,36 @@
 <%# <button id="toggleFilterBtn" class="btn btn-primary mt-3 mb-3">Filtros</button> %>
 
 <script>
-  // Adicionando JS para Atualização Dinâmica
-  document.addEventListener("DOMContentLoaded", () => {
-    const maxLotacaoSlider = document.querySelector("#max_lotacao_slider");
-    const maxLotacaoValue = document.querySelector("#max_lotacao_value");
+  // // Adicionando JS para Atualização Dinâmica
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const maxLotacaoSlider = document.querySelector("#max_lotacao_slider");
+  //   const maxLotacaoValue = document.querySelector("#max_lotacao_value");
 
-    if (maxLotacaoSlider && maxLotacaoValue) {
-      maxLotacaoSlider.addEventListener("input", () => {
-        maxLotacaoValue.textContent = maxLotacaoSlider.value;
-      });
-    }
+  //   if (maxLotacaoSlider && maxLotacaoValue) {
+  //     maxLotacaoSlider.addEventListener("input", () => {
+  //       maxLotacaoValue.textContent = maxLotacaoSlider.value;
+  //     });
+  //   }
 
-    const fluxos = <%= raw @fluxos.to_json %>;
-    const capacities = <%= raw @gyms.map { |gym| { id: gym.id, capacity: gym.capacity } }.to_json %>;
-    console.log("Fluxos:", fluxos);
-    console.log("Capacities:", capacities);
+  //   const fluxos = <%= raw @fluxos.to_json %>;
+  //   const capacities = <%= raw @gyms.map { |gym| { id: gym.id, capacity: gym.capacity } }.to_json %>;
+  //   console.log("Fluxos:", fluxos);
+  //   console.log("Capacities:", capacities);
 
-    function updateFluxos() {
-      capacities.forEach(gym => {
-        const fluxoElement = document.getElementById(`fluxo-${gym.id}`);
-        if (fluxoElement) {
-          let newFluxo = Math.floor(Math.random() * gym.capacity); // Gera um novo valor aleatório
-          fluxos[gym.id] = newFluxo; // Atualiza o valor no objeto fluxos
-          fluxoElement.textContent = newFluxo; // Atualiza o valor no DOM
-        }
-      });
-    }
+  //   function updateFluxos() {
+  //     capacities.forEach(gym => {
+  //       const fluxoElement = document.getElementById(`fluxo-${gym.id}`);
+  //       if (fluxoElement) {
+  //         let newFluxo = Math.floor(Math.random() * gym.capacity); // Gera um novo valor aleatório
+  //         fluxos[gym.id] = newFluxo; // Atualiza o valor no objeto fluxos
+  //         fluxoElement.textContent = newFluxo; // Atualiza o valor no DOM
+  //       }
+  //     });
+  //   }
 
-    // Atualiza os valores de fluxo a cada 10 segundos
-    setInterval(updateFluxos, 10000);
-  });
+  //   // Atualiza os valores de fluxo a cada 10 segundos
+  //   setInterval(updateFluxos, 10000);
+  // });
 
   // JavaScript para mostrar/ocultar os filtros ao clicar no botão
   document.getElementById('toggleFilterBtn').addEventListener('click', function() {

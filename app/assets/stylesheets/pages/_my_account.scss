@@ -1,15 +1,9 @@
-/* Estilo global */
-body {
-  background-color: #121212;  /* Fundo escuro */
-  color: #fff;
-}
-
 /* Seção de minha conta */
 .minha-conta {
   max-width: 800px;
   margin: 0 auto;
   padding: 40px;
-  background-color: #1f1f1f;  /* Fundo escuro */
+  background-color: #1f1f1f; /* Fundo escuro */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -44,7 +38,7 @@ body {
 }
 
 .info-usuario p strong {
-  color: #f44336;  /* Vermelho para os títulos */
+  color: #f44336; /* Vermelho para os títulos */
 }
 
 /* Estilo das opções de conta */
@@ -55,9 +49,11 @@ body {
 }
 
 /* Botões de navegação */
-.botao-editar, .botao-desempenho, .btn-danger {
+.botao-editar,
+.botao-desempenho,
+.btn-danger {
   padding: 12px 25px;
-  background-color: #f44336;  /* Vermelho */
+  background-color: #f44336; /* Vermelho */
   color: #fff;
   font-size: 1.1rem;
   border-radius: 8px;
@@ -65,17 +61,19 @@ body {
   display: inline-block;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  text-decoration: none;  /* Remove underline de links */
+  text-decoration: none; /* Remove underline de links */
 }
 
-.botao-editar:hover, .botao-desempenho:hover, .btn-danger:hover {
+.botao-editar:hover,
+.botao-desempenho:hover,
+.btn-danger:hover {
   background-color: #d32f2f;
-  transform: translateY(-2px);  /* Efeito de movimento ao passar o mouse */
+  transform: translateY(-2px); /* Efeito de movimento ao passar o mouse */
 }
 
 /* Estilo específico para o botão de "Sair" */
 .btn-danger {
-  background-color: #f44336;  /* Vermelho */
+  background-color: #f44336; /* Vermelho */
   color: #fff;
   font-size: 1rem;
   padding: 12px 30px;
@@ -110,9 +108,10 @@ body {
     align-items: center;
   }
 
-  .botao-editar, .botao-desempenho, .btn-danger {
+  .botao-editar,
+  .botao-desempenho,
+  .btn-danger {
     width: 100%;
     text-align: center;
-    margin: 10px 0;
   }
 }
