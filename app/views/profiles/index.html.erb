@@ -7,39 +7,40 @@
     <%= form.input :photos, as: :file, input_html: { multiple: true }, label_html: { class: 'label-formularios' } %>
     <%= form.submit "Salvar Alterações", class: "btn btn-primary" %>
   <% end %>
-
   <% @profiles.each do |profile| %>
-    <% if profile.photos.attached? %>
-      <div id="carousel<%= profile.id %>" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <% profile.photos.each_with_index do |photo, index| %>
-            <button type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide-to="<%= index %>" class="<%= 'active' if index.zero? %>" aria-current="true" aria-label="Slide <%= index + 1 %>"></button>
-          <% end %>
-        </div>
-        <div class="carousel-inner">
-          <% profile.photos.each_with_index do |photo, index| %>
-            <div class="carousel-item <%= 'active' if index.zero? %>" data-bs-interval="5000">
-              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "d-block w-100" %>
-              <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
+  <div class="bg-progresso">
+      <% if profile.photos.attached? %>
+        <div id="carousel<%= profile.id %>" class="carousel carousel-dark slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <% profile.photos.each_with_index do |photo, index| %>
+              <button type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide-to="<%= index %>" class="<%= 'active' if index.zero? %>" aria-current="true" aria-label="Slide <%= index + 1 %>"></button>
+            <% end %>
+          </div>
+          <div class="carousel-inner">
+            <% profile.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= 'active' if index.zero? %>" data-bs-interval="5000">
+                <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "d-block w-100" %>
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>First slide label</h5>
+                  <p>Some representative placeholder content for the first slide.</p>
+                </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    <% end %>
+      <% end %>
 
-    <p class="text-dark"><strong>Data:</strong> <%= profile.created_at.strftime("%d/%m/%Y") %> </p>
-    <p class="text-dark"><strong>Peso:</strong> <%= profile.weight %> kg</p>
+      <p class="text-dark"><strong>Data:</strong> <%= profile.created_at.strftime("%d/%m/%Y") %> </p>
+      <p class="text-dark"><strong>Peso:</strong> <%= profile.weight %> kg</p>
+  </div>
 
     <%# profile.photos.each do |photo| %>
       <%#= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>

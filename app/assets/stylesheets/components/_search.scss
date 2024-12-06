@@ -1,10 +1,13 @@
 .btn-search {
-  max-width: 90px;
+  max-width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+  text-align: center;
 }
 .input-search {
   border: 1px solid #a0a0a0;
+  text-align: center;
+  margin: 0;
 }
