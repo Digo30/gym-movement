@@ -1,18 +1,48 @@
 <div class="container">
-  <h1 class="text-center mt-4 mb-4">Meu Desempenho</h1>
+  <h1 class="text-center mt-4 mb-4 text-dark">Meu Desempenho</h1>
 
   <%= simple_form_for(@profile) do |form| %>
-      <%= form.input :weight, step: 0.1, label_html: { class: 'label-formularios' } %>
-      <%= form.input :height, step: 0.01,label_html: { class: 'label-formularios' } %>
-      <%= form.input :photos, as: :file, input_html: { multiple: true }, label_html: { class: 'label-formularios' } %>
-      <%= form.submit "Salvar Alterações", class: "btn btn-primary" %>
+    <%= form.input :weight, step: 0.1, label_html: { class: 'label-formularios' } %>
+    <%= form.input :height, step: 0.01, label_html: { class: 'label-formularios' } %>
+    <%= form.input :photos, as: :file, input_html: { multiple: true }, label_html: { class: 'label-formularios' } %>
+    <%= form.submit "Salvar Alterações", class: "btn btn-primary" %>
   <% end %>
 
   <% @profiles.each do |profile| %>
-    <p><strong>Peso:</strong> <%= profile.weight %> kg</p>
-    <p><strong>Data:</strong> <%= profile.created_at %> kg</p>
-    <% profile.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+    <% if profile.photos.attached? %>
+      <div id="carousel<%= profile.id %>" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <% profile.photos.each_with_index do |photo, index| %>
+            <button type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide-to="<%= index %>" class="<%= 'active' if index.zero? %>" aria-current="true" aria-label="Slide <%= index + 1 %>"></button>
+          <% end %>
+        </div>
+        <div class="carousel-inner">
+          <% profile.photos.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= 'active' if index.zero? %>" data-bs-interval="5000">
+              <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "d-block w-100" %>
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     <% end %>
+
+    <p class="text-dark"><strong>Data:</strong> <%= profile.created_at.strftime("%d/%m/%Y") %> </p>
+    <p class="text-dark"><strong>Peso:</strong> <%= profile.weight %> kg</p>
+
+    <%# profile.photos.each do |photo| %>
+      <%#= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+    <%# end %>
   <% end %>
 </div>
