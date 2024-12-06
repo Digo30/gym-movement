@@ -2,9 +2,9 @@
   <h1 class="text-center mt-4 mb-4 text-dark">Meu Desempenho</h1>
 
   <%= simple_form_for(@profile) do |form| %>
-    <%= form.input :weight, step: 0.1, label_html: { class: 'label-formularios' } %>
-    <%= form.input :height, step: 0.01, label_html: { class: 'label-formularios' } %>
-    <%= form.input :photos, as: :file, input_html: { multiple: true }, label_html: { class: 'label-formularios' } %>
+    <%= form.input :weight, label: "Peso", step: 0.1, label_html: { class: 'label-formularios' } %>
+    <%= form.input :height, label: "Altura", step: 0.01, label_html: { class: 'label-formularios' } %>
+    <%= form.input :photos, label: "Imagens", as: :file, input_html: { multiple: true }, label_html: { class: 'label-formularios' } %>
     <%= form.submit "Salvar Alterações", class: "btn btn-primary" %>
   <% end %>
   <% @profiles.each do |profile| %>
