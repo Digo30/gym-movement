@@ -56,15 +56,29 @@ export default class extends Controller {
 
     const { lat: userLat, lng: userLng } = this.userLocationValue;
 
+    console.log("User Location:", this.userLocationValue);
+    console.log("Markers:", this.markersValue);
+    console.log("Capacity Filter:", this.capacityValue);
+    console.log("Amenities Filter:", this.amenitiesValue);
+    console.log("Distance Filter:", this.distanceValue);
+
+    this.markersValue.forEach(marker => {
+      console.log("Marker:", marker);
+    });
+
     const filteredMarkers = this.markersValue.filter(marker => {
       const capacityFilter = this.capacityValue <= marker.capacity;
       const amenitiesFilter = this.amenitiesValue.every(amenity => marker.amenities.includes(amenity));
       const distanceFilter = this.calculateDistance(userLat, userLng, marker.lat, marker.lng) <= this.distanceValue;
+      console.log(`Filtering marker: ${marker.name}, Capacity: ${capacityFilter}, Amenities: ${amenitiesFilter}, Distance: ${distanceFilter}, Distance Value: ${this.calculateDistance(userLat, userLng, marker.lat, marker.lng)}`);
       return capacityFilter && amenitiesFilter && distanceFilter;
     });
 
+    console.log("Filtered Markers:", filteredMarkers);
+
     filteredMarkers.forEach((marker) => {
       if (!isNaN(marker.lat) && !isNaN(marker.lng)) {
+        console.log("Adding marker:", marker);
         const popup = new mapboxgl.Popup().setHTML(marker.info_window_html);
 
         new mapboxgl.Marker({
@@ -75,11 +89,14 @@ export default class extends Controller {
         .addTo(this.map);
       }
     });
+
+    // Ajustar o mapa com base nos marcadores filtrados e na localização do usuário
+    this.fitMapToMarkers([{ lat: userLat, lng: userLng }, ...filteredMarkers]);
   }
 
-  fitMapToMarkers() {
+  fitMapToMarkers(markers) {
     const bounds = new mapboxgl.LngLatBounds();
-    this.markersValue.forEach(marker => bounds.extend([marker.lng, marker.lat]));
+    markers.forEach(marker => bounds.extend([marker.lng, marker.lat]));
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
   }
 
