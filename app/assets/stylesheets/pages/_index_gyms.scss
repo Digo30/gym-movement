@@ -1,8 +1,3 @@
-.search-bar-index {
-  width: 100%;
-  max-width: 500px;
-}
-
 .search-bar-index input {
   border-radius: 5px;
 }
@@ -37,12 +32,7 @@
 }
 
 .search-container {
-  margin-bottom: 10px;
   display: grid;
-  justify-items: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
 }
 
 .gyms-container {
@@ -64,14 +54,6 @@
   .search-bar-index,
   #botoes-index {
     width: 100%;
-    height: 15px;
-  }
-
-  .search-container {
-    flex-direction: column;
-    align-items: stretch;
-    height: 120px;
-    margin-inline: 20px;
   }
 
   .gyms-container {

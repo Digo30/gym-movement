@@ -1,8 +1,7 @@
 /* Estilos do Footer */
 footer {
-  background-color: rgba(18, 18, 18, 0.8);  /* Fundo escuro com 80% de opacidade */
-  padding: 15px 0;
-  color: #fff;  /* Texto branco */
+  background-color: rgba(18, 18, 18, 0.8); /* Fundo escuro com 80% de opacidade */
+  color: #fff; /* Texto branco */
   position: fixed;
   bottom: 0;
   left: 0;
@@ -28,8 +27,7 @@ footer {
   align-items: center;
   text-decoration: none;
   color: #fff;
-  font-size: 0.9rem;
-  padding: 10px;
+  font-size: 0.75rem;
   transition: transform 0.3s ease, color 0.3s ease;
   flex: 1;
   text-align: center;
@@ -53,7 +51,7 @@ footer {
 /* Hover nos links */
 .footer-link:hover {
   transform: translateY(-4px);
-  color: #f44336;  /* Cor vermelha */
+  color: #f44336; /* Cor vermelha */
 }
 
 .footer-link:hover .footer-icon {
@@ -62,23 +60,13 @@ footer {
 
 /* Responsividade Mobile */
 @media (max-width: 767px) {
-  footer {
-    padding: 10px 0;
-  }
-
   .footer-content {
-    flex-direction: row;  /* Alinhamento horizontal para pequenas telas */
+    flex-direction: row; /* Alinhamento horizontal para pequenas telas */
     justify-content: space-between; /* Espaço entre os itens */
   }
 
   .footer-link {
-    font-size: 1rem;
     padding: 12px 0;
-  }
-
-  .footer-icon {
-    width: 35px;
-    height: 35px;
   }
 }
 
@@ -87,38 +75,7 @@ footer {
   .footer-content {
     flex-direction: row;
   }
-
-  .footer-link {
-    font-size: 1.1rem;
-  }
-
-  .footer-icon {
-    width: 35px;
-    height: 35px;
-  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // footer {
 //   bottom: 0;
@@ -133,7 +90,6 @@ footer {
 //   text-align: center;
 //   padding: 10px 0;
 // }
-
 
 // .footer-content {
 //   display: flex;
