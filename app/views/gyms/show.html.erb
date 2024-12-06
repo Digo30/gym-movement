@@ -3,7 +3,7 @@
 <div class="container container-new-form">
 
   <div class="text-center mt-4">
-    <h1 class="mb-4 fs-4 fw-bold"><%= @gym.name %></h1>
+    <h1 class="mb-4 fs-4 fw-bold text-dark"><%= @gym.name %></h1>
     <ul class="p-0 d-flex justify-content-center gap-1">
     <% if @images.any? %>
       <% @images.each do |image| %>
@@ -11,7 +11,7 @@
           <li><%= image_tag(image, class: "img-checkin") %></li>
         <% end %>
       <% end %>
-      <li><p class="qtd-alunos d-flex align-items-center justify-content-center d-none">+ <%= @qtd_alunos %></p></li>
+      <li><p class="qtd-alunos d-flex align-items-center justify-content-center d-none text-dark">+ <%= @qtd_alunos %></p></li>
     <% end %>
     </ul>
 
@@ -36,7 +36,7 @@
   <!-- Exibição do Carrossel de Imagens -->
   <% if @gym.images.present? %>
     <div id="carouselExample" class="carousel slide mt-4">
-      <div class="carousel-inner lista-carousel">
+      <div class="carousel-inner lista-carousel carousel-height">
       <% @gym.images.each do |image| %>
         <div class="carousel-item">
           <%= image_tag(image, class: "img-gym rounded-4") %>

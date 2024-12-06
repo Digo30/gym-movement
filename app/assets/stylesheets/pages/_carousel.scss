@@ -2,7 +2,7 @@
 .carousel {
   position: relative;
   border-radius: 10px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  // box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   margin-left: 15px; /* Espaço na margem esquerda */
   margin-right: 15px; /* Espaço na margem direita */
@@ -24,8 +24,6 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-
-
 /* Indicadores de slides */
 .carousel-indicators button {
   background-color: rgba(255, 255, 255, 0.6);
@@ -39,8 +37,6 @@
 .carousel-indicators .active {
   background-color: #32cd32; /* Cor ativa do indicador */
 }
-
-
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -76,23 +72,16 @@ h1 {
   text-align: center;
   font-size: 2.5em;
   margin-top: 20px;
-  color: #fff;
+  // color: #fff;
 }
 
 p {
   font-size: 1.2em;
-  color: #fff;
+  color: black;
   text-align: center;
 }
 
 /* Estilizando os formulários */
-form {
-  margin: 20px auto;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  max-width: 600px;
-}
 
 input[type="number"],
 input[type="file"] {
@@ -120,16 +109,14 @@ button[type="submit"]:hover {
   background-color: #228b22;
 }
 
-
-
 // Carrossel
 .carousel {
   margin: 20px auto;
   max-width: 800px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-  background: rgba(0, 0, 0, 0.4); // Fundo mais escuro para o carrossel
+  // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  // background: rgba(0, 0, 0, 0.4); // Fundo mais escuro para o carrossel
 
   .carousel-indicators {
     button {
@@ -138,7 +125,6 @@ button[type="submit"]:hover {
       background: rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       border: none;
-
 
       &.active,
       &:hover {
@@ -151,8 +137,6 @@ button[type="submit"]:hover {
 
   .carousel-inner {
     .carousel-item {
-
-
       img {
         display: block;
         width: 100%;

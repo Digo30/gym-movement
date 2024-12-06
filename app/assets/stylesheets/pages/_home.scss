@@ -54,7 +54,7 @@ body {
 .content h1 {
   font-size: 2rem;
   font-weight: bold;
-  color: #fff;
+  // color: #fff;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   line-height: 1.4;
 }
@@ -65,6 +65,12 @@ body {
   justify-content: center;
   align-items: center;
   margin: 30px 0;
+  z-index: 2;
+  position: absolute;
+  height: 70px;
+  bottom: 20%;
+  left: 25%;
+  opacity: 0.5;
 }
 
 .banner a {
@@ -75,6 +81,7 @@ body {
   width: 100%;
   max-width: 1200px; /* Tamanho máximo do banner */
   border-radius: 8px;
+  height: 70px;
 }
 
 /* Responsividade - Mobile */
@@ -86,7 +93,6 @@ body {
 
   .banner img {
     max-width: 100%; /* Responsivo */
-    height: auto;
   }
 }
 

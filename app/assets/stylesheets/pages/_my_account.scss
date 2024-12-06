@@ -3,9 +3,14 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 40px;
-  background-color: #1f1f1f; /* Fundo escuro */
+  border-radius: 10px;
+}
+.conta-container {
+  padding: 20px;
+  border: 1px solid #b6b5b5;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 100%;
 }
 
 /* Estilo para a área de informações do usuário */
@@ -24,21 +29,13 @@
 }
 
 /* Nome do usuário */
-.info-usuario h2 {
-  font-size: 1.8rem;
-  color: #fff;
-  margin-bottom: 10px;
-}
 
 /* Informações sobre a idade, peso e altura */
 .info-usuario p {
   font-size: 1.1rem;
-  color: #e0e0e0;
+  color: #f44336;
+  font-weight: bold;
   margin: 8px 0;
-}
-
-.info-usuario p strong {
-  color: #f44336; /* Vermelho para os títulos */
 }
 
 /* Estilo das opções de conta */
