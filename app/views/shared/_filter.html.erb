@@ -2,17 +2,17 @@
   <h5>Filtros</h5>
   <%= form_with url: gyms_path, method: :get, local: true do %>
 
-    <h6>Lotação</h6>
+    <h6>Lotação Minima</h6>
     <div class="mb-3">
-      <%= range_field_tag :max_lotacao, params[:max_lotacao] || 0, in: 0..100, step: 1, class: "form-range", id: "max_lotacao_slider" %>
-      <p class="small">até <span id="max_lotacao_value"><%= params[:max_lotacao] || 0 %></span>%</p>
+      <%= range_field_tag :max_lotacao, params[:max_lotacao] || 100, in: 0..100, step: 1, class: "form-range", id: "max_lotacao_slider" %>
+      <p class="small">até <span id="max_lotacao_value"><%= params[:max_lotacao] || 100 %></span>%</p>
     </div>
 
     <h6>Comodidades</h6>
-    <div class="mb-3 d-flex flex-wrap gap-2">
+    <div class="comodies mb-3 d-flex flex-wrap gap-2">
       <% ["Estacionamento","Piscina", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
         <%= check_box_tag "amenities[]", amenity, params[:amenities]&.include?(amenity), id: "amenities_#{amenity}", class: "d-none amenity-checkbox" %>
-        <%= label_tag "amenities_#{amenity}", amenity, class: "btn btn-outline-success amenity-label" %>
+        <%= label_tag "amenities_#{amenity}", amenity, class: "comodies btn btn-outline-success amenity-label" %>
       <% end %>
     </div>
 
