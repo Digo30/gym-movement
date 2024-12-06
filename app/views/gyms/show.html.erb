@@ -36,7 +36,7 @@
   <!-- Exibição do Carrossel de Imagens -->
   <% if @gym.images.present? %>
     <div id="carouselExample" class="carousel slide mt-4">
-      <div class="carousel-inner lista-carousel">
+      <div class="carousel-inner lista-carousel carousel-height">
       <% @gym.images.each do |image| %>
         <div class="carousel-item">
           <%= image_tag(image, class: "img-gym rounded-4") %>

@@ -1,50 +1,50 @@
 
-
-
 <div class="edit-profile-container">
-  <%= form_with model: current_user, url: user_path(current_user), method: :patch, local: true, html: { multipart: true, class: "edit-profile-form" } do |form| %>
-    <% if current_user.errors.any? %>
-      <div class="error-messages">
-        <h2><%= pluralize(current_user.errors.count, "erro") %> impediram que este perfil fosse salvo:</h2>
-        <ul>
-          <% current_user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="form-group">
-      <% if current_user.profile_picture.attached? %>
-        <div class="current-photo">
-          <%= image_tag current_user.profile_picture, width: 150, height: 150, class: "rounded-full" %>
+  <div class="edit-container">
+    <%= form_with model: current_user, url: user_path(current_user), method: :patch, local: true, html: { multipart: true, class: "edit-profile-form" } do |form| %>
+      <% if current_user.errors.any? %>
+        <div class="error-messages">
+          <h2><%= pluralize(current_user.errors.count, "erro") %> impediram que este perfil fosse salvo:</h2>
+          <ul>
+            <% current_user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
 
-      <%= form.label :profile_picture, "Foto de Perfil", class: "form-label" %>
-      <div class="file-upload">
-        <%= form.file_field :profile_picture, class: "upload-input", accept: "image/*" %>
-        <label for="user_profile_picture" class="upload-btn">Selecionar Foto</label>
+      <div class="form-group">
+        <% if current_user.profile_picture.attached? %>
+          <div class="current-photo">
+            <%= image_tag current_user.profile_picture, width: 150, height: 150, class: "rounded-full" %>
+          </div>
+        <% end %>
+
+        <%= form.label :profile_picture, "Foto de Perfil", class: "form-label text-dark" %>
+        <div class="file-upload">
+          <%= form.file_field :profile_picture, class: "upload-input", accept: "image/*" %>
+          <label for="user_profile_picture" class="upload-btn">Selecionar Foto</label>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <%= form.label :first_name, "Nome", class: "form-label" %>
-      <%= form.text_field :first_name, class: "form-input" %>
-    </div>
+      <div class="form-group">
+        <%= form.label :first_name, "Nome", class: "form-label text-dark" %>
+        <%= form.text_field :first_name, class: "form-input" %>
+      </div>
 
-    <div class="form-group">
-      <%= form.label :last_name, "Sobrenome", class: "form-label" %>
-      <%= form.text_field :last_name, class: "form-input" %>
-    </div>
+      <div class="form-group">
+        <%= form.label :last_name, "Sobrenome", class: "form-label text-dark" %>
+        <%= form.text_field :last_name, class: "form-input" %>
+      </div>
 
-    <div class="form-group">
-      <%= form.label :birthday, "Data de Nascimento", class: "form-label" %>
-      <%= form.date_field :birthday, class: "form-input" %>
-    </div>
+      <div class="form-group">
+        <%= form.label :birthday, "Data de Nascimento", class: "form-label text-dark" %>
+        <%= form.date_field :birthday, class: "form-input" %>
+      </div>
 
-    <div class="form-actions">
-      <%= form.submit "Atualizar Perfil", class: "submit-btn" %>
-    </div>
-  <% end %>
+      <div class="form-actions">
+        <%= form.submit "Atualizar Perfil", class: "submit-btn" %>
+      </div>
+    <% end %>
+  </div>
 </div>
