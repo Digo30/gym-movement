@@ -8,9 +8,9 @@
     <%= form.submit "Salvar Alterações", class: "btn btn-primary" %>
   <% end %>
   <% @profiles.each do |profile| %>
-  <div class="bg-progresso">
+  <div>
       <% if profile.photos.attached? %>
-        <div id="carousel<%= profile.id %>" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div id="carousel<%= profile.id %>" class="carousel m-0  p-0 carousel-dark slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
             <% profile.photos.each_with_index do |photo, index| %>
               <button type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide-to="<%= index %>" class="<%= 'active' if index.zero? %>" aria-current="true" aria-label="Slide <%= index + 1 %>"></button>
@@ -37,9 +37,10 @@
           </button>
         </div>
       <% end %>
-
-      <p class="text-dark"><strong>Data:</strong> <%= profile.created_at.strftime("%d/%m/%Y") %> </p>
-      <p class="text-dark"><strong>Peso:</strong> <%= profile.weight %> kg</p>
+      <div  class="bg-progresso mt-3 mb-3">
+            <p class="text-dark"><strong>Data:</strong> <%= profile.created_at.strftime("%d/%m/%Y") %> </p>
+            <p class="text-dark"><strong>Peso:</strong> <%= profile.weight %> kg</p>
+      </div>
   </div>
 
     <%# profile.photos.each do |photo| %>

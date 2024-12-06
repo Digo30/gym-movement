@@ -17,6 +17,7 @@
   border-radius: 10px;
   transition: transform 0.3s ease;
   object-fit: cover;
+  width: 100%;
   max-height: 400px; /* Limitando a altura máxima das imagens */
 }
 
@@ -42,10 +43,6 @@
 .carousel-control-next-icon {
   background-color: white;
   border-radius: 50%;
-}
-
-.bg-progresso {
-  background-color: #d3d3d3;
 }
 
 /* Responsividade - mobile */
