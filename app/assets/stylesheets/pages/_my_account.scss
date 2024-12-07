@@ -7,10 +7,11 @@
 }
 .conta-container {
   padding: 20px;
-  border: 1px solid #b6b5b5;
+  border: 1px solid $green-light;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   height: 100%;
+  background-color: $gray-black;
 }
 
 /* Estilo para a área de informações do usuário */
@@ -22,7 +23,7 @@
 /* Centralização da imagem de perfil */
 .info-usuario img {
   border-radius: 50%;
-  border: 3px solid #f44336;
+  border: 3px solid $green-light;
   width: 150px;
   height: 150px;
   margin-bottom: 20px;
@@ -33,7 +34,6 @@
 /* Informações sobre a idade, peso e altura */
 .info-usuario p {
   font-size: 1.1rem;
-  color: #f44336;
   font-weight: bold;
   margin: 8px 0;
 }
@@ -49,8 +49,6 @@
 .botao-editar,
 .botao-desempenho,
 .btn-danger {
-  padding: 12px 25px;
-  background-color: #f44336; /* Vermelho */
   color: #fff;
   font-size: 1.1rem;
   border-radius: 8px;
@@ -70,11 +68,7 @@
 
 /* Estilo específico para o botão de "Sair" */
 .btn-danger {
-  background-color: #f44336; /* Vermelho */
-  color: #fff;
   font-size: 1rem;
-  padding: 12px 30px;
-  border-radius: 8px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -83,6 +77,11 @@
 .btn-danger:hover {
   background-color: #d32f2f;
   transform: translateY(-2px);
+}
+
+.bg-progresso {
+  background-color: $gray-b;
+  border-radius: 10px;
 }
 
 /* Responsividade */
@@ -108,7 +107,6 @@
   .botao-editar,
   .botao-desempenho,
   .btn-danger {
-    width: 100%;
     text-align: center;
   }
 }

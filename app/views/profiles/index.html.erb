@@ -1,14 +1,19 @@
 <div class="container">
-  <h1 class="text-center mt-4 mb-4 text-dark">Meu Desempenho</h1>
+  <h1 class="text-center mt-4 mb-4 text-light">Meu Desempenho</h1>
 
   <%= simple_form_for(@profile) do |form| %>
     <%= form.input :weight, label: "Peso", step: 0.1, label_html: { class: 'label-formularios' } %>
     <%= form.input :height, label: "Altura", step: 0.01, label_html: { class: 'label-formularios' } %>
-    <%= form.input :photos, label: "Imagens", as: :file, input_html: { multiple: true }, label_html: { class: 'label-formularios' } %>
-    <%= form.submit "Salvar Alterações", class: "btn btn-primary" %>
+    <%= form.input :photos,
+               label: "Imagens",
+               as: :file,
+               input_html: { multiple: true, class: 'custom-file-input', style: 'border: 2px solid #2B2B2B; padding: 10px; background-color: #f9f9f9;' },
+               label_html: { class: 'label-formularios' } %>
+
+    <%= form.submit "Salvar Alterações", class: "btn btn-success w-100" %>
   <% end %>
   <% @profiles.each do |profile| %>
-  <div>
+  <div class="bg-progresso">
       <% if profile.photos.attached? %>
         <div id="carousel<%= profile.id %>" class="carousel m-0  p-0 carousel-dark slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
@@ -16,7 +21,7 @@
               <button type="button" data-bs-target="#carousel<%= profile.id %>" data-bs-slide-to="<%= index %>" class="<%= 'active' if index.zero? %>" aria-current="true" aria-label="Slide <%= index + 1 %>"></button>
             <% end %>
           </div>
-          <div class="carousel-inner">
+          <div class="carousel-inner p-0">
             <% profile.photos.each_with_index do |photo, index| %>
               <div class="carousel-item <%= 'active' if index.zero? %>" data-bs-interval="5000">
                 <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "d-block w-100" %>
@@ -38,8 +43,8 @@
         </div>
       <% end %>
       <div  class="bg-progresso mt-3 mb-3">
-            <p class="text-dark"><strong>Data:</strong> <%= profile.created_at.strftime("%d/%m/%Y") %> </p>
-            <p class="text-dark"><strong>Peso:</strong> <%= profile.weight %> kg</p>
+            <p class="text-success">Data: <span class="text-light"><%= profile.created_at.strftime("%d/%m/%Y") %></span> </p>
+            <p class="text-success">Peso: <span class="text-light"><%= profile.weight %> kg</span></p>
       </div>
   </div>
 

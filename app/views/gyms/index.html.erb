@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h3 class="text-center mt-4 mb-4">Lista Academias</h3>
+  <h3 class="text-center mt-4 mb-4 text-light fw-bold">Lista Academias</h3>
 
   <div class="search-container">
     <%# Busca da academia %>
@@ -7,10 +7,10 @@
       <%= render "shared/search" %>
     </div>
 
-    <div id="botoes-index" class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-      <div id="botao-index-map" class="button-group d-flex flex-wrap gap-2">
-        <button id="toggleFilterBtn" class="btn btn-primary mt-3 mb-3">Filtros</button>
-        <%= link_to 'Ver mapa', map_path, class: 'btn btn-primary view-map-button' %>
+    <div id="botoes-index" class="d-flex flex-wrap justify-content-between align-items-center mb-3 w-100">
+      <div class="button-group d-flex w-100 align-items-center gap-2">
+        <button id="toggleFilterBtn" class="btn btn-success mt-3 mb-3 rounded-4 m-0">Filtros</button>
+        <%= link_to 'Ver mapa', map_path, class: 'btn btn-success rounded-4 m-0' %>
       </div>
     </div>
   </div>
@@ -19,25 +19,23 @@
 
 <div class="gyms-container">
   <% @gyms.each do |gym| %>
-    <div class="card mb-3 rounded-4">
-      <div class="row g-0 align-items-center">
-        <div class="col-md-4 w-auto">
+    <div class="card mb-3 rounded-4 gym-card">
+      <div class="d-flex g-0 align-items-center w-100">
+        <div class=" w-auto">
           <%= link_to gym_path(gym), class: "card-title text-decoration-none" do %>
-            <%= image_tag gym.gym_image, class: "card-img" %>
+            <%= image_tag gym.gym_image, class: "card-img pe-2" %>
           <% end %>
         </div>
-        <div class="col-md-8 w-auto">
-          <div class="card-body">
-            <%= link_to gym.name, gym_path(gym), class: "card-title text-decoration-none" %>
+          <div class="card-body card-content p-2">
+            <%= link_to gym.name, gym_path(gym), class: "card-title text-decoration-none fw-bold" %>
             <p class="card-text mb-1">Score: <%= gym.rating %></p>
-            <p class="card-text mb-1"><small class="text-body-secondary">Fluxo: <span id="fluxo-<%= gym.id %>"><%= @fluxos[gym.id] %></span></small></p>
-            <p class="card-text mb-1"><small class="text-body-secondary">Capacidade: <%= gym.capacity %></small></p>
+            <p class="card-text mb-1">Fluxo: <span id="fluxo-<%= gym.id %>"><%= @fluxos[gym.id] %></span></small></p>
+            <p class="card-text mb-1">Capacidade: <%= gym.capacity %></small></p>
             <div class="d-flex gap-3">
-              <p class="card-text mb-1"><small class="text-body-secondary">Mulheres: <%= @gender[gym.id]["Female"] %></small></p>
-              <p class="card-text mb-1"><small class="text-body-secondary">Homens: <%= @gender[gym.id]["Male"] %></small></p>
+              <p class="card-text mb-1">Mulheres: <%= @gender[gym.id]["Female"] %></small></p>
+              <p class="card-text mb-1">Homens: <%= @gender[gym.id]["Male"] %></small></p>
             </div>
           </div>
-        </div>
       </div>
     </div>
   <% end %>

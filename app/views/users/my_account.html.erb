@@ -5,17 +5,17 @@
 
         <%= image_tag current_user.profile_picture, alt: "Imagem de Perfil", width: 150, height: 150 %>
       <% end %>
-      <h2 class="fw-bold"><span class="text-dark"><%= current_user.first_name %> <%= current_user.last_name %> </span></h2>
-      <p>Idade: <span class="text-dark"> <%= current_user.age ? "#{current_user.age} anos" : "Data de nascimento não informada" %></span></p>
+      <h2 class="fw-bold"><span class="text-light"><%= current_user.first_name %> <%= current_user.last_name %> </span></h2>
+      <p class="text-success">Idade: <span class="text-light"> <%= current_user.age ? "#{current_user.age} anos" : "Data de nascimento não informada" %></span></p>
 
     </div>
 
 
 
     <div class="opcoes-conta">
-      <a href="<%= user_edit_path %>" class="botao-editar">Editar Perfil</a>
-      <a href="<%= profiles_path %>" class="botao-desempenho">Meu Desempenho</a>
-      <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-danger text-light rounded-4" %>
+      <a href="<%= user_edit_path %>" class="btn btn-success rounded-4 w-100 text-light">Editar Perfil</a>
+      <a href="<%= profiles_path %>" class=" btn btn-success rounded-4 w-100 text-light">Meu Desempenho</a>
+      <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-danger text-light rounded-4 w-100" %>
     </div>
   </div>
 </div>

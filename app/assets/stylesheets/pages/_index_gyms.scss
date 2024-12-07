@@ -19,18 +19,6 @@
   flex: 1 1 auto;
 }
 
-#botao-index-map a {
-  padding-inline: 30px;
-  border-radius: 5px;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-}
-
-#botao-index-map a:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
-
 .search-container {
   display: grid;
   justify-items: center;
@@ -49,6 +37,20 @@
   width: 100%;
   max-width: 300px;
   margin-bottom: 20px;
+}
+
+.card-img {
+  border-right: 2px solid rgb(145, 141, 141);
+}
+
+.card-content {
+  display: grid;
+  justify-items: center;
+
+  & p {
+    font-size: 0.875rem;
+    color: $light-mid;
+  }
 }
 
 @media (max-width: 402px) {
@@ -79,19 +81,5 @@
   #botoes-index a {
     width: 100%;
     margin-bottom: 10px;
-  }
-
-  #botao-index-map {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #botao-index-map button,
-  #botao-index-map a {
-    flex: 1 1 auto;
-    margin-bottom: 0;
-    width: 140px;
-    height: 40px;
   }
 }

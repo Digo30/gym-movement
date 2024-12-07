@@ -8,10 +8,18 @@ a {
 }
 body {
   position: relative;
+  background-color: $full-black;
 }
 .container {
-  padding-bottom: 90px;
+  padding-bottom: 90px !important;
 }
 input {
   border: 1px solid #949090 !important;
+}
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2.5rem;
+  color: $text-color;
+  // text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 }

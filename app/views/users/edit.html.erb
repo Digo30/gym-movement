@@ -20,30 +20,30 @@
           </div>
         <% end %>
 
-        <%= form.label :profile_picture, "Foto de Perfil", class: "form-label text-dark" %>
+        <%= form.label :profile_picture, "Foto de Perfil", class: "form-label text-success" %>
         <div class="file-upload">
           <%= form.file_field :profile_picture, class: "upload-input", accept: "image/*" %>
-          <label for="user_profile_picture" class="upload-btn">Selecionar Foto</label>
+          <label for="user_profile_picture" class="upload-btn btn btn-success">Selecionar Foto</label>
         </div>
       </div>
 
       <div class="form-group">
-        <%= form.label :first_name, "Nome", class: "form-label text-dark" %>
+        <%= form.label :first_name, "Nome", class: "form-label text-success" %>
         <%= form.text_field :first_name, class: "form-input" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :last_name, "Sobrenome", class: "form-label text-dark" %>
+        <%= form.label :last_name, "Sobrenome", class: "form-label text-success" %>
         <%= form.text_field :last_name, class: "form-input" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :birthday, "Data de Nascimento", class: "form-label text-dark" %>
+        <%= form.label :birthday, "Data de Nascimento", class: "form-label text-success" %>
         <%= form.date_field :birthday, class: "form-input" %>
       </div>
 
       <div class="form-actions">
-        <%= form.submit "Atualizar Perfil", class: "submit-btn" %>
+        <%= form.submit "Atualizar Perfil", class: "submit-btn btn btn-success rounded-4" %>
       </div>
     <% end %>
   </div>

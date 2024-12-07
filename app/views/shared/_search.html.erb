@@ -1,10 +1,12 @@
 <%= form_with url: gyms_path, method: :get, class: "d-flex search-form justify-content-center" do %>
-  <div class='d-flex'>
+  <div class='d-flex w-100'>
     <%= text_field_tag :query,
           params[:query],
-          class: "form-control me-2 input-search",
+          class: "form-control m-0 input-search",
           placeholder: "Escreva o nome da academia"
     %>
-    <%= submit_tag "Buscar", name: "", class: "btn btn-secondary text-light btn-search " %>
+   <%= button_tag(type: 'submit', class: 'btn btn-secondary text-light btn-search') do %>
+    <i class="fa-solid fa-magnifying-glass"></i>
+   <% end %>
   </div>
 <% end %>
