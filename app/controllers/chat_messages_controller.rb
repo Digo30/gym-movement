@@ -5,7 +5,7 @@ class ChatMessagesController < ApplicationController
     message = current_user.chat_messages.build(message_params)
 
     if message.save
-
+      ProcessAiResponseJob.perform_later(message)
       render turbo_stream: turbo_stream.append(:messages, partial: "chat_messages/chat_message", locals: { chat_message: message })
 
       # # Integração com Gemini AI
