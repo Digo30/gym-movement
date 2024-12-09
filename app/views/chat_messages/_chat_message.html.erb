@@ -2,7 +2,10 @@
   <div class="<%= chat_message.sender == 'user' ? 'float-end bg-primary text-white' : 'float-start bg-light' %>
               rounded p-2"
        style="max-width: 70%; word-wrap: break-word;">
+
     <%= simple_format(chat_message.content) %>
   </div>
+
+
   <div class="clearfix"></div>
 </div>

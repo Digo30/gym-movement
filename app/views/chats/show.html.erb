@@ -14,7 +14,7 @@
         </div>
 
         <div class="card-footer" id="message-form">
-          <%= form_with(model: @chat_message, data: { controller: "chat" }) do |f| %>
+          <%= form_with(model: @chat_message, data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }) do |f| %>
             <div class="d-flex">
               <%= f.text_field :content,
                   class: "form-control me-2",
