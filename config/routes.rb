@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
   get 'users', to: 'users#edit', as: :user_edit
 
-
+  resource :chat, only: [:show, :create]
+  resources :chat_messages, only: [:create]
 
   resources :profiles, only: [:index, :create]
   resources :profile, only: [:index, :create]
