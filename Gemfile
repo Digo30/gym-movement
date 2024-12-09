@@ -47,6 +47,12 @@ gem "bootsnap", require: false
 # Gem do Mapbox
 gem "geocoder"
 
+# Gemfile
+gem "solid_cable"
+
+# Gemfile
+gem "solid_queue"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
