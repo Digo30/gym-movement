@@ -64,6 +64,11 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "faker"
 
+#Gem IA Google
+#gem 'google-cloud-ai-generative-language'
+gem 'googleauth'
+gem 'httparty'
+
 
 group :development, :test do
   gem "dotenv-rails"
