@@ -2,20 +2,117 @@
   <div class="conta-container w-100">
     <div class="info-usuario">
       <% if current_user.profile_picture %>
-
         <%= image_tag current_user.profile_picture, alt: "Imagem de Perfil", width: 150, height: 150 %>
       <% end %>
-      <h2 class="fw-bold"><span class="text-light"><%= current_user.first_name %> <%= current_user.last_name %> </span></h2>
-      <p class="text-success">Idade: <span class="text-light"> <%= current_user.age ? "#{current_user.age} anos" : "Data de nascimento não informada" %></span></p>
-
+      <h2 class="fw-bold"><span class="text-light"><%= current_user.first_name %> <%= current_user.last_name %></span></h2>
+      <p class="text-success">Idade: <span class="text-light"><%= current_user.age ? "#{current_user.age} anos" : "Data de nascimento não informada" %></span></p>
     </div>
-
-
 
     <div class="opcoes-conta">
       <a href="<%= user_edit_path %>" class="btn btn-success rounded-4 w-100 text-light">Editar Perfil</a>
-      <a href="<%= profiles_path %>" class=" btn btn-success rounded-4 w-100 text-light">Meu Desempenho</a>
-      <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-danger text-light rounded-4 w-100" %>
+      <a href="<%= profiles_path %>" class="btn btn-success rounded-4 w-100 text-light">Meu Desempenho</a>
+      <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger text-light rounded-4 w-100" %>
     </div>
   </div>
 </div>
+
+<div class="food-dashboard container-food">
+  <!-- Exibição das calorias e água -->
+  <div class="food-dashboard-calorias-info card shadow-sm p-4 mb-4 rounded">
+    <h4 class="food-dashboard-text-dark">Calorias consumidas hoje:</h4>
+    <p class="food-dashboard-text-warning fw-bold">
+      <%= current_user.food_intakes.where(date: Date.today).sum(:calories) %> kcal
+    </p>
+    <h4 class="food-dashboard-text-dark mt-3">Água consumida hoje:</h4>
+    <p class="food-dashboard-text-info fw-bold">
+      <%= current_user.water_intakes.where(date: Date.today).sum(:amount) %> L
+    </p>
+  </div>
+
+  <!-- Gráfico de calorias -->
+  <div class="food-dashboard-calorias-chart card shadow-sm p-4 mb-4 rounded">
+    <canvas id="caloriesChart" width="500" height="300"></canvas>
+  </div>
+
+<div class="food-dashboard-actions-buttons">
+  <a href="<%= food_intakes_path %>" class="food-dashboard-btn btn btn-primary rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
+    <i class="fas fa-utensils mr-2"></i> Visualizar Alimentos
+  </a>
+  <a href="<%= new_food_intake_path %>" class="food-dashboard-btn btn btn-success rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
+    <i class="fas fa-plus-circle mr-2"></i> Adicionar Alimento
+  </a>
+  <a href="<%= new_water_intake_path %>" class="food-dashboard-btn btn btn-info rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
+    <i class="fas fa-tint mr-2"></i> Adicionar Água
+  </a>
+</div>
+
+  <!-- Visualização de alimentos -->
+  <div class="food-dashboard-alimentos-consumidos card shadow-sm p-4 rounded">
+    <h6 class="food-dashboard-text-dark">Alimentos consumidos hoje:</h6>
+    <ul class="food-dashboard-list-group">
+      <% current_user.food_intakes.where(date: Date.today).each do |food_intake| %>
+        <li class="food-dashboard-list-group-item d-flex justify-content-between align-items-center">
+          <%= food_intake.product_name %>
+          <span class="badge bg-warning rounded-pill"><%= food_intake.calories %> kcal</span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    var ctx = document.getElementById('caloriesChart').getContext('2d');
+    var caloriesChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Calorias Consumidas', 'Calorias Restantes'],
+        datasets: [{
+          data: [<%= current_user.food_intakes.where(date: Date.today).sum(:calories) %>, 2000 - <%= current_user.food_intakes.where(date: Date.today).sum(:calories) %>],
+          backgroundColor: ['#FF6384', '#36A2EB'],
+          borderColor: ['#FF6384', '#36A2EB'],
+          borderWidth: 2,
+          hoverBackgroundColor: ['#FF6384', '#36A2EB'],
+          hoverBorderColor: ['#FF6384', '#36A2EB']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            labels: {
+              font: {
+                size: 14,
+                weight: 'bold'
+              },
+              color: '#333'
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(tooltipItem) {
+                return tooltipItem.raw + ' kcal';
+              }
+            }
+          }
+        },
+        layout: {
+          padding: {
+            top: 10,
+            right: 10,
+            bottom: 10,
+            left: 10
+          }
+        },
+        animation: {
+          duration: 1000,
+          easing: 'easeOutBounce'
+        }
+      }
+    });
+  });
+</script>

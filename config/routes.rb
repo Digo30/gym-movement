@@ -38,4 +38,7 @@ Rails.application.routes.draw do
   resources :gyms do
     resources :appointments, only: [:new, :create, :show]
   end
+
+  resources :food_intakes, only: [:new, :create, :index, :destroy]
+  resources :water_intakes, only: [:new, :create]
 end

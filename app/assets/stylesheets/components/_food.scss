@@ -1,0 +1,88 @@
+/* Container específico da página de Dashboard */
+.food-dashboard {
+  margin: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 800px;
+}
+
+.food-dashboard-calorias-info, .food-dashboard-calorias-chart, .food-dashboard-alimentos-consumidos {
+  margin-bottom: 20px;
+}
+
+.food-dashboard-calorias-info h4, .food-dashboard-calorias-info p, .food-dashboard-alimentos-consumidos h6 {
+  margin-bottom: 10px;
+}
+
+.food-dashboard-calorias-chart canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.food-dashboard-actions-buttons .food-dashboard-btn {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.food-dashboard-actions-buttons .food-dashboard-btn:hover {
+  background-color: #007bff;
+  transform: scale(1.05);
+}
+
+.food-dashboard-list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.food-dashboard-list-group-item .badge {
+  font-size: 0.9em;
+  padding: 5px 10px;
+}
+
+/* Estilo para os cards */
+.food-dashboard .card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Cores e fontes para os textos */
+.food-dashboard-text-dark {
+  color: #333 !important;
+}
+
+.food-dashboard-text-info {
+  color: #17a2b8 !important;
+}
+
+.food-dashboard-text-warning {
+  color: #ffc107 !important;
+}
+
+.food-dashboard-actions-buttons .food-dashboard-btn {
+  font-size: 14px; /* Menor tamanho de fonte */
+  padding: 10px; /* Menor altura e largura do botão */
+  text-align: left; /* Alinhar o texto à esquerda */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.food-dashboard-actions-buttons .food-dashboard-btn i {
+  margin-right: 8px; /* Espaço entre o ícone e o texto */
+}
+
+.food-dashboard-actions-buttons .food-dashboard-btn:hover {
+  transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+  background-color: #0056b3;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 767px) {
+  .food-dashboard-actions-buttons .food-dashboard-btn {
+    font-size: 12px; /* Menor fonte em telas pequenas */
+    padding: 8px; /* Menor padding em telas pequenas */
+  }
+}

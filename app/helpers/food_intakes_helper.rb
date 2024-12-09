@@ -1,0 +1,2 @@
+module FoodIntakesHelper
+end
