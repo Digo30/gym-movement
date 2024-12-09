@@ -1,5 +1,4 @@
 <aside class="filters bg-light p-3 rounded" id="filterSection" style="display: none; position: relative; z-index: 1000;">
-  <h5>Filtros</h5>
   <%= form_with url: gyms_path, method: :get, local: true do %>
 
     <h6>Lotação Minima</h6>
@@ -62,7 +61,7 @@
   document.getElementById('toggleFilterBtn').addEventListener('click', function() {
     var filterSection = document.getElementById('filterSection');
     if (filterSection.style.display === 'none' || filterSection.style.display === '') {
-      filterSection.style.display = 'block';
+      filterSection.style.display = 'contents';
       this.innerText = 'Filtros';
     } else {
       filterSection.style.display = 'none';
