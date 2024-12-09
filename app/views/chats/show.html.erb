@@ -1,0 +1,30 @@
+<%= turbo_stream_from current_user %>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="mb-0">Chat com IA</h2>
+        </div>
+
+        <div class="card-body" style="height: 400px; overflow-y: auto;" id="messages">
+          <%= turbo_frame_tag "messages" do %>
+            <%= render partial: "chat_messages/chat_message", collection: @messages %>
+          <% end %>
+        </div>
+
+        <div class="card-footer" id="message-form">
+          <%= form_with(model: @chat_message, data: { controller: "chat" }) do |f| %>
+            <div class="d-flex">
+              <%= f.text_field :content,
+                  class: "form-control me-2",
+                  placeholder: "Digite sua mensagem...",
+                  data: { action: "keypress->chat#submitOnEnter" } %>
+              <%= f.submit "Enviar", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

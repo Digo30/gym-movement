@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.3.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.5"
+gem "rails", "~> 7.2.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -47,6 +47,12 @@ gem "bootsnap", require: false
 # Gem do Mapbox
 gem "geocoder"
 
+# Gemfile
+gem "solid_cable"
+
+# Gemfile
+gem "solid_queue"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -57,6 +63,11 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "faker"
+
+#Gem IA Google
+#gem 'google-cloud-ai-generative-language'
+gem 'googleauth'
+gem 'httparty'
 
 
 group :development, :test do

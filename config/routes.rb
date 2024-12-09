@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
 
 
+  resource :chat, only: [:show]
+  resources :chat_messages, only: [:create]
 
   resources :profiles, only: [:index, :create]
   resources :profile, only: [:index, :create]
