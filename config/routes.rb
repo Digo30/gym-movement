@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+  get 'messages/destroy'
   devise_for :users
   root to: "pages#home"
 
@@ -11,6 +13,14 @@ Rails.application.routes.draw do
 
 
   get 'users', to: 'users#edit', as: :user_edit
+
+  resources :gyms do
+    member do
+      get 'chat'
+    end
+    resources :messages, only: [:create, :destroy]
+  end
+
 
 
 

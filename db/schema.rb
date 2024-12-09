@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_05_204609) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_09_165358) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_05_204609) do
     t.text "logo"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "gym_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gym_id"], name: "index_messages_on_gym_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.float "weight"
     t.float "height"
@@ -106,5 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_05_204609) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointments", "gyms"
   add_foreign_key "appointments", "users"
+  add_foreign_key "messages", "gyms"
+  add_foreign_key "messages", "users"
   add_foreign_key "profiles", "users"
 end

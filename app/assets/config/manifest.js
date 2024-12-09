@@ -6,3 +6,4 @@
 //= link bootstrap.min.js
 //= link carousel.js
 //= link alunos.js
+//= link chat.js
