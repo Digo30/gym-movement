@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :appointments, dependent: :destroy
   has_many :profiles, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_one_attached :user_image
   has_one_attached :profile_picture
   has_one_attached :photo
