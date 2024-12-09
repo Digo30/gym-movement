@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.1].define(version: 2024_12_09_144355) do
-=======
 ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
->>>>>>> master
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -125,16 +121,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "logo"
-  end
-
-  create_table "notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "title"
-    t.text "message"
-    t.boolean "read"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -301,15 +287,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointments", "gyms"
   add_foreign_key "appointments", "users"
-<<<<<<< HEAD
   add_foreign_key "chat_messages", "users"
   add_foreign_key "consumed_foods", "users"
   add_foreign_key "consumptions", "foods"
   add_foreign_key "consumptions", "users"
   add_foreign_key "food_entries", "users"
-=======
-  add_foreign_key "notifications", "users"
->>>>>>> master
   add_foreign_key "profiles", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
