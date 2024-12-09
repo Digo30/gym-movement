@@ -93,6 +93,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_211830) do
     t.text "logo"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "gym_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gym_id"], name: "index_messages_on_gym_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
     t.bigint "application_id", null: false
@@ -312,6 +322,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_211830) do
   add_foreign_key "appointments", "users"
   add_foreign_key "chat_messages", "users"
   add_foreign_key "food_intakes", "users"
+  add_foreign_key "messages", "gyms"
+  add_foreign_key "messages", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "profiles", "users"
