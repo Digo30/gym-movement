@@ -22,11 +22,12 @@ class FoodIntakesController < ApplicationController
     if food.present?
       product_name = food['product_name']
       calories = food.dig('nutriments', 'energy-kcal')
+      protein = food.dig('nutriments', 'proteins')
       product_image = food.dig('selected_images', 'front', 'display', 'fr')
 
       # Check if all required fields are present
-      if product_name.blank? || calories.blank? || product_image.blank?
-        flash.now[:alert] = "Dados do produto incompletos. Verifique o nome, calorias ou imagem do produto."
+      if product_name.blank? || calories.blank? || protein.blank? || product_image.blank?
+        flash.now[:alert] = "Dados do produto incompletos. Verifique o nome, calorias, proteína ou imagem do produto."
         render :new, status: :unprocessable_entity
         return
       end
@@ -34,12 +35,13 @@ class FoodIntakesController < ApplicationController
       food_intake = current_user.food_intakes.new(
         product_name: product_name,
         calories: calories,
+        protein: protein,
         date: Date.today,
         product_image: product_image
       )
 
       if food_intake.save
-        redirect_to food_intakes_path, notice: "Alimento registrado com sucesso!"
+        redirect_to nutri_food_intakes_path, notice: "Alimento registrado com sucesso!"
       else
         flash.now[:alert] = "Erro ao registrar o alimento: #{food_intake.errors.full_messages.join(', ')}"
         render :new, status: :unprocessable_entity
@@ -53,6 +55,7 @@ class FoodIntakesController < ApplicationController
   def index
     @food_intakes = current_user.food_intakes.order(date: :desc)
     @total_calories = @food_intakes.sum(:calories)
+    @total_protein = @food_intakes.sum(:protein)
   end
 
   def destroy

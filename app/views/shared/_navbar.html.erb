@@ -1,7 +1,39 @@
 <div class="navbar navbar-expand-sm navbar-lewagon">
-  <div class="container-fluid justify-content-center">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <button id="menu-toggle" class="btn btn-menu">
+      ☰
+    </button>
     <%= link_to root_path, class: "navbar-brand m-0" do %>
       <%= image_tag "https://res.cloudinary.com/dhkyacden/image/upload/v1733513174/gym_moviment_bu5z7k.png" %>
     <% end %>
+    <div class="placeholder"></div>
   </div>
+</div>
+
+<div id="sidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" id="close-sidenav">×</a>
+  <% if user_signed_in? %>
+    <%= link_to my_account_path(current_user), class: "navbar-link account-link" do %>
+      <% if current_user.profile_picture.nil? %>
+        <%= image_tag "user.svg", alt: "Profile user", class: "navbar-icon default-profile-icon" %>
+      <% else %>
+        <%= image_tag current_user.profile_picture, alt: "Minha Conta", class: "navbar-icon profile-picture" %>
+      <% end %>
+      <span class="user-greeting">Olá, <%= "#{current_user.first_name} #{current_user.last_name}" %></span>
+    <% end %>
+  <% else %>
+    <%= link_to new_user_session_path, class: "navbar-link login-link" do %>
+      <%= image_tag "user.svg", alt: "Entrar", class: "navbar-icon login-icon" %>
+      <span>Login</span>
+    <% end %>
+  <% end %>
+  <br>
+
+  <%= link_to "Nutri", nutri_food_intakes_path, class: "footer-link" %>
+  <br>
+
+  <%= link_to "Loja GYM Suplements", "https://gym-suplement-909fe7f2432b.herokuapp.com/", class: "footer-link", target: "_blank", rel: "noopener" %>
+  <br>
+
+  <a href="#" class="footer-link">Contact</a>
 </div>
