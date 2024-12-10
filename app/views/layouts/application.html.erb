@@ -14,7 +14,9 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+    <div id="navbar" data-turbo-permanent>
+      <%= render "shared/navbar" %>
+    </div>
     <%= render "shared/flashes" %>
         <%= yield %>
     <%= render "pages/footer" %>

@@ -1,15 +1,24 @@
-<%= form_with(model: @water_intake, local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :amount, "Quantidade de água (em litros):" %>
-    <%= form.number_field :amount, class: "form-control", step: "0.01" %>
-  </div>
+<div class="container-food">
+  <!-- Link de retorno para Nutri -->
+  <%= link_to nutri_food_intakes_path, class: "btn btn-primary mb-4 rounded-left" do %>
+    <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar para Nutri
+  <% end %>
 
-  <div class="form-group">
-    <%= form.label :date, "Data:" %>
-    <%= form.date_field :date, class: "form-control", value: Date.today %>
-  </div>
+  <h1 class="my-4 text-center text-primary">Adicionar Consumo de Água</h1>
 
-  <div class="form-group">
-    <%= form.submit "Adicionar Água", class: "btn btn-primary" %>
-  </div>
-<% end %>
+  <%= form_with(model: @water_intake, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :amount, "Quantidade de água (em litros):", class: "text-grey" %>
+      <%= form.number_field :amount, class: "form-control form-control-lg", step: "0.01", required: true, placeholder: "Digite a quantidade de água" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :date, "Data:", class: "text-grey" %>
+      <%= form.date_field :date, class: "form-control form-control-lg", value: Date.today %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Adicionar Água", class: "btn btn-success btn-lg w-100" %>
+    </div>
+  <% end %>
+</div>
