@@ -1,13 +1,18 @@
 /* Estilos para o container da página */
 .container-food {
   padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  background-color: #030303;
+  border-radius: 10px;
+  margin: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #00e20b;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilos para os títulos */
-.container-food h1, .container-food h2 {
+.container-food h1, .container-food h2, .container-food h4 {
   font-family: 'Arial', sans-serif;
+  color: white;
 }
 
 /* Estilos para os cards */
@@ -38,6 +43,11 @@
   margin-top: 15px;
   font-weight: bold;
 }
+
+#food-dashboard-calorias-info {
+  border-radius: 10px;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
