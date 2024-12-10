@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_09_211830) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,6 +96,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_food_entries_on_user_id"
+  end
+
+  create_table "food_intakes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "product_name"
+    t.integer "calories"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "product_image"
+    t.index ["user_id"], name: "index_food_intakes_on_user_id"
   end
 
   create_table "foods", force: :cascade do |t|
@@ -293,6 +304,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "water_intakes", force: :cascade do |t|
+    t.decimal "amount"
+    t.date "date"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_water_intakes_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointments", "gyms"
@@ -302,6 +322,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
   add_foreign_key "consumptions", "foods"
   add_foreign_key "consumptions", "users"
   add_foreign_key "food_entries", "users"
+  add_foreign_key "food_intakes", "users"
   add_foreign_key "messages", "gyms"
   add_foreign_key "messages", "users"
   add_foreign_key "profiles", "users"
@@ -311,4 +332,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
   add_foreign_key "solid_queue_ready_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_recurring_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
+  add_foreign_key "water_intakes", "users"
 end

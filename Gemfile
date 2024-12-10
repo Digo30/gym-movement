@@ -63,6 +63,10 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "faker"
+gem 'httparty'
+gem 'chartkick'
+gem 'groupdate'
+
 
 #Gem IA Google
 #gem 'google-cloud-ai-generative-language'
