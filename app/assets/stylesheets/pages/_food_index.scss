@@ -4,7 +4,6 @@
   background-color: #030303;
   border-radius: 10px;
   margin: 10px;
-  margin-bottom: 20px;
   border: 1px solid #00e20b;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -18,14 +17,19 @@
 /* Estilos para os cards */
 .food-cards .food-card {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .food-cards .card {
+  display: flex;
+  flex-direction: row;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
+  width: 100%;
 }
 
 .food-cards .card:hover {
@@ -35,6 +39,7 @@
 
 .food-cards .card-body {
   padding: 15px;
+  flex-grow: 1;
 }
 
 /* Estilos para o link de excluir */
@@ -44,15 +49,19 @@
   font-weight: bold;
 }
 
-#food-dashboard-calorias-info {
-  border-radius: 10px;
+.card-img-top {
+  width: 100%;
+  object-fit: cover;
 }
-
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .food-cards .col-md-4 {
-    max-width: 100% !important;
+  .food-cards .food-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .food-cards .col-md-12 {
+    max-width: 100%;
   }
 }
 
@@ -60,6 +69,7 @@
   .container-food {
     padding: 10px;
     margin: 20px;
+    margin-bottom: 80px;
   }
 
   .food-cards .food-card {
