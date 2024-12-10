@@ -1,0 +1,62 @@
+/* Estilos para o container da página */
+.container-food {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* Estilos para os títulos */
+.container-food h1, .container-food h2 {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Estilos para os cards */
+.food-cards .food-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.food-cards .card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.food-cards .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.food-cards .card-body {
+  padding: 15px;
+}
+
+/* Estilos para o link de excluir */
+.food-cards .btn-danger {
+  width: 100%;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .food-cards .col-md-4 {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-food {
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .food-cards .food-card {
+    margin-bottom: 20px;
+  }
+
+  .food-cards .card-body {
+    padding: 10px;
+  }
+}
