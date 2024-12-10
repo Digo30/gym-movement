@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update]
 
 
+  def my_account
+    @user = current_user
+  end
+
 
   def edit
   end

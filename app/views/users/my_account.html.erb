@@ -16,3 +16,15 @@
   </div>
 </div>
 
+
+
+<h1>Minha Conta</h1>
+
+<div class="ai-list">
+  <h3>Sua Lista de Treinos:</h3>
+  <% if @user.ai_generated_list.present? %>
+    <pre><%= @user.ai_generated_list %></pre>
+  <% else %>
+    <p>Você ainda não possui uma lista de treinos gerada pela IA.</p>
+  <% end %>
+</div>
