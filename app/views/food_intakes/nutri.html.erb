@@ -1,32 +1,36 @@
 <div class="food-dashboard container-food">
-  <!-- Exibição das calorias e água -->
+  <!-- Exibição das calorias, água e proteína -->
   <div class="food-dashboard-calorias-info card shadow-sm p-4 mb-4">
-    <h4 class="food-dashboard-text-dark">Calorias consumidas hoje:</h4>
+    <h6 class="food-dashboard-text-dark">Calorias consumidas hoje:</h6>
     <p class="food-dashboard-text-warning fw-bold">
       <%= current_user.food_intakes.where(date: Date.today).sum(:calories) %> kcal
     </p>
-    <h4 class="food-dashboard-text-dark mt-3">Água consumida hoje:</h4>
+    <h6 class="food-dashboard-text-dark mt-3">Água consumida hoje:</h6>
     <p class="food-dashboard-text-info fw-bold">
       <%= current_user.water_intakes.where(date: Date.today).sum(:amount) %> L
     </p>
+    <h6 class="food-dashboard-text-dark mt-3">Proteína consumida hoje:</h6>
+    <p class="food-dashboard-text-success fw-bold">
+      <%= current_user.food_intakes.where(date: Date.today).sum(:protein) %> g
+    </p>
   </div>
 
-  <!-- Gráfico de calorias -->
+  <!-- Gráfico de calorias e proteína -->
   <div class="food-dashboard-calorias-chart card shadow-sm p-4 mb-4">
     <canvas id="caloriesChart" width="500" height="300"></canvas>
   </div>
 
-<div class="food-dashboard-actions-buttons">
-  <a href="<%= food_intakes_path %>" class="food-dashboard-btn btn btn-primary rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
-    <i class="fas fa-utensils mr-2"></i> Visualizar Alimentos
-  </a>
-  <a href="<%= new_food_intake_path %>" class="food-dashboard-btn btn btn-success rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
-    <i class="fas fa-plus-circle mr-2"></i> Adicionar Alimento
-  </a>
-  <a href="<%= new_water_intake_path %>" class="food-dashboard-btn btn btn-info rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
-    <i class="fas fa-tint mr-2"></i> Adicionar Água
-  </a>
-</div>
+  <div class="food-dashboard-actions-buttons">
+    <a href="<%= food_intakes_path %>" class="food-dashboard-btn btn btn-primary rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
+      <i class="fas fa-utensils mr-2"></i> Visualizar Alimentos
+    </a>
+    <a href="<%= new_food_intake_path %>" class="food-dashboard-btn btn btn-success rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
+      <i class="fas fa-plus-circle mr-2"></i> Adicionar Alimento
+    </a>
+    <a href="<%= new_water_intake_path %>" class="food-dashboard-btn btn btn-info rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
+      <i class="fas fa-tint mr-2"></i> Adicionar Água
+    </a>
+  </div>
 
   <!-- Visualização de alimentos -->
   <div class="food-dashboard-alimentos-consumidos card shadow-sm p-4 ">
@@ -36,6 +40,7 @@
         <li class="food-dashboard-list-group-item d-flex justify-content-between align-items-center">
           <%= food_intake.product_name %>
           <span class="badge bg-warning rounded-pill"><%= food_intake.calories %> kcal</span>
+          <span class="badge bg-success rounded-pill"><%= food_intake.protein %> g</span>
         </li>
       <% end %>
     </ul>
@@ -48,14 +53,19 @@
     var caloriesChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ['Calorias Consumidas', 'Calorias Restantes'],
+        labels: ['Calorias Consumidas', 'Calorias Restantes', 'Proteína Consumida', 'Proteína Restante'],
         datasets: [{
-          data: [<%= current_user.food_intakes.where(date: Date.today).sum(:calories) %>, 2000 - <%= current_user.food_intakes.where(date: Date.today).sum(:calories) %>],
-          backgroundColor: ['#FF6384', '#36A2EB'],
-          borderColor: ['#FF6384', '#36A2EB'],
+          data: [
+            <%= current_user.food_intakes.where(date: Date.today).sum(:calories) %>,
+            2000 - <%= current_user.food_intakes.where(date: Date.today).sum(:calories) %>,
+            <%= current_user.food_intakes.where(date: Date.today).sum(:protein) %>,
+            100 - <%= current_user.food_intakes.where(date: Date.today).sum(:protein) %>
+          ],
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+          borderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
           borderWidth: 2,
-          hoverBackgroundColor: ['#FF6384', '#36A2EB'],
-          hoverBorderColor: ['#FF6384', '#36A2EB']
+          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+          hoverBorderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
         }]
       },
       options: {
@@ -76,7 +86,11 @@
           tooltip: {
             callbacks: {
               label: function(tooltipItem) {
-                return tooltipItem.raw + ' kcal';
+                if (tooltipItem.label === 'Calorias Consumidas' || tooltipItem.label === 'Calorias Restantes') {
+                  return tooltipItem.raw + ' kcal';
+                } else {
+                  return tooltipItem.raw + ' g';
+                }
               }
             }
           }
