@@ -1,12 +1,11 @@
 class ChatMessagesController < ApplicationController
   before_action :authenticate_user!
 
-
-  #message = current_user.chat_messages.build(message_params)
   def create
     # Se o formulário foi preenchido com foco e frequência
-    if params[:focus_area].present? && params[:sessions_per_week].present?
-      content = "Monte uma tabela de treino para mim focado em #{params[:focus_area]} eu treino #{params[:sessions_per_week]} vez(es) por semana."
+    
+    if params[:focus_area].present? && params[:sessions_per_week].present? && params[:experience].present?
+      content = "Estou criando uma tabela de treino para você focado em #{params[:focus_area]} no nível #{params[:experience]} com treinos de #{params[:sessions_per_week]} vez(es) por semana. #{@weight}"
     else
       content = message_params[:content] # Caso seja uma mensagem comum
     end
