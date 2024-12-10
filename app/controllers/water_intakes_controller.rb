@@ -8,7 +8,7 @@ class WaterIntakesController < ApplicationController
   def create
     @water_intake = current_user.water_intakes.build(water_intake_params)
     if @water_intake.save
-      redirect_to my_account_path, notice: "Registro de água adicionado com sucesso!"
+      redirect_to nutri_food_intakes_path, notice: "Registro de água adicionado com sucesso!"
     else
       render :new
     end

@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     resources :appointments, only: [:new, :create, :show]
   end
 
-  resources :food_intakes, only: [:new, :create, :index, :destroy]
+  resources :food_intakes, only: [:new, :create, :index, :destroy] do
+    collection do
+      get :nutri
+    end
+  end
   resources :water_intakes, only: [:new, :create]
 end
