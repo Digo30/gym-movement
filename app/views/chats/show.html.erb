@@ -1,19 +1,43 @@
 <%= turbo_stream_from current_user %>
+
+<div class="card-footer" id="message-form">
+  <%= form_with(url: chat_messages_path, method: :post, data: { turbo_frame: "messages" }) do %>
+    <div class="mb-3">
+      <%= label_tag :focus_area, "Qual seu foco nos treinos?", class: "form-label" %>
+      <%= select_tag :focus_area,
+          options_for_select(['Hipertrofia', 'Força', 'Resistência', 'Emagrecimento', 'Condicionamento'], prompt: 'Selecione seu foco'),
+          class: "form-select" %>
+    </div>
+
+    <div class="mb-3">
+      <%= label_tag :sessions_per_week, "Quantos dias treina por semana?", class: "form-label" %>
+      <%= select_tag :sessions_per_week,
+          options_for_select((1..7).map { |i| ["#{i} vez(es)", i] }, prompt: 'Selecione a frequência'),
+          class: "form-select" %>
+    </div>
+
+    <div class="text-center">
+      <%= submit_tag "Montar treino", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">
-          <h2 class="mb-0">Chat com IA</h2>
-        </div>
-
         <div class="card-body" style="height: 400px; overflow-y: auto;" id="messages">
           <%= turbo_frame_tag "messages" do %>
             <%= render partial: "chat_messages/chat_message", collection: @messages %>
           <% end %>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div class="card-footer" id="message-form">
+
+<div class="card-footer" id="message-form">
           <%= form_with(model: @chat_message, data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }) do |f| %>
             <div class="d-flex">
               <%= f.text_field :content,
@@ -24,7 +48,3 @@
             </div>
           <% end %>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
