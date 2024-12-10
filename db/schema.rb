@@ -66,6 +66,47 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
     t.index ["user_id"], name: "index_chat_messages_on_user_id"
   end
 
+  create_table "consumed_foods", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.integer "calories"
+    t.float "protein"
+    t.float "carbohydrates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_consumed_foods_on_user_id"
+  end
+
+  create_table "consumptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_consumptions_on_food_id"
+    t.index ["user_id"], name: "index_consumptions_on_user_id"
+  end
+
+  create_table "food_entries", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.float "calories"
+    t.float "protein"
+    t.float "carbohydrates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_food_entries_on_user_id"
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "calories", null: false
+    t.integer "protein", null: false
+    t.integer "carbohydrates", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "gyms", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -257,6 +298,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_171543) do
   add_foreign_key "appointments", "gyms"
   add_foreign_key "appointments", "users"
   add_foreign_key "chat_messages", "users"
+  add_foreign_key "consumed_foods", "users"
+  add_foreign_key "consumptions", "foods"
+  add_foreign_key "consumptions", "users"
+  add_foreign_key "food_entries", "users"
   add_foreign_key "messages", "gyms"
   add_foreign_key "messages", "users"
   add_foreign_key "profiles", "users"
