@@ -66,7 +66,7 @@ gem "faker"
 gem 'httparty'
 gem 'chartkick'
 gem 'groupdate'
-
+gem 'csv'
 
 #Gem IA Google
 #gem 'google-cloud-ai-generative-language'
