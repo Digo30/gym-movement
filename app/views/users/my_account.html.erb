@@ -9,9 +9,9 @@
     </div>
 
     <div class="opcoes-conta">
-      <a href="<%= user_edit_path %>" class="btn btn-success rounded-4 w-100 text-light">Editar Perfil</a>
-      <a href="<%= profiles_path %>" class="btn btn-success rounded-4 w-100 text-light">Meu Desempenho</a>
-      <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger text-light rounded-4 w-100" %>
+      <a href="<%= user_edit_path %>" class="btn btn-success rounded-custom w-100 text-light">Editar Perfil</a>
+      <a href="<%= profiles_path %>" class="btn btn-success rounded-custom w-100 text-light">Meu Desempenho</a>
+      <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn bg-danger text-light rounded-custom w-100" %>
     </div>
   </div>
 </div>

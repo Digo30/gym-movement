@@ -14,6 +14,10 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+
+  & img {
+    max-height: 40px;
+  }
 }
 
 .navbar-lewagon .btn-menu {
@@ -26,12 +30,7 @@
 
 .navbar-lewagon .placeholder {
   width: 50px; /* Placeholder do mesmo tamanho do botão menu */
-}
-
-@media (max-width: 500px) {
-  .navbar-lewagon .navbar-brand img {
-    width: 120px;
-  }
+  background-color: transparent;
 }
 
 /* Sidenav */

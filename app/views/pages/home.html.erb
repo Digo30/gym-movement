@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'numero', 'data-turbo-track': 'reload', defer: true %>
 <section class="home-page">
   <div class="video-background">
     <video autoplay loop muted>
@@ -7,13 +8,11 @@
   </div>
   <div class="overlay"></div>
   <div class="content w-100">
-    <%# <h1>Gym Movement</h1> %>
+    <h1>Gym Movement</h1>
   </div>
-  <%# <div class="banner-container">
-    <div class="banner">
-      <a href="https://gym-suplement-909fe7f2432b.herokuapp.com/" target="_blank">
-        <img src="https://res.cloudinary.com/dhkyacden/image/upload/v1733257956/173133_leuqk5.jpg" alt="Banner">
-      </a>
-    </div> %>
+  <div class="numeros-container w-100">
+    <p class="text-light m-1">Faça parte e tenha acesso a mais de:</p>
+    <p id='numeros' class="text-light fs-1 m-1">1500</p>
+    <p class="text-light m-1">academias</p>
   </div>
 </section>

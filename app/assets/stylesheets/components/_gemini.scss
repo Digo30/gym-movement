@@ -6,7 +6,7 @@ $border-radius: 10px;
 
 // Estilo geral do corpo
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   background: $gradient-bg;
   color: $text-color;
   margin: 0;
@@ -20,7 +20,8 @@ body {
 }
 
 // Cartões
-.form-card, .chat-card {
+.form-card,
+.chat-card {
   border-radius: $border-radius;
   padding: 15px;
   margin-bottom: 15px;
@@ -38,35 +39,35 @@ body {
 }
 
 // Formulários
-.form-select-container, .chat-input-container {
+.form-select-container,
+.chat-input-container {
   display: flex;
   flex-direction: column;
 }
 
+.form-label {
+  font-size: 14px;
+  margin-bottom: 0px;
+}
 
-  .form-label {
-    font-size: 14px;
-    margin-bottom: 0px;
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $primary-color;
+  border-radius: $border-radius;
+  background: $text-color;
+  color: $secondary-color;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px $primary-color;
   }
-
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid $primary-color;
-    border-radius: $border-radius;
-    background: $text-color;
-    color: $secondary-color;
-    font-size: 14px;
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 5px $primary-color;
-    }
-  }
-
+}
 
 // Botões
-.btn-submit, .btn-send {
+.btn-submit,
+.btn-send {
   background: $primary-color;
   color: $secondary-color;
   border: none;
@@ -87,13 +88,18 @@ body {
   padding: 10px;
   border: 1px solid $primary-color;
   border-radius: $border-radius;
-  margin-right: 10px;
-  background: $text-color;
+  margin-top: 10px;
+  margin-bottom: 90px;
+  background: $black;
   color: $secondary-color;
 
   &:focus {
     outline: none;
     box-shadow: 0 0 5px $primary-color;
+  }
+
+  & form {
+    background-color: $black;
   }
 }
 
@@ -103,11 +109,13 @@ body {
     padding: 10px;
   }
 
-  .form-card, .chat-card {
+  .form-card,
+  .chat-card {
     padding: 10px;
   }
 
-  .btn-submit, .btn-send {
+  .btn-submit,
+  .btn-send {
     font-size: 14px;
     padding: 8px 15px;
   }

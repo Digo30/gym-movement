@@ -23,7 +23,7 @@
         <%= form.label :profile_picture, "Foto de Perfil", class: "form-label text-success" %>
         <div class="file-upload">
           <%= form.file_field :profile_picture, class: "upload-input", accept: "image/*" %>
-          <label for="user_profile_picture" class="upload-btn btn btn-success">Selecionar Foto</label>
+          <label for="user_profile_picture" class="upload-btn btn btn-success rounded-custom">Selecionar Foto</label>
         </div>
       </div>
 
@@ -43,7 +43,7 @@
       </div>
 
       <div class="form-actions">
-        <%= form.submit "Atualizar Perfil", class: "submit-btn btn btn-success rounded-4" %>
+        <%= form.submit "Atualizar Perfil", class: "submit-btn btn btn-success rounded-custom" %>
       </div>
     <% end %>
   </div>

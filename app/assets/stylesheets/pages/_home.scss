@@ -84,6 +84,11 @@ body {
   height: 70px;
 }
 
+.numeros-container {
+  position: absolute;
+  bottom: 20%;
+}
+
 /* Responsividade - Tablet */
 @media (min-width: 768px) and (max-width: 1024px) {
   .content h1 {
