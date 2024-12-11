@@ -8,3 +8,4 @@
 //= link alunos.js
 //= link chat.js
 //= link numero.js
+//= link footer_visibility.js

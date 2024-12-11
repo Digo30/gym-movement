@@ -390,6 +390,7 @@ DEPENDENCIES
   capybara
   chartkick
   cloudinary
+  csv
   debug
   devise
   dotenv-rails
