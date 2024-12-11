@@ -7,3 +7,4 @@
 //= link carousel.js
 //= link alunos.js
 //= link chat.js
+//= link numero.js
