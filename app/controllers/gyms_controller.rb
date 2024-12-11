@@ -1,5 +1,5 @@
 class GymsController < ApplicationController
-  before_action :set_gym, only: [:show]
+  before_action :set_gym, only: [:show, :chat]
   before_action :set_date_hour, only: [:index, :show]
 
   def index
@@ -32,16 +32,6 @@ class GymsController < ApplicationController
       [gym.id, gym.appointments.where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now).count]
     end.to_h
 
-    # @markers = @gyms.geocoded.map do |gym|
-    #   {
-    #     lat: gym.latitude,
-    #     lng: gym.longitude,
-    #     name: gym.name,
-    #     capacity: gym.capacity,
-    #     amenities: gym.amenities,
-    #     info_window_html: render_to_string(partial: "info_window", locals: { gym: gym })
-    #   }
-    # end
 
     @gender = @gyms.map do |gym|
       gender_count = gym.appointments.joins(:user)
@@ -118,6 +108,10 @@ class GymsController < ApplicationController
 
     # Limpar colchetes e espaços em torno das comodidades
     @amenities = @gym.amenities.map { |amenity| amenity.gsub(/[\[\]\s]/, '') }
+  end
+
+  def chat
+    @messages = @gym.messages.includes(:user).order(created_at: :asc)
   end
 
   private

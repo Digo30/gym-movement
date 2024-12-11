@@ -2,20 +2,29 @@
   <div class="conta-container w-100">
     <div class="info-usuario">
       <% if current_user.profile_picture %>
-
         <%= image_tag current_user.profile_picture, alt: "Imagem de Perfil", width: 150, height: 150 %>
       <% end %>
-      <h2 class="fw-bold"><span class="text-light"><%= current_user.first_name %> <%= current_user.last_name %> </span></h2>
-      <p class="text-success">Idade: <span class="text-light"> <%= current_user.age ? "#{current_user.age} anos" : "Data de nascimento não informada" %></span></p>
-
+      <h2 class="fw-bold"><span class="text-light"><%= current_user.first_name %> <%= current_user.last_name %></span></h2>
+      <p class="text-success">Idade: <span class="text-light"><%= current_user.age ? "#{current_user.age} anos" : "Data de nascimento não informada" %></span></p>
     </div>
-
-
 
     <div class="opcoes-conta">
       <a href="<%= user_edit_path %>" class="btn btn-success rounded-4 w-100 text-light">Editar Perfil</a>
-      <a href="<%= profiles_path %>" class=" btn btn-success rounded-4 w-100 text-light">Meu Desempenho</a>
-      <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-danger text-light rounded-4 w-100" %>
+      <a href="<%= profiles_path %>" class="btn btn-success rounded-4 w-100 text-light">Meu Desempenho</a>
+      <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger text-light rounded-4 w-100" %>
     </div>
   </div>
+</div>
+
+
+
+<h1>Minha Conta</h1>
+
+<div class="ai-list">
+  <h3>Sua Lista de Treinos:</h3>
+  <% if @user.ai_generated_list.present? %>
+    <pre><%= @user.ai_generated_list %></pre>
+  <% else %>
+    <p>Você ainda não possui uma lista de treinos gerada pela IA.</p>
+  <% end %>
 </div>

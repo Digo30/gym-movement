@@ -1,0 +1,32 @@
+<div class="container-food">
+  <!-- Link de retorno para nutri -->
+  <%= link_to nutri_food_intakes_path, class: "btn btn-primary mb-4 rounded-right" do %>
+    <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar para Nutri
+  <% end %>
+
+  <h1 class="my-4 text-center text-primary">Alimentos Consumidos</h1>
+  <h2 class="text-center mb-4 text-secondary">Total de Calorias: <%= @total_calories %> kcal</h2>
+  <h2 class="text-center mb-4 text-secondary">Total de Proteína: <%= @total_protein %> g</h2>
+
+  <div class="row food-cards">
+    <% @food_intakes.each do |food_intake| %>
+      <div class="col-md-12 mb-4 food-card">
+        <div class="card shadow-sm border-0 rounded-3">
+          <% if food_intake.product_image.present? %>
+            <!-- Reduzindo o tamanho da imagem -->
+            <%= image_tag food_intake.product_image, class: "card-img-top rounded-top img-fluid", alt: "Imagem do produto" %>
+          <% else %>
+            <img src="https://via.placeholder.com/100" class="card-img-top rounded-top img-fluid" alt="Imagem do produto">
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold text-dark"><%= food_intake.product_name %></h5>
+            <p class="card-text text-muted">Calorias: <%= food_intake.calories %> kcal</p>
+            <p class="card-text text-muted">Proteína: <%= food_intake.protein %> g</p>
+            <p class="card-text text-muted">Data: <%= food_intake.date.strftime('%d/%m/%Y') %></p>
+            <%= link_to 'Excluir', food_intake_path(food_intake), data: { turbo_method: :delete, turbo_confirm: 'Tem certeza que deseja excluir este alimento?' }, class: 'btn btn-danger btn-sm' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

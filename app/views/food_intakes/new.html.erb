@@ -1,0 +1,14 @@
+<div class="container-food">
+  <%= form_with url: food_intakes_path, method: :post, local: true do |form| %>
+    <h1 class="my-4 text-center text-primary">Adicionar Alimento</h1>
+
+    <div class="form-group">
+      <%= form.label :search_term, "Buscar alimento (nome ou código de barras):", class: "text-white" %>
+      <%= form.text_field :search_term, class: "form-control form-control-lg", required: true, placeholder: "Digite o nome ou código de barras" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Buscar e adicionar", class: "btn btn-success btn-lg w-100" %>
+    </div>
+  <% end %>
+</div>

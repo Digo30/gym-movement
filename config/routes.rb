@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+  get 'messages/destroy'
   devise_for :users
   root to: "pages#home"
 
@@ -12,7 +14,17 @@ Rails.application.routes.draw do
 
   get 'users', to: 'users#edit', as: :user_edit
 
+  resources :gyms do
+    member do
+      get 'chat'
+    end
+    resources :messages, only: [:create, :destroy]
+  end
 
+
+
+  resource :chat, only: [:show]
+  resources :chat_messages, only: [:create]
 
   resources :profiles, only: [:index, :create]
   resources :profile, only: [:index, :create]
@@ -26,4 +38,11 @@ Rails.application.routes.draw do
   resources :gyms do
     resources :appointments, only: [:new, :create, :show]
   end
+
+  resources :food_intakes, only: [:new, :create, :index, :destroy] do
+    collection do
+      get :nutri
+    end
+  end
+  resources :water_intakes, only: [:new, :create]
 end

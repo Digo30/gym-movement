@@ -1,0 +1,41 @@
+<%= turbo_stream_from current_user %>
+
+<div class="chat-container">
+  <!-- Formulário para selecionar o treino -->
+  <div class="form-card">
+    <%= form_with(url: chat_messages_path, method: :post, data: { turbo_frame: "messages" }, class: "form-select-container") do %>
+      <div class="form-group">
+        <%= label_tag :focus_area, "Qual seu foco nos treinos?", class: "form-label" %>
+        <%= select_tag :focus_area, options_for_select(['Hipertrofia', 'Força', 'Resistência', 'Emagrecimento', 'Condicionamento'], prompt: 'Selecione seu foco'), class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :sessions_per_week, "Quantos dias treina por semana?", class: "form-label" %>
+        <%= select_tag :sessions_per_week,
+            options_for_select((1..7).map { |i| ["#{i} vez(es)", i] }, prompt: 'Selecione a frequência'),
+            class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :experience, "Qual seu nível?", class: "form-label" %>
+        <%= select_tag :experience,
+            options_for_select(['Iniciante', 'Intermediário', 'Avançado', 'Rato de Academia'], prompt: 'Selecione seu nível'),
+            class: "form-control" %>
+      </div>
+
+      <div class="text-center">
+        <%= submit_tag "Montar treino", class: "btn-submit" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Exibição das mensagens do chat -->
+  <div class="chat-card">
+    <div class="chat-body" id="messages">
+      <%= turbo_frame_tag "messages" do %>
+        <%= render partial: "chat_messages/chat_message", collection: @messages %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
