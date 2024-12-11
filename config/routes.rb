@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
-
+  get 'trainings', to: 'users#trainings', as: :user_trainings
 
   get 'users', to: 'users#edit', as: :user_edit
 
@@ -21,8 +21,6 @@ Rails.application.routes.draw do
     end
     resources :messages, only: [:create, :destroy]
   end
-
-
 
   resource :chat, only: [:show]
   resources :chat_messages, only: [:create]
