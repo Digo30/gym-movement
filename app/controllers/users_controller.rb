@@ -24,6 +24,9 @@ class UsersController < ApplicationController
   end
   end
 
+  def trainings
+    @trainings = current_user.ai_generated_list&.split("\n") || []
+  end
 
   private
 

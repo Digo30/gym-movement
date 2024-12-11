@@ -1,0 +1,20 @@
+<div class="training-list-container">
+  <h2 class="training-list-title">Seu Treino Personalizado</h2>
+
+  <% if @trainings.any? %>
+    <div class="training-list">
+      <% @trainings.each_with_index do |item, index| %>
+        <div class="training-item">
+          <div class="training-index">
+
+          </div>
+          <div class="training-content">
+            <p><%= item %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="no-training">Nenhum treino foi gerado ainda. Crie seu treino personalizado!</p>
+  <% end %>
+</div>

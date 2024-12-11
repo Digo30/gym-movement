@@ -11,6 +11,7 @@
     <div class="opcoes-conta">
       <a href="<%= user_edit_path %>" class="btn btn-success rounded-custom w-100 text-light">Editar Perfil</a>
       <a href="<%= profiles_path %>" class="btn btn-success rounded-custom w-100 text-light">Meu Desempenho</a>
+      <a href="<%= user_trainings_path %>" class="btn btn-success rounded-custom w-100 text-light">Treinos</a>
       <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn bg-danger text-light rounded-custom w-100" %>
     </div>
   </div>
@@ -25,6 +26,6 @@
   <% if @user.ai_generated_list.present? %>
     <pre><%= @user.ai_generated_list %></pre>
   <% else %>
-    <p>Você ainda não possui uma lista de treinos gerada pela IA.</p>
+    <p>Você ainda não possui uma lista de treinos.</p>
   <% end %>
 </div>
