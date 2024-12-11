@@ -4,16 +4,19 @@
   <div class="container-show p-2 rounded-4">
     <div class="text-center mt-4">
       <h1 class="mb-4 fs-4 fw-bold text-light"><%= @gym.name %></h1>
-      <ul class="p-0 d-flex justify-content-center gap-1">
-      <% if @images.any? %>
-        <% @images.each do |image| %>
-          <% if image %>
-            <li><%= image_tag(image, class: "img-checkin") %></li>
+      <%= link_to alunos_gym_path(@gym) do %>
+        <ul class="p-0 d-flex justify-content-center gap-1">
+          <% if @images.any? %>
+            <% @images.each do |image| %>
+              <% if image %>
+                <li><%= image_tag(image, class: "img-checkin") %></li>
+              <% end %>
+            <% end %>
+            <li><p class="qtd-alunos d-flex align-items-center justify-content-center d-none text-light">+ <%= @qtd_alunos %></p></li>
           <% end %>
-        <% end %>
-        <li><p class="qtd-alunos d-flex align-items-center justify-content-center d-none text-light">+ <%= @qtd_alunos %></p></li>
+        </ul>
       <% end %>
-      </ul>
+
 
       <!-- Exibição do fluxo de alunos -->
       <p class="mt-3 fw-bold text-light">Alunos onGym</p>
@@ -53,7 +56,6 @@
         </button>
       </div>
     <% end %>
-
     <!-- Exibição das comodidades -->
     <div class="mt-4 p-4 rounded-4 comodidades">
       <h6 class="fw-bold">O local oferece:</h6>
