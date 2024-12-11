@@ -1,0 +1,122 @@
+// Paleta de cores
+$primary-color: #00ff88; // Verde vibrante
+$secondary-color: #000; // Preto
+$text-color: #fff; // Branco
+$border-radius: 10px;
+
+// Estilo geral do corpo
+body {
+  font-family: "Arial", sans-serif;
+  background: $gradient-bg;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Container principal
+.chat-container {
+  max-width: 400px;
+  padding: 20px;
+}
+
+// Cartões
+.form-card,
+.chat-card {
+  border-radius: $border-radius;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-select-container {
+  background-color: black;
+  padding: 0px 10px;
+}
+
+.chat-card {
+  height: 400px;
+  overflow-y: auto;
+}
+
+// Formulários
+.form-select-container,
+.chat-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $primary-color;
+  border-radius: $border-radius;
+  background: $text-color;
+  color: $secondary-color;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px $primary-color;
+  }
+}
+
+// Botões
+.btn-submit,
+.btn-send {
+  background: $primary-color;
+  color: $secondary-color;
+  border: none;
+  padding: 10px 20px;
+  border-radius: $border-radius;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: darken($primary-color, 10%);
+  }
+}
+
+// Entrada de texto no chat
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid $primary-color;
+  border-radius: $border-radius;
+  margin-top: 10px;
+  margin-bottom: 90px;
+  background: $black;
+  color: $secondary-color;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px $primary-color;
+  }
+
+  & form {
+    background-color: $black;
+  }
+}
+
+// Responsividade
+@media (max-width: 480px) {
+  .chat-container {
+    padding: 10px;
+  }
+
+  .form-card,
+  .chat-card {
+    padding: 10px;
+  }
+
+  .btn-submit,
+  .btn-send {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}

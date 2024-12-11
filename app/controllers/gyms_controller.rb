@@ -1,6 +1,6 @@
 class GymsController < ApplicationController
-  before_action :set_gym, only: [:show, :chat]
-  before_action :set_date_hour, only: [:index, :show]
+  before_action :set_gym, only: [:show, :chat, :alunos]
+  before_action :set_date_hour, only: [:index, :show, :alunos]
 
   def index
     @gyms = Gym.all
@@ -112,6 +112,11 @@ class GymsController < ApplicationController
 
   def chat
     @messages = @gym.messages.includes(:user).order(created_at: :asc)
+  end
+
+  def alunos
+    @alunos = @gym.appointments.joins(:user)
+    .where("checkin_date = ? AND checkin_hour BETWEEN ? AND ?", Date.today, @one_hour_ago, @time_now)
   end
 
   private
