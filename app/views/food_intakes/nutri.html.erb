@@ -62,11 +62,11 @@
             <%= current_user.food_intakes.where(date: Date.today).sum(:protein) %>,
             100 - <%= current_user.food_intakes.where(date: Date.today).sum(:protein) %>
           ],
-          backgroundColor: ['#e7d31f', '#8bf059', '#FFCE56', '#4BC0C0'],
+          backgroundColor: ['#e7d31f', '#8bf059', '#7bc0ff', '#36771a'],
           borderColor: ['#000000', '#000000', '#000000', '#000000'],
           borderWidth: 2,
-          hoverBackgroundColor: ['#ffc000', '#52f700', '#FFCE56', '#4BC0C0'],
-          hoverBorderColor: ['#ffc000', '#52f700', '#FFCE56', '#4BC0C0']
+          hoverBackgroundColor: ['#ffc000', '#52f700', '#0085ff', '#2c9100'],
+          hoverBorderColor: ['#ffc000', '#52f700', '#0085ff', '#2c9100']
         }]
       },
       options: {
