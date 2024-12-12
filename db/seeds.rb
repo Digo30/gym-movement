@@ -92,7 +92,7 @@ academias = JSON.parse(json_data)
 puts "Usuários criados com sucesso!"
 
 # Criando academias com comodidades, coordenadas, endereço e imagem
-gyms = 30.times.map do |i|
+gyms = 15.times.map do |i|
   latitude, longitude = generate_coordinates
   address = academias[i]["endereco"]
 
@@ -138,7 +138,7 @@ end.compact # Remove valores nil do array
 puts "Academias criadas: #{gyms.compact.map(&:name)}"
 
 # Criar 50 compromissos (check-ins)
-50.times do |i|
+2000.times do |i|
   user = User.order("RANDOM()").first  # Seleciona um usuário aleatório para o check-in
   gym = Gym.order("RANDOM()").first    # Seleciona uma academia aleatória para o check-in
 

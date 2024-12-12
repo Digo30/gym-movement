@@ -4,25 +4,23 @@
   <div id="messages-container" class="messages-container">
     <div class='row gap-3 p-3' id='messages-container2'>
       <% @messages.each do |message| %>
-          <div class="bg-dark p-3 rounded-4 mb-1">
-            <div class="text-light d-flex align-items-center gap-3 chat-info pb-2 mb-3">
-              <%= image_tag current_user.profile_picture, class: "img-checkin img-chat" %>
-              <h6 class="m-0"><%= message.user.first_name %> <%= message.user.last_name %>:</h6>
-              <span class="hora-msg"><%= message.created_at.strftime("%d/%m/%Y %H:%M") %></span>
-            </div>
-            <p class="text-light m-0 fs-6">
-              <%= message.content %>
-            </p>
+        <div class="bg-dark p-3 rounded-4 mb-1">
+          <div class="text-light d-flex align-items-center gap-3 chat-info pb-2 mb-3">
+            <%= image_tag message.user.profile_picture, class: "img-checkin img-chat" %>
+            <h6 class="m-0"><%= message.user.first_name %> <%= message.user.last_name %>:</h6>
+            <span class="hora-msg"><%= message.created_at.strftime("%d/%m/%Y %H:%M") %></span>
           </div>
+          <p class="text-light m-0 fs-6">
+            <%= message.content %>
+          </p>
+        </div>
       <% end %>
     </div>
   </div>
-
- <div class="chat-input">
-  <%= form_with(model: [@gym, Message.new], local: true, data: { turbo_frame: "_top" }) do |form| %>
-    <%= form.text_area :content, rows: 2, class: "w-100" %>
-    <%= form.submit "Enviar", class: 'btn btn-success rounded-4 w-100' %>
-  <% end %>
-</div>
-
+  <div class="chat-input">
+    <%= form_with(model: [@gym, Message.new], local: true, data: { turbo_frame: "_top" }) do |form| %>
+      <%= form.text_area :content, rows: 2, class: "w-100" %>
+      <%= form.submit "Enviar", class: 'btn btn-success rounded-4 w-100' %>
+    <% end %>
+  </div>
 </div>
