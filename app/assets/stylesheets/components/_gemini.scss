@@ -30,7 +30,7 @@ body {
 
 .form-select-container {
   background-color: black;
-  padding: 0px 10px;
+  gap: 30px;
 }
 
 .chat-card {
@@ -68,7 +68,7 @@ body {
 // Botões
 .btn-submit,
 .btn-send {
-  background: $primary-color;
+  background: $green-light;
   color: $secondary-color;
   border: none;
   padding: 10px 20px;

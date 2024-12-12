@@ -9,14 +9,17 @@
 }
 
 /* Estilos para os títulos */
-.container-food h1, .container-food h2, .container-food h4 {
-  font-family: 'Arial', sans-serif;
+.container-food h1,
+.container-food h2,
+.container-food h4 {
+  font-family: "Arial", sans-serif;
   color: white;
 }
 
 .container-food {
   & form {
     background-color: $gray-b;
+    margin: 0px;
   }
 }
 

@@ -2,7 +2,7 @@
 
 <div class="container-food">
   <%= form_with url: food_intakes_path, method: :post, local: true do |form| %>
-    <h1 class="my-4 text-center text-primary">Adicionar Alimento</h1>
+    <h1 class="my-4 text-center text-light">Adicionar Alimento</h1>
 
     <div class="form-group">
       <%= form.label :search_term, "Buscar alimento (nome ou código de barras):", class: "text-white" %>
@@ -10,7 +10,7 @@
     </div>
 
     <div class="form-group">
-      <%= form.submit "Buscar e adicionar", class: "btn btn-success btn-lg w-100" %>
+      <%= form.submit "Buscar e adicionar", class: "btn btn-success rounded-custom mt-4 btn-lg w-100" %>
     </div>
   <% end %>
 </div>

@@ -1,10 +1,12 @@
+<div class="chat-container" data-controller="chat alert" data-user-trainings-path="<%= user_trainings_path %>">
+
 <div class="container-food">
   <!-- Link de retorno para nutri -->
-  <%= link_to nutri_food_intakes_path, class: "btn btn-primary mb-4 rounded-right" do %>
+  <%= link_to nutri_food_intakes_path, class: "btn btn-success mb-4 rounded-custom" do %>
     <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar para Nutri
   <% end %>
 
-  <h1 class="my-4 text-center text-primary">Alimentos Consumidos</h1>
+  <h1 class="my-4 text-center text-light">Alimentos Consumidos</h1>
   <h2 class="text-center mb-4 text-secondary">Total de Calorias: <%= @total_calories %> kcal</h2>
   <h2 class="text-center mb-4 text-secondary">Total de Proteína: <%= @total_protein %> g</h2>
 
@@ -29,4 +31,5 @@
       </div>
     <% end %>
   </div>
+</div>
 </div>

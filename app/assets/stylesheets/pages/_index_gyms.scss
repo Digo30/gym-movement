@@ -20,6 +20,13 @@
 #botoes-index a {
   padding-inline: 20px;
   flex: 1 1 auto;
+  background-color: #28a745;
+  color: #fff !important;
+
+  & :hover {
+    background-color: #28a745;
+    color: #fff !important;
+  }
 }
 
 .search-container {
