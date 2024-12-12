@@ -2,7 +2,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background: #f8f9fa;
+
   border-radius: 8px;
 
   .training-list-title {
@@ -16,6 +16,11 @@
     flex-direction: column;
     gap: 15px;
   }
+
+  .no-training {
+    color: white;
+  }
+
 
   .training-item {
     border: 1px solid #ddd;
@@ -34,8 +39,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px;
-      background: #007bff;
-      color: #ffffff;
+      background: $green-light;
+      color: white;
       cursor: pointer;
 
       .training-title {

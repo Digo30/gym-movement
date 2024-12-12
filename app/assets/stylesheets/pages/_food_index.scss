@@ -14,6 +14,12 @@
   color: white;
 }
 
+.container-food {
+  & form {
+    background-color: $gray-b;
+  }
+}
+
 /* Estilos para os cards */
 .food-cards .food-card {
   display: flex;
