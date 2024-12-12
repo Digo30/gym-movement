@@ -1,12 +1,13 @@
-<div class="training-list-container">
-  <h2 class="training-list-title">Seu Treino Personalizado</h2>
 
+<div class="chat-container" data-controller="chat alert" data-user-trainings-path="<%= user_trainings_path %>">
+
+<div class="training-list-container">
+  <h2 class="training-list-title">Treino Personalizado</h2>
   <% if @trainings.any? %>
     <div class="training-list">
       <% @trainings.each_with_index do |training, index| %>
         <div class="training-item" data-controller="training">
           <div class="training-header" data-action="click->training#toggle">
-
             <h3 class="training-title">Treino Gerado em <%= training.created_at.strftime('%d/%m/%Y') %> - <%= index + 1 %></h3>
             <span class="training-toggle-indicator">+</span>
           </div>
@@ -17,7 +18,10 @@
       <% end %>
     </div>
   <% else %>
-    <p class="no-training">Nenhum treino foi gerado ainda. Use o chat para criar seu treino!</p>
+    <p class="no-training">Nenhum treino foi gerado ainda.</p>
+     <a href="<%= chat_path %>" class="btn btn-success rounded-custom w-100 text-light">Monte seu primeiro Treino</a>
   <% end %>
 </div>
 
+
+</div>

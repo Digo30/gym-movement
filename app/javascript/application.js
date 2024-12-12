@@ -6,4 +6,4 @@ import "bootstrap";
 // app/javascript/packs/application.js
 import { Turbo } from "@hotwired/turbo-rails";
 Turbo.start();
-import "./controllers/sidenav";
+

@@ -1,3 +1,5 @@
+<div class="chat-container" data-controller="chat alert" data-user-trainings-path="<%= user_trainings_path %>">
+
 <div class="container-food">
   <%= form_with url: food_intakes_path, method: :post, local: true do |form| %>
     <h1 class="my-4 text-center text-primary">Adicionar Alimento</h1>
@@ -11,4 +13,6 @@
       <%= form.submit "Buscar e adicionar", class: "btn btn-success btn-lg w-100" %>
     </div>
   <% end %>
+</div>
+
 </div>
