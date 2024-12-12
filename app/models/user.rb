@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one_attached :profile_picture
   has_one_attached :photo
   has_many :chat_messages, dependent: :destroy
+  has_many :trainings, dependent: :destroy
 
   validates :first_name, :last_name, presence: true, length: { minimum: 2 }
   validates :birthday, presence: true

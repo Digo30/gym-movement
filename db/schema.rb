@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_11_200444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,38 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
     t.index ["user_id"], name: "index_chat_messages_on_user_id"
   end
 
+  create_table "consumed_foods", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.integer "calories"
+    t.float "protein"
+    t.float "carbohydrates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_consumed_foods_on_user_id"
+  end
+
+  create_table "consumptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_consumptions_on_food_id"
+    t.index ["user_id"], name: "index_consumptions_on_user_id"
+  end
+
+  create_table "food_entries", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.float "calories"
+    t.float "protein"
+    t.float "carbohydrates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_food_entries_on_user_id"
+  end
+
   create_table "food_intakes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "product_name"
@@ -76,6 +108,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
     t.string "product_image"
     t.float "protein"
     t.index ["user_id"], name: "index_food_intakes_on_user_id"
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "calories", null: false
+    t.integer "protein", null: false
+    t.integer "carbohydrates", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "gyms", force: :cascade do |t|
@@ -102,16 +143,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
     t.datetime "updated_at", null: false
     t.index ["gym_id"], name: "index_messages_on_gym_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "title"
-    t.text "message"
-    t.boolean "read"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -254,6 +285,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 
+  create_table "trainings", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trainings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -270,6 +310,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
+    t.string "provider"
+    t.string "uid"
     t.text "ai_generated_list"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -289,10 +331,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
   add_foreign_key "appointments", "gyms"
   add_foreign_key "appointments", "users"
   add_foreign_key "chat_messages", "users"
+  add_foreign_key "consumed_foods", "users"
+  add_foreign_key "consumptions", "foods"
+  add_foreign_key "consumptions", "users"
+  add_foreign_key "food_entries", "users"
   add_foreign_key "food_intakes", "users"
   add_foreign_key "messages", "gyms"
   add_foreign_key "messages", "users"
-  add_foreign_key "notifications", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
@@ -300,5 +345,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
   add_foreign_key "solid_queue_ready_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_recurring_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
+  add_foreign_key "trainings", "users"
   add_foreign_key "water_intakes", "users"
 end

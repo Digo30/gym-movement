@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Alunos na <%=@gym.name %> agora!</h1>
+  <ul class="mt-4 p-0">
+    <% @alunos.each do |aluno| %>
+    <li class="d-flex align-items-center gap-3 mt-3 bg-dark p-3 rounded-4">
+      <%= image_tag(aluno.user.profile_picture, class: "img-checkin") %>
+      <p class="m-0 text-light"><%= aluno.user.first_name %> <%= aluno.user.last_name %></p>
+      <i class="fa-solid fa-circle text-success aluno-online"></i>
+    </li>
+    <% end %>
+  </ul>
+  <%= link_to "Voltar para a academia", gym_path(@gym), class: "btn btn-success rounded-custom" %>
+</div>

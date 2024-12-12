@@ -7,9 +7,17 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def trainings
+    @trainings = current_user.trainings.order(created_at: :desc)
+  end
 
   def edit
   end
+
+  def trainings
+    @trainings = current_user.trainings.order(created_at: :desc) # ActiveRecord Query
+  end
+
 
   def update
   if user_params[:profile_picture].present?
