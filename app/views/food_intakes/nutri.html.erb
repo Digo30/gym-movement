@@ -17,7 +17,7 @@
 
   <!-- Gráfico de calorias e proteína -->
   <div class="food-dashboard-calorias-chart card shadow-sm p-4 mb-4">
-    <canvas id="caloriesChart" width="500" height="300"></canvas>
+    <canvas id="caloriesChart"></canvas>
   </div>
 
   <div class="food-dashboard-actions-buttons">
@@ -47,13 +47,14 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <script>
   document.addEventListener("turbo:load", function() {
     var ctx = document.getElementById('caloriesChart').getContext('2d');
     var caloriesChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ['Calorias Consumidas', 'Calorias Restantes', 'Proteína Consumida', 'Proteína Restante'],
+        labels: ['Calorias Consumidas', 'Calorias Restantes    ', 'Proteína Consumida  ', 'Proteína Restante      '],
         datasets: [{
           data: [
             <%= current_user.food_intakes.where(date: Date.today).sum(:calories) %>,
@@ -61,11 +62,11 @@
             <%= current_user.food_intakes.where(date: Date.today).sum(:protein) %>,
             100 - <%= current_user.food_intakes.where(date: Date.today).sum(:protein) %>
           ],
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-          borderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+          backgroundColor: ['#e7d31f', '#8bf059', '#FFCE56', '#4BC0C0'],
+          borderColor: ['#000000', '#000000', '#000000', '#000000'],
           borderWidth: 2,
-          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-          hoverBorderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+          hoverBackgroundColor: ['#ffc000', '#52f700', '#FFCE56', '#4BC0C0'],
+          hoverBorderColor: ['#ffc000', '#52f700', '#FFCE56', '#4BC0C0']
         }]
       },
       options: {

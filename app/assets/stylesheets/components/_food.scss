@@ -10,16 +10,18 @@
 
 .food-dashboard-calorias-info, .food-dashboard-calorias-chart, .food-dashboard-alimentos-consumidos {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .food-dashboard-calorias-info h4, .food-dashboard-calorias-info p, .food-dashboard-alimentos-consumidos h6 {
   margin-bottom: 10px;
 }
 
-.food-dashboard-calorias-chart canvas {
-  width: 100% !important;
-  height: auto !important;
-}
+// .food-dashboard-calorias-chart canvas {
+//   width: 100% !important;
+//   height: auto !important;
+// }
 
 .food-dashboard-actions-buttons .food-dashboard-btn {
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -29,6 +31,10 @@
   background-color: #007bff;
   transform: scale(1.05);
 }
+.chart-labels {
+  margin-right: 20px;
+}
+
 
 .food-dashboard-list-group-item {
   display: flex;
@@ -43,14 +49,14 @@
 
 /* Estilo para os cards */
 .food-dashboard .card {
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #fff, #90e13e);
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Cores e fontes para os textos */
 .food-dashboard-text-dark {
-  color: #333 !important;
+  color: black !important;
 }
 
 .food-dashboard-text-info {
@@ -58,7 +64,7 @@
 }
 
 .food-dashboard-text-warning {
-  color: #ffc107 !important;
+  color: #fdbe01 !important;
 }
 
 .food-dashboard-actions-buttons .food-dashboard-btn {
