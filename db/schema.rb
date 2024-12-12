@@ -318,6 +318,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_142108) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
+    t.string "provider"
+    t.string "uid"
     t.text "ai_generated_list"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
