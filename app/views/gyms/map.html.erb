@@ -19,13 +19,13 @@
 
     <label for="distance">Distância Máxima (km):</label>
     <input type="range" id="distance" name="distance" value="<%= params[:distance] || 100 %>" min="1" max="50" step="1">
-    <span id="distance-value"><%= params[:distance] || 100 %></span> km
+    <span id="distance-value"><%= params[:distance] || 100 %></span><span style="color: black; font-weight: bold;"> km</span>
 
-    <h6>Comodidades</h6>
+    <h6 id="h6-filter">Comodidades</h6>
     <div class="mb-3 d-flex flex-wrap gap-2">
       <% ["Estacionamento", "Piscina", "Ar-condicionado", "Armarios", "Sauna", "Lanchonete", "Wi-fi", "Chuveiro", "Bicicletario"].each do |amenity| %>
         <%= check_box_tag "amenities[]", amenity, params[:amenities]&.include?(amenity), id: "amenities_#{amenity}", class: "d-none amenity-checkbox" %>
-        <%= label_tag "amenities_#{amenity}", amenity, class: "btn btn-outline-success amenity-label" %>
+        <%= label_tag "amenities_#{amenity}", amenity, id: 'option-comod-map', class: "btn btn-outline-success amenity-label" %>
       <% end %>
     </div>
 

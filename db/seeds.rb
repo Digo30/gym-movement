@@ -111,11 +111,13 @@ gyms = 30.times.map do |i|
 
   begin
     file = URI.open(academias[i]["imagem_url"])
+    puts "Anexando imagem principal: #{academias[i]["imagem_url"]}"
     gym.gym_image.attach(io: file, filename: "gym_image#{i}.jpg", content_type: 'image/jpeg')
 
     # Anexar imagens à academia
     academias[i]["imagens_da_estrutura"].each_with_index do |image_url, index|
       file = URI.open(image_url)
+      puts "Anexando imagem adicional: #{image_url}"
       gym.images.attach(io: file, filename: "gym_image#{i}_#{index}.jpg", content_type: 'image/jpeg')
     end
   rescue OpenURI::HTTPError => e
@@ -125,6 +127,7 @@ gyms = 30.times.map do |i|
   end
 
   if gym.save
+    puts "Academia #{gym.name} salva com sucesso!"
     gym # Retorna o objeto Gym salvo
   else
     puts "Erro ao salvar academia: #{gym.errors.full_messages.join(", ")}"
