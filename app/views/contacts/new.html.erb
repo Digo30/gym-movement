@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="text-center mt-3 mb-3">Contatos</h1>
+  <div class="p-4 rounded-4 edit-form contact-form">
+    <%= form_with model: @contact, url: contacts_path, id:'form-contact', local: true do |form| %>
+      <% if @contact.errors.any? %>
+        <div class="error_messages">
+          <h2>Erros:</h2>
+          <ul>
+            <% @contact.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group-contact">
+        <%= form.label :nome %>
+        <%= form.text_field :nome, class: 'form-control' %>
+      </div>
+
+      <div class="form-group-contact">
+        <%= form.label :email %>
+        <%= form.email_field :email, class: 'form-control' %>
+      </div>
+
+      <div class="form-group-contact">
+        <%= form.label :mensagem %>
+        <%= form.text_area :mensagem, class: 'form-control', rows: 5 %>
+      </div>
+
+      <%= form.submit 'Enviar', class: 'btn btn-danger rounded-4 text-light mt-4 btn-sm' %>
+    <% end %>
+  </div>
+
+</div>

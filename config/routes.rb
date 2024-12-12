@@ -44,4 +44,7 @@ Rails.application.routes.draw do
     end
   end
   resources :water_intakes, only: [:new, :create]
+
+  get 'contacts/new', to: 'contacts#new', as: 'new_contact'
+  post 'contacts', to: 'contacts#create', as: 'contacts'
 end
