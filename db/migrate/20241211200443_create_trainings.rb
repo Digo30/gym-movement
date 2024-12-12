@@ -1,10 +1,12 @@
-class CreateTrainings < ActiveRecord::Migration[7.2]
+class CreateTrainings < ActiveRecord::Migration[6.0]
   def change
-    create_table :trainings do |t|
-      t.string :title
-      t.references :user, null: false, foreign_key: true
-
-      t.timestamps
+    unless table_exists?(:trainings)
+      create_table :trainings do |t|
+        t.string :name
+        t.text :description
+        t.integer :duration
+        t.timestamps
+      end
     end
   end
 end
