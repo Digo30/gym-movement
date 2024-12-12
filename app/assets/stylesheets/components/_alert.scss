@@ -4,3 +4,46 @@
   right: 16px;
   z-index: 1000;
 }
+
+
+// Custom alert styles
+.custom-alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 8px;
+  z-index: 1050;
+  animation: fadeIn 0.3s ease-in;
+  min-width: 300px;
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;  /* Espaçamento consistente entre o spinner e o texto */
+}
+
+.alert-content p {
+  margin: 0;  /* Remove margens padrão do parágrafo */
+  color: white;
+  font-size: 16px;
+  white-space: nowrap;  /* Evita quebra de linha */
+}
+
+.spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
