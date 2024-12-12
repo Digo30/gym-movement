@@ -1,5 +1,5 @@
 <%= form_with url: gyms_path, method: :get, class: "d-flex search-form justify-content-center" do %>
-  <div class='d-flex w-100'>
+  <div id="search-id" class='d-flex w-100'>
     <%= text_field_tag :query,
           params[:query],
           class: "form-control m-0 input-search",
