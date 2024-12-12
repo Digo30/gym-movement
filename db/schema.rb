@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_11_200444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,38 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
     t.index ["user_id"], name: "index_chat_messages_on_user_id"
   end
 
+  create_table "consumed_foods", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.integer "calories"
+    t.float "protein"
+    t.float "carbohydrates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_consumed_foods_on_user_id"
+  end
+
+  create_table "consumptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_consumptions_on_food_id"
+    t.index ["user_id"], name: "index_consumptions_on_user_id"
+  end
+
+  create_table "food_entries", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.float "calories"
+    t.float "protein"
+    t.float "carbohydrates"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_food_entries_on_user_id"
+  end
+
   create_table "food_intakes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "product_name"
@@ -76,6 +108,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
     t.string "product_image"
     t.float "protein"
     t.index ["user_id"], name: "index_food_intakes_on_user_id"
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "calories", null: false
+    t.integer "protein", null: false
+    t.integer "carbohydrates", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "gyms", force: :cascade do |t|
@@ -102,48 +143,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
     t.datetime "updated_at", null: false
     t.index ["gym_id"], name: "index_messages_on_gym_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "oauth_access_grants", force: :cascade do |t|
-    t.bigint "resource_owner_id", null: false
-    t.bigint "application_id", null: false
-    t.string "token", null: false
-    t.integer "expires_in", null: false
-    t.text "redirect_uri", null: false
-    t.string "scopes", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "revoked_at"
-    t.index ["application_id"], name: "index_oauth_access_grants_on_application_id"
-    t.index ["resource_owner_id"], name: "index_oauth_access_grants_on_resource_owner_id"
-    t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
-  end
-
-  create_table "oauth_access_tokens", force: :cascade do |t|
-    t.bigint "resource_owner_id"
-    t.bigint "application_id", null: false
-    t.string "token", null: false
-    t.string "refresh_token"
-    t.integer "expires_in"
-    t.string "scopes"
-    t.datetime "created_at", null: false
-    t.datetime "revoked_at"
-    t.string "previous_refresh_token", default: "", null: false
-    t.index ["application_id"], name: "index_oauth_access_tokens_on_application_id"
-    t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
-    t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
-    t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
-  end
-
-  create_table "oauth_applications", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "uid", null: false
-    t.string "secret", null: false
-    t.text "redirect_uri", null: false
-    t.string "scopes", default: "", null: false
-    t.boolean "confidential", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -286,6 +285,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 
+  create_table "trainings", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trainings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -323,11 +331,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
   add_foreign_key "appointments", "gyms"
   add_foreign_key "appointments", "users"
   add_foreign_key "chat_messages", "users"
+  add_foreign_key "consumed_foods", "users"
+  add_foreign_key "consumptions", "foods"
+  add_foreign_key "consumptions", "users"
+  add_foreign_key "food_entries", "users"
   add_foreign_key "food_intakes", "users"
   add_foreign_key "messages", "gyms"
   add_foreign_key "messages", "users"
-  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
-  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
@@ -335,5 +345,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_10_222020) do
   add_foreign_key "solid_queue_ready_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_recurring_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
+  add_foreign_key "trainings", "users"
   add_foreign_key "water_intakes", "users"
 end

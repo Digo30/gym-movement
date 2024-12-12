@@ -1,0 +1,63 @@
+.training-list-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+
+  .training-list-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .training-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .training-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .training-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background: #007bff;
+      color: #ffffff;
+      cursor: pointer;
+
+      .training-title {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .training-toggle-indicator {
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+    }
+
+    .training-content {
+      padding: 15px;
+      font-size: 0.9rem;
+      color: #333;
+      line-height: 1.5;
+
+      &.hidden {
+        display: none;
+      }
+    }
+  }
+}

@@ -18,7 +18,14 @@
       <%= render "shared/navbar" %>
     </div>
     <%= render "shared/flashes" %>
-        <%= yield %>
+
+    <%if current_user.present? %>
+      <%= turbo_frame_tag "notification" do %>
+       <%#= render "shared/mensagem" %>
+      <% end %>
+      <%= turbo_stream_from current_user %>
+    <% end %>
+    <%= yield %>
     <%= render "pages/footer" %>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
   </body>
