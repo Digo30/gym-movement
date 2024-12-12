@@ -34,12 +34,18 @@
   right: 10px;
   z-index: 1000;
   width: 400px;
+  background-color: rgb(201, 252, 205);
+}
+#distance-value, #occupancy-value{
+  font-weight: bold;
+  color: black;
 }
 
 .filters-map label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: black;
 }
 
 .filters-map input,
@@ -56,13 +62,14 @@
   margin-right: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #28a745;
   color: white;
   cursor: pointer;
 }
 
 .filters-map button:hover {
-  background-color: #0056b3;
+  color: var(--bs-btn-hover-color);
+  background-color: #26e630;
 }
 
 #toggle-filters {
@@ -88,6 +95,15 @@
 .btn-outline-success.btn-success {
   background-color: #28a745;
   color: white;
+}
+
+#option-comod-map{
+  color: #28a745;
+  &:hover{
+    color: black;
+    background: #26e630;
+    border-color: #26e630;
+  }
 }
 
 @media (max-width: 412px) {
