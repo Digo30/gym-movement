@@ -20,3 +20,10 @@
 #search-button {
   background-color: #32cd32;
 }
+
+@media (max-width: 767px) {
+  #search-id{
+    background-color: black;
+    justify-content: center;
+  }
+}
