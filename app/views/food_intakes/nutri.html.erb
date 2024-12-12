@@ -1,16 +1,16 @@
 <div class="food-dashboard container-food">
   <!-- Exibição das calorias, água e proteína -->
   <div class="food-dashboard-calorias-info card shadow-sm p-4 mb-4">
-    <h6 class="food-dashboard-text-dark">Calorias consumidas hoje:</h6>
+    <h6 class="food-dashboard-text-light">Calorias consumidas hoje:</h6>
     <p class="food-dashboard-text-warning fw-bold">
       <%= current_user.food_intakes.where(date: Date.today).sum(:calories) %> kcal
     </p>
-    <h6 class="food-dashboard-text-dark mt-3">Água consumida hoje:</h6>
+    <h6 class="food-dashboard-text-light mt-3">Água consumida hoje:</h6>
     <p class="food-dashboard-text-info fw-bold">
       <%= current_user.water_intakes.where(date: Date.today).sum(:amount) %> L
     </p>
-    <h6 class="food-dashboard-text-dark mt-3">Proteína consumida hoje:</h6>
-    <p class="food-dashboard-text-success fw-bold">
+    <h6 class="food-dashboard-text-light mt-3">Proteína consumida hoje:</h6>
+    <p class="food-dashboard-text-success fw-bold text-light">
       <%= current_user.food_intakes.where(date: Date.today).sum(:protein) %> g
     </p>
   </div>
@@ -21,7 +21,7 @@
   </div>
 
   <div class="food-dashboard-actions-buttons">
-    <a href="<%= food_intakes_path %>" class="food-dashboard-btn btn btn-primary rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
+    <a href="<%= food_intakes_path %>" class="food-dashboard-btn btn btn-success rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
       <i class="fas fa-utensils mr-2"></i> Visualizar Alimentos
     </a>
     <a href="<%= new_food_intake_path %>" class="food-dashboard-btn btn btn-success rounded-4 w-100 text-light mb-3 btn-sm d-flex align-items-center justify-content-center">
@@ -34,11 +34,11 @@
 
   <!-- Visualização de alimentos -->
   <div class="food-dashboard-alimentos-consumidos card shadow-sm p-4 ">
-    <h6 class="food-dashboard-text-dark">Alimentos consumidos hoje:</h6>
-    <ul class="food-dashboard-list-group">
+    <h6 class="food-dashboard-text-light">Alimentos consumidos hoje:</h6>
+    <ul class="food-dashboard-list-group p-0">
       <% current_user.food_intakes.where(date: Date.today).each do |food_intake| %>
-        <li class="food-dashboard-list-group-item d-flex justify-content-between align-items-center">
-          <%= food_intake.product_name %>
+        <li class="food-dashboard-list-group-item d-flex justify-content-between align-items-center mt-2">
+          <p class="text-light m-0 food-name"><%= food_intake.product_name %></p>
           <span class="badge bg-warning rounded-pill"><%= food_intake.calories %> kcal</span>
           <span class="badge bg-success rounded-pill"><%= food_intake.protein %> g</span>
         </li>
@@ -54,7 +54,7 @@
     var caloriesChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ['Calorias Consumidas', 'Calorias Restantes    ', 'Proteína Consumida  ', 'Proteína Restante      '],
+        labels: ['Calorias Consumidas', 'Calorias Restantes', 'Proteína Consumida', 'Proteína Restante'],
         datasets: [{
           data: [
             <%= current_user.food_intakes.where(date: Date.today).sum(:calories) %>,
@@ -76,12 +76,14 @@
           legend: {
             display: true,
             position: 'top',
+            align: 'start', // Tente ajustar para 'start' ou 'end'
             labels: {
               font: {
                 size: 14,
                 weight: 'bold'
               },
-              color: '#333'
+              color: '#fff', // Define a cor das labels para branco
+              padding: 20, // Adiciona espaçamento ao redor das labels
             }
           },
           tooltip: {
@@ -98,10 +100,10 @@
         },
         layout: {
           padding: {
-            top: 10,
-            right: 10,
-            bottom: 10,
-            left: 10
+            top: 20,
+            right: 20,
+            bottom: 20,
+            left: 20
           }
         },
         animation: {

@@ -28,15 +28,15 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
   position: inherit;
   top: 60px;
   right: 10px;
   z-index: 1000;
   width: 400px;
-  background-color: rgb(201, 252, 205);
+  background-color: #fff;
 }
-#distance-value, #occupancy-value{
+#distance-value,
+#occupancy-value {
   font-weight: bold;
   color: black;
 }
@@ -96,10 +96,12 @@
   background-color: #28a745;
   color: white;
 }
-
-#option-comod-map{
+.gym-name {
+  color: $black !important;
+}
+#option-comod-map {
   color: #28a745;
-  &:hover{
+  &:hover {
     color: black;
     background: #26e630;
     border-color: #26e630;

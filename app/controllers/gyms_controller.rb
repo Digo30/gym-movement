@@ -127,6 +127,6 @@ class GymsController < ApplicationController
 
   def set_date_hour
     @time_now = Time.current
-    @one_hour_ago = 1.hour.ago
+    @one_hour_ago = 48.hours.ago
   end
 end
