@@ -1,9 +1,14 @@
 <%= turbo_stream_from current_user %>
 
-<div class="chat-container">
+<div class="chat-container" data-controller="chat alert" data-user-trainings-path="<%= user_trainings_path %>">
   <!-- Formulário para selecionar o treino -->
   <div class="form-card">
-    <%= form_with(url: chat_messages_path, method: :post, data: { turbo_frame: "messages" }, class: "form-select-container") do %>
+    <%= form_with(url: chat_messages_path, method: :post,
+                  data: {
+                    turbo_frame: "messages",
+                    action: "submit->alert#showAlert"
+                  },
+                  class: "form-select-container") do %>
       <div class="form-group">
         <%= label_tag :focus_area, "Qual seu foco nos treinos?", class: "form-label" %>
         <%= select_tag :focus_area, options_for_select(['Hipertrofia', 'Força', 'Resistência', 'Emagrecimento', 'Condicionamento'], prompt: 'Selecione seu foco'), class: "form-control" %>
@@ -28,14 +33,4 @@
       </div>
     <% end %>
   </div>
-
-  <!-- Exibição das mensagens do chat -->
-  <div class="chat-card">
-    <div class="chat-body" id="messages">
-      <%= turbo_frame_tag "messages" do %>
-        <%= render partial: "chat_messages/chat_message", collection: @messages %>
-      <% end %>
-    </div>
-  </div>
-
 </div>
