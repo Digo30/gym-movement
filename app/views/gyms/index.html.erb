@@ -17,26 +17,44 @@
 
   <%= render "shared/filter" %>
 
-<div class="gyms-container mt-3">
-  <% @gyms.each do |gym| %>
-    <div class="card mb-3 rounded-4 gym-card">
-      <div class="d-flex g-0 align-items-center w-100">
-        <div class=" w-auto">
-          <%= link_to gym_path(gym), class: "card-title text-decoration-none" do %>
-            <%= image_tag gym.gym_image, class: "card-img pe-2" %>
-          <% end %>
-        </div>
+  <div class="gyms-container mt-3">
+    <% @gyms.each do |gym| %>
+      <div class="card mb-3 rounded-4 gym-card">
+        <div class="d-flex g-0 align-items-center w-100">
+          <div class=" w-auto">
+            <%= link_to gym_path(gym), class: "card-title text-decoration-none" do %>
+              <%= image_tag gym.gym_image, class: "card-img pe-2" %>
+            <% end %>
+          </div>
           <div class="card-body card-content p-2">
             <%= link_to gym.name, gym_path(gym), class: "card-title text-decoration-none fw-bold" %>
-            <p class="card-text mb-1">Score: <%= gym.rating %></p>
-            <p class="card-text mb-1">Fluxo: <span id="fluxo-<%= gym.id %>"><%= @fluxos[gym.id] %></span></small></p>
-            <p class="card-text mb-1">Capacidade: <%= gym.capacity %></small></p>
+
+            <p class="card-text mb-1">
+              Score: <% (1..5).each do |i| %>
+                <% if i <= gym.rating.to_i %>
+                  <i class="fa fa-star text-warning"></i> <!-- Estrela cheia -->
+                <% else %>
+                  <i class="fa fa-star-o text-muted"></i> <!-- Estrela vazia -->
+                <% end %>
+              <% end %>
+            </p>
+
+            <p class="card-text mb-1">
+              Fluxo:
+              <% fluxo = @fluxos[gym.id].to_f %>
+              <% capacidade = gym.capacity.to_f %>
+              <% fluxo_percentual = ((fluxo / capacidade) * 100).round(1) %>
+              <span id="fluxo-<%= gym.id %>"><%= fluxo_percentual %> %</span>
+            </p>
+
+            <p class="card-text mb-1">Capacidade: <%= gym.capacity %></p>
             <div class="d-flex gap-3">
-              <p class="card-text mb-1">Mulheres: <%= @gender[gym.id]["Female"] %></small></p>
-              <p class="card-text mb-1">Homens: <%= @gender[gym.id]["Male"] %></small></p>
+              <p class="card-text mb-1">Mulheres: <%= @gender[gym.id]["Female"] %></p>
+              <p class="card-text mb-1">Homens: <%= @gender[gym.id]["Male"] %></p>
             </div>
           </div>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
