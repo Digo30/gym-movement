@@ -80,6 +80,14 @@ def generate_coordinates
   [latitude, longitude]
 end
 
+# Método para gerar um endereço a partir da latitude e longitude (simulação)
+def generate_address(original_address, latitude, longitude)
+  # Extrai o nome da rua e o número do endereço original
+  street_name, number = original_address.split(',')[0].split(' ')
+  number = number.gsub(/[^0-9]/, '') # Remove caracteres não numéricos
+  "Rua #{street_name}, #{number}, Bairro #{['Centro', 'Vila', 'Jardim', 'Parque'].sample}, Cidade São Paulo, Lat: #{latitude.round(4)}, Lon: #{longitude.round(4)}"
+end
+
 # Array de comodidades possíveis
 amenities_list = [
   "Piscina", "Sauna", "Ar-condicionado", "Armarios", "Lanchonete",
@@ -94,11 +102,12 @@ puts "Usuários criados com sucesso!"
 # Criando academias com comodidades, coordenadas, endereço e imagem
 gyms = 15.times.map do |i|
   latitude, longitude = generate_coordinates
-  address = academias[i]["endereco"]
+  original_address = academias[i]["endereco"]
+  combined_address = generate_address(original_address, latitude, longitude)
 
   gym = Gym.new(
     name: academias[i]["nome"],
-    address: address,  # Agora com o endereço gerado
+    address: combined_address,  # Agora com o endereço gerado
     latitude: latitude,
     longitude: longitude,
     phone: Faker::PhoneNumber.phone_number,
