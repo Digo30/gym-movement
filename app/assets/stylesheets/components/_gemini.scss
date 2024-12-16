@@ -13,12 +13,6 @@ body {
   padding: 0;
 }
 
-// Container principal
-.chat-container {
-  max-width: 400px;
-  padding: 20px;
-}
-
 // Cartões
 .form-card,
 .chat-card {
@@ -107,6 +101,8 @@ body {
 @media (max-width: 480px) {
   .chat-container {
     padding: 10px;
+    max-width: 400px;
+    padding: 20px;
   }
 
   .form-card,
